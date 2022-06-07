@@ -70,6 +70,12 @@ export default {
           title: 'Mis Eventos',
           to: '/events',
         },
+        {
+          icon:false,
+          iconName: 'mdi-chart-bubble',
+          title: 'Administrador',
+          to: '/admin',
+        },
         ],
       miniVariant: false,
       title: 'Vuetify.js',

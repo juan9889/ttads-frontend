@@ -21,7 +21,7 @@
 
 <script>
   export default {
-    layout: 'admin_test_layout',
+    layout: 'admin_panel_layout',
     data () {
       return {
         search: '',

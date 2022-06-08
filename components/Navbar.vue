@@ -1,24 +1,12 @@
    <template>
   <div>
     <!--Show mobile - Hide desktop -->
-    <v-navigation-drawer
-    class="d-flex d-sm-none"
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
+    <v-navigation-drawer class="d-flex d-sm-none" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed
+      disable-resize-watcher app>
       <v-list>
-        <v-list-item
-          v-for="(item, i) in btnItems"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
+        <v-list-item v-for="(item, i) in btnItems" :key="i" :to="item.to" router exact>
           <v-list-item-action v-if="item.icon">
-            <v-icon left >{{ item.iconName }}</v-icon>
+            <v-icon left>{{ item.iconName }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
@@ -32,12 +20,14 @@
       <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer" />
       <!--Solo logeados-->
       <div class="d-none d-sm-flex" v-for="(item,i) in btnItems" :key="i">
-        <v-btn plain text nuxt :to="item.to"><v-icon left v-if="item.icon">{{item.iconName}}</v-icon>{{item.title}}</v-btn>
+        <v-btn plain text nuxt :to="item.to">
+          <v-icon left v-if="item.icon">{{item.iconName}}</v-icon>{{item.title}}
+        </v-btn>
       </div>
-      
+
       <v-spacer />
       <v-btn plain text nuxt to="/">Salir
-        <v-icon >mdi-logout</v-icon> 
+        <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
   </div>

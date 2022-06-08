@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12" sm="12" md="6">
+    <v-col cols="12" sm="12" md="8">
       <v-card class="pa-6">
         <v-form>
           <v-row>
@@ -15,8 +15,8 @@
               <v-menu ref="datePiker" v-model="datePiker" :close-on-content-click="false" :return-value.sync="date"
                 transition="scale-transition" offset-y min-width="auto">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-text-field filled v-model="date" label="Fecha" prepend-icon="mdi-calendar" readonly
-                    v-bind="attrs" v-on="on"></v-text-field>
+                  <v-text-field filled v-model="date" label="Fecha" prepend-icon="mdi-calendar" readonly v-bind="attrs"
+                    v-on="on"></v-text-field>
                 </template>
                 <v-date-picker v-model="date" no-title scrollable label="Fecha">
                   <v-spacer></v-spacer>
@@ -56,14 +56,18 @@
               <v-text-field prepend-icon="mdi-map-marker" filled label="Direccion" v-model="adress" required>
               </v-text-field>
             </v-col>
+            <v-col cols="12" sm="12" md="6" >
+              <v-btn color="primary">Crear</v-btn>
+            </v-col>
           </v-row>
         </v-form>
       </v-card>
     </v-col>
-    <v-col cols="12" sm="12" md="6">
+    <v-col cols="12" sm="12" md="4">
       <EventsVerticalCard :title="title.toUpperCase()" :date="date" :time="time" :place="place"
         :description="description" :community="community" :src="photo" />
     </v-col>
+
   </v-row>
 
 </template>

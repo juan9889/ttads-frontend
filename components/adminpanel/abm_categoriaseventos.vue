@@ -1,3 +1,3 @@
 <template>
-<h2>Categorias eventos</h2>
+<p>Categorias eventos</p>
 </template>

@@ -1,58 +1,56 @@
 <template>
-  <v-card
-    height="400"
-    width="256"
-    class="mx-auto top-0 start-0"
-  >
-    <v-navigation-drawer permanent>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Panel de admin
-          </v-list-item-title>
-          <v-list-item-subtitle>
-           
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list
-        dense
-        nav
+  <div >
+    <v-card>
+      <v-navigation-drawer
+        permanent
+        expand-on-hover
       >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+        <v-list>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+             
+            </v-list-item-avatar>
+          </v-list-item>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6">
+               Panel de administrador
+              </v-list-item-title>
+           
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+
+        <v-divider></v-divider>
+        
+        <v-list
+          nav
+          dense
+        >
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-folder</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Ciudades</v-list-item-title>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-account-multiple</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Provincias</v-list-item-title>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-star</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Categorias de eventos</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </v-card>
+   
+  </div>
 </template>
 
 
-
-<script>
-  export default {
-    data () {
-      return {
-        items: [
-          { title: 'Ciudades', icon: 'mdi-view-dashboard' },
-          { title: 'Provincias', icon: 'mdi-image' },
-          { title: 'Categorias de eventos', icon: 'mdi-help-box' },
-        ],
-        right: null,
-      }
-    },
-  }
-</script>

@@ -1,14 +1,16 @@
 <template>
   <v-app dark>
     <Navbar/>
+    
     <v-main>
-      <v-container class="fill-height">
-        <Nuxt />
-      </v-container>
+      
+      <v-row>
+        <v-col>
       <v-navigation-drawer
         permanent
         expand-on-hover
       >
+      
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar>
@@ -53,7 +55,13 @@
         </v-list>
         
       </v-navigation-drawer>
-    
+        </v-col>
+        <v-col>
+<v-container >
+        <Nuxt />
+      </v-container>
+        </v-col>
+      </v-row>
     </v-main>
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>

@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    layout: 'admin_panel_layout'
+    layout: 'admin_test_layout'
     // page component definitions
   }
 </script>

@@ -4,7 +4,7 @@
       <v-card-title>{{ title }}</v-card-title>
     </v-img>
 
-    <v-card-subtitle class="pb-1 text-left"> {{ date }} </v-card-subtitle>
+    <v-card-subtitle class="pb-1 text-left"> {{ date }} - {{time}}</v-card-subtitle>
 
     <v-card-text class="text--primary text-left" >
       <div class="pb-1">{{ place }}</div>
@@ -28,7 +28,8 @@
 export default {
   props: {
     title: String,
-    date: String,
+    date: Date,
+    time: String,
     place: String,
     description: String,
     community: String,

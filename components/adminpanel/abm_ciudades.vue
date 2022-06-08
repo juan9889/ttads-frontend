@@ -1,5 +1,0 @@
-<template>
-  <h2>Ciudades</h2>
-</template>
-
-

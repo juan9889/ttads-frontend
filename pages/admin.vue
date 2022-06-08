@@ -1,50 +1,58 @@
 <template>
-  <v-row justify="center" align="left">
-    <v-col>
-      <h1>Panel admin</h1>
-      <br />
-      <v-card
-    class="mx-auto"
-    max-width="500"
+  <v-card
+    height="400"
+    width="256"
+    class="mx-auto top-0 start-0"
   >
-    <v-list>
-      <v-list-item-group v-model="model">
+    <v-navigation-drawer permanent>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Panel de admin
+          </v-list-item-title>
+          <v-list-item-subtitle>
+           
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+      >
         <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
+          v-for="item in items"
+          :key="item.title"
+          link
         >
           <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
+
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list-item-group>
-    </v-list>
+      </v-list>
+    </v-navigation-drawer>
   </v-card>
-    </v-col>
-  </v-row>
 </template>
+
+
 
 <script>
   export default {
-    data: () => ({
-      items: [
-        {
-          icon: 'mdi-inbox',
-          text: 'Ciudades',
-        },
-        {
-          icon: 'mdi-star',
-          text: 'Provincias',
-        },
-        {
-          icon: 'mdi-send',
-          text: 'Categorias de eventos',
-        },
-      ],
-      model: 1,
-    }),
+    data () {
+      return {
+        items: [
+          { title: 'Ciudades', icon: 'mdi-view-dashboard' },
+          { title: 'Provincias', icon: 'mdi-image' },
+          { title: 'Categorias de eventos', icon: 'mdi-help-box' },
+        ],
+        right: null,
+      }
+    },
   }
 </script>

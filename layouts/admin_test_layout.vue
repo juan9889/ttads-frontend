@@ -4,8 +4,8 @@
     
     <v-main>
       
-      <v-row>
-        <v-col>
+      <v-row class="fill-height">
+        <v-col  md="auto">
       <v-navigation-drawer
         permanent
         expand-on-hover
@@ -57,9 +57,9 @@
       </v-navigation-drawer>
         </v-col>
         <v-col>
-<v-container >
-        <Nuxt />
-      </v-container>
+          <v-container class="">
+             <Nuxt />
+           </v-container>
         </v-col>
       </v-row>
     </v-main>

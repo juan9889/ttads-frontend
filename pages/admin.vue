@@ -11,7 +11,7 @@
         justify="center"
       >
       <v-col align="center">
-      <admin-panel-logo></admin-panel-logo>
+      <AdminPanelLogo />
       </v-col>
     </v-row>
     </v-container>
@@ -20,10 +20,8 @@
 
 
 <script>
-import AdminPanelLogo from '~/components/adminpanel/AdminPanelLogo.vue'
   export default {
-  components: { AdminPanelLogo },
-    layout: 'adminLayout'
+  layout: 'adminLayout'
     // page component definitions
   }
 </script>

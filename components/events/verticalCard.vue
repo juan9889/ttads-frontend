@@ -1,22 +1,19 @@
 <template>
   <v-card class="mx-auto" min-width="280" max-width="400" hover="true">
     <v-img class="white--text align-end" height="200px" :src="src">
-      <v-card-title>{{ title }}</v-card-title>
+      <v-card-title>{{ title.toUpperCase() }}</v-card-title>
     </v-img>
-
     <v-card-subtitle class="pb-1 text-left"> {{ date }} - {{time}}</v-card-subtitle>
-
-    <v-card-text class="text--primary text-left" >
+    <v-card-text class="text--primary text-left">
       <div class="pb-1">{{ place }}</div>
-
       <div>{{ description }}</div>
     </v-card-text>
-
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="orange" text> {{ community }} </v-btn>
-
-      <v-btn color="orange" text> <v-icon> mdi-heart-outline </v-icon></v-btn>
+      <v-btn color="orange" text>
+        <v-icon> mdi-heart-outline </v-icon>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -27,6 +24,7 @@
 <script>
 export default {
   props: {
+    vertical: Boolean,
     title: String,
     date: Date,
     time: String,
@@ -34,6 +32,6 @@ export default {
     description: String,
     community: String,
     src: String,
-  },
+  }
 }
 </script>

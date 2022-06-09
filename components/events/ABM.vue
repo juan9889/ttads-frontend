@@ -64,7 +64,7 @@
       </v-card>
     </v-col>
     <v-col cols="12" sm="12" md="4">
-      <EventsVerticalCard :title="title.toUpperCase()" :date="date" :time="time" :place="place"
+      <EventsVerticalCard :title="title" :date="date" :time="time" :place="place"
         :description="description" :community="community" :src="photo" />
     </v-col>
 

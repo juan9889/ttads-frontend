@@ -2,51 +2,48 @@
   <v-app dark>
     <Navbar />
     <v-main>
-      <v-row class="fill-height">
-        <v-col md="auto">
-          <v-navigation-drawer permanent expand-on-hover absolute clipped>
-            <v-list>
-              <v-list-item class="px-2">
-                <v-list-item-avatar>
-                </v-list-item-avatar>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-content>
-                  <v-list-item-title class="text-h6">
-                    Panel de administrador
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-            <v-divider/>
-            <v-list nav dense>
-              <v-list-item link to="/admin_pages/abm_ciudades">
-                <v-list-item-icon>
-                  <v-icon>mdi-folder</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>Ciudades</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-icon>
-                  <v-icon>mdi-account-multiple</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>Provincias</v-list-item-title>
-              </v-list-item>
-              <v-list-item link>
-                <v-list-item-icon>
-                  <v-icon>mdi-star</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>Categorias de eventos</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-navigation-drawer>
-        </v-col>
-        <v-col>
-          <v-container>
-            <Nuxt />
-          </v-container>
-        </v-col>
-      </v-row>
+      <div>
+        <v-navigation-drawer permanent expand-on-hover absolute clipped>
+          <v-list>
+            <v-list-item class="px-2">
+              <v-list-item-avatar>
+              </v-list-item-avatar>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-content>
+                <v-list-item-title class="text-h6">
+                  Panel de administrador
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-divider />
+          <v-list nav dense>
+            <v-list-item link to="/admin_pages/abm_ciudades">
+              <v-list-item-icon>
+                <v-icon>mdi-folder</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Ciudades</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-account-multiple</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Provincias</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-star</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Categorias de eventos</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+      </div><div class="ml-14">
+      <v-container>
+        <Nuxt />
+      </v-container>
+      </div>
     </v-main>
     <Footer />
   </v-app>

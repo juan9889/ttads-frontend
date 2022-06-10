@@ -19,7 +19,7 @@
           </v-list>
           <v-divider />
           <v-list nav dense>
-            <v-list-item link to="/admin_pages/abm_ciudades">
+            <v-list-item link to="/admin/abm_ciudades">
               <v-list-item-icon>
                 <v-icon>mdi-folder</v-icon>
               </v-list-item-icon>

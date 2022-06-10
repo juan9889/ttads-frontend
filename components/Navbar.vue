@@ -58,7 +58,7 @@ export default {
           icon:false,
           iconName: 'mdi-chart-bubble',
           title: 'Mis Eventos',
-          to: '/events/my_events',
+          to: '/events',
         },
         {
           icon:false,

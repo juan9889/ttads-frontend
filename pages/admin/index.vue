@@ -21,7 +21,7 @@
 
 <script>
   export default {
-  layout: 'adminLayout'
+  layout: 'admin'
     // page component definitions
   }
 </script>

@@ -28,7 +28,32 @@
       :headers="headers"
       :items="ciudades"
       :search="search"
-    ></v-data-table>
+    >
+        <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn
+        color="primary"
+        @click="initialize"
+      >
+        Reset
+      </v-btn>
+    </template>
+    </v-data-table>
+    
   </v-card>
   </div>
 </template>
@@ -48,7 +73,7 @@
           },
           { text: 'Provincia', value: 'provincia' },
           { text: 'ID', value: 'id' },
-          
+           { text: 'Acciones', value: 'actions', sortable: false },
         ],
         ciudades: [
           {

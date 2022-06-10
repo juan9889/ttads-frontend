@@ -1,25 +1,25 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <h1>Tus Eventos</h1>
-    </v-col>
-    <v-col cols="12">
-      <v-btn-toggle v-model="toggle_exclusive" mandatory>
+  <div>
+    <h1 class="text-center mb-4">Tus Eventos</h1>
+    <v-row justify="center" align="center">
+      <v-btn-toggle dense v-model="toggle_exclusive" mandatory>
         <v-btn> Todos </v-btn>
         <v-btn> opcion 1 </v-btn>
         <v-btn> opcion 2 </v-btn>
         <v-btn> opcion 3 </v-btn>
       </v-btn-toggle>
-    </v-col>
-    <v-col cols="12" class="d-none d-md-flex text-center" v-for="item in items" :key="item.id">
-      <EventsCard :vertical="flase" :title="item.title" :date="item.date" :time="item.time" :place="item.place"
-        :description="item.description" :community="item.community" :src="item.src" />
-    </v-col>
-    <v-col cols="12" class="d-md-none text-center" v-for="item in items" :key="item.id">
-      <EventsCard :vertical="true" :title="item.title" :date="item.date" :time="item.time" :place="item.place"
-        :description="item.description" :community="item.community" :src="item.src" />
-    </v-col>
-  </v-row>
+    </v-row>
+      <v-row justify="center" align="center">
+        <v-col v-for="item in items" :key="item.id" cols="12">
+          <EventsCard :vertical="flase" class="d-none d-md-flex" :title="item.title" :date="item.date"
+            :time="item.time" :place="item.place" :description="item.description" :community="item.community"
+            :src="item.src" />
+          <EventsCard :vertical="true" class="d-md-none" :title="item.title" :date="item.date"
+            :time="item.time" :place="item.place" :description="item.description" :community="item.community"
+            :src="item.src" />
+        </v-col>
+      </v-row>
+  </div>
 </template>
 
 <script>

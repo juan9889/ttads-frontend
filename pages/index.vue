@@ -1,24 +1,22 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12">
-      <h1>Eventos destacados</h1>
-    </v-col>
-    <v-col cols="12">
-      <v-btn-toggle v-model="toggle_exclusive" mandatory>
+  <div>
+    <h1>Eventos destacados</h1>
+    <v-row justify="center" align="center">
+      <v-col xl="3" lg="4" md="6" sm="12" class="text-center" v-for="item in items" :key="item.id">
+        <EventsCard :title="item.title" :vertical="true" :date="item.date" :place="item.place"
+          :description="item.description" :community="item.community" :src="item.src" />
+      </v-col>
+    </v-row>
+    <h1>Comunidades</h1>
+    <v-row justify="center" align="center">
+      <v-btn-toggle dense v-model="catEven" mandatory>
         <v-btn> Todos </v-btn>
         <v-btn> opcion 1 </v-btn>
         <v-btn> opcion 2 </v-btn>
         <v-btn> opcion 3 </v-btn>
       </v-btn-toggle>
-    </v-col>
-    <v-col xl="3" lg="4" md="6" sm="12" class="text-center" v-for="item in items" :key="item.id">
-      <EventsVerticalCard :title="item.title" :date="item.date" :place="item.place" :description="item.description"
-        :community="item.community" :src="item.src" />
-    </v-col>
-    <v-col cols="12">
-      <h1>Comunidades</h1>
-    </v-col>
-  </v-row>
+    </v-row>
+  </div>
 </template>
 
 <script>

@@ -1,16 +1,8 @@
 <template>
   <div>
     <h1 class="text-center mb-4">Tus Eventos</h1>
-    <v-row justify="center" align="center">
-      <v-btn-toggle dense v-model="toggle_exclusive" mandatory>
-        <v-btn> Todos </v-btn>
-        <v-btn> opcion 1 </v-btn>
-        <v-btn> opcion 2 </v-btn>
-        <v-btn> opcion 3 </v-btn>
-      </v-btn-toggle>
-    </v-row>
       <v-row justify="center" align="center">
-        <v-col v-for="item in items" :key="item.id" cols="12">
+        <v-col v-for="item in items" :key="item.id" cols="12" sm="6" xs="6" md="12">
           <EventsCard :vertical="flase" class="d-none d-md-flex" :title="item.title" :date="item.date"
             :time="item.time" :place="item.place" :description="item.description" :community="item.community"
             :src="item.src" />

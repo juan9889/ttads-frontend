@@ -1,23 +1,12 @@
-   <template>
+<template>
   <div>
-    <!--Show mobile - Hide desktop -->
-    <v-navigation-drawer class="d-flex d-md-none" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed
-      disable-resize-watcher app>
-      <v-list>
-        <v-list-item v-for="(item, i) in btnItems" :key="i" :to="item.to" router exact>
-          <v-list-item-action v-if="item.icon">
-            <v-icon left>{{ item.iconName }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <!--Hide mobile - Show desktop -->
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <!--Show mobile - Hide desktop -->
-      <v-app-bar-nav-icon class="d-flex d-md-none" @click.stop="drawer = !drawer" />
+    <v-app-bar 
+      app
+      clipped-right
+      flat
+      height="50"
+      color="tertiary"
+      >
       <!--Solo logeados-->
       <div class="d-none d-md-flex" v-for="(item,i) in btnItems" :key="i">
         <v-btn plain text nuxt :to="item.to">
@@ -25,6 +14,18 @@
         </v-btn>
       </div>
 
+      <v-spacer></v-spacer>
+
+      <v-responsive max-width="300">
+        <v-text-field
+          dense
+          flat
+          hide-details
+          rounded
+          solo-inverted
+        ></v-text-field>
+      </v-responsive>
+      
       <v-spacer />
       <v-btn plain text nuxt to="/">Salir
         <v-icon>mdi-logout</v-icon>
@@ -47,18 +48,6 @@ export default {
           iconName: 'mdi-home',
           title: 'Inicio',
           to: '/',
-        },      
-        {
-          icon:false,
-          iconName: 'mdi-apps',
-          title: 'Mis Comunidades',
-          to: '/communities',
-        },
-        {
-          icon:false,
-          iconName: 'mdi-chart-bubble',
-          title: 'Mis Eventos',
-          to: '/events',
         },
         {
           icon:false,

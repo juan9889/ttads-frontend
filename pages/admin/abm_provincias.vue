@@ -4,7 +4,7 @@
     <br />
     <v-btn color="green" elevation="24" @click.stop="dialog_new = true">Agregar provincia</v-btn>
     <br />
-     <button @click="$fetch">Refresh</button>
+    <button @click="getProvinces">Refresh</button>
     <br />
     <v-card>
       <v-card-title>
@@ -23,14 +23,14 @@
           </v-icon>
         </template>
         <template v-slot:no-data>
-          <v-btn color="primary" @click="initialize">
+          <v-btn color="primary" @click="">
             Reset
           </v-btn>
         </template>
       </v-data-table>
     </v-card>
 
-    <v-dialog v-model="dialog_delete"  max-width="290">
+    <v-dialog v-model="dialog_delete" max-width="290">
       <v-card>
         <v-card-title class="text-h5">
           Eliminar provincia
@@ -89,7 +89,7 @@ export default {
       dialog_edit: false,
       dialog_delete: false,
       setDialogConfirm: false,//true confirmado
-      
+
       headers: [
         {
           text: 'Nombre',
@@ -100,12 +100,22 @@ export default {
         { text: 'ID', value: 'id' },
         { text: 'Acciones', value: 'actions', sortable: false },
       ],
-      provincias: [],
+      provincias: this.getProvinces(),
     }
   },
-   
-  async fetch() {
-    this.provincias = await this.$axios.$get('http://localhost:8080/api/provinces');
+  methods: {
+    getProvinces() {
+      this.$axios.$get('http://localhost:8080/api/provinces')
+        .then((res) => {
+          this.provincias = res
+          console.log(res)
+        }
+        )
+        .catch((err) => console.log(err))
+    }
   },
+  mounted() {
+    this.getProvinces()
+  }
 }
 </script>

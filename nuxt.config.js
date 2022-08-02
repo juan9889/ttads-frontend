@@ -43,7 +43,13 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    // extra config e.g
+    // BaseURL: 'https://link-to-API'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

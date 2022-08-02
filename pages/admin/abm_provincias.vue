@@ -1,18 +1,19 @@
 <template>
   <div>
-    <h1>Ciudades</h1>
+    <h1>Provincias</h1>
     <br />
-    <v-btn color="green" elevation="24" @click.stop="dialog_new = true">Agregar ciudad</v-btn>
+    <v-btn color="green" elevation="24" @click.stop="dialog_new = true">Agregar provincia</v-btn>
     <br />
+     <button @click="$fetch">Refresh</button>
     <br />
     <v-card>
       <v-card-title>
-        Ciudades
+        Provincias
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Buscar" single-line hide-details></v-text-field>
       </v-card-title>
       <v-spacer></v-spacer>
-      <v-data-table :headers="headers" :items="ciudades" :search="search">
+      <v-data-table :headers="headers" :items="provincias" :search="search">
         <template v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
@@ -32,10 +33,10 @@
     <v-dialog v-model="dialog_delete"  max-width="290">
       <v-card>
         <v-card-title class="text-h5">
-          Eliminar ciudad
+          Eliminar provincia
         </v-card-title>
         <v-card-text>
-          ¿Eliminar la ciudad seleccionada?
+          ¿Eliminar la provincia seleccionada?
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -52,16 +53,13 @@
     <v-dialog v-model="dialog_new" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">Nueva ciudad</span>
+          <span class="text-h5">Nueva provincia</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
                 <v-text-field label="Nombre" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-select :items="['Santa Fe', 'La pampa', 'Corrientes']" label="Provincia" required></v-select>
               </v-col>
             </v-row>
           </v-container>
@@ -94,29 +92,20 @@ export default {
       
       headers: [
         {
-          text: 'Ciudad',
+          text: 'Nombre',
           align: 'start',
           sortable: true,
           value: 'name',
         },
-        { text: 'Provincia', value: 'provincia' },
         { text: 'ID', value: 'id' },
         { text: 'Acciones', value: 'actions', sortable: false },
       ],
-      ciudades: [
-        {
-          name: 'Rosario',
-          provincia: 'Santa Fe',
-          id: '1',
-        },
-        {
-          name: 'Capitan Bermudez',
-          provincia: 'Santa Fe',
-          id: '2',
-        },
-
-      ],
+      provincias: [],
     }
+  },
+   
+  async fetch() {
+    this.provincias = await this.$axios.$get('http://localhost:8080/api/provinces');
   },
 }
 </script>

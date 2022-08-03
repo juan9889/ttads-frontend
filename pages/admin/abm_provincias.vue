@@ -116,6 +116,24 @@
         </v-btn>
       </template>
     </v-snackbar>
+        <v-snackbar
+      v-model="snackbar_error"
+      right top
+      color="red"
+    >
+      {{ this.snackbar_text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbar_error = false"
+        >
+          x
+        </v-btn>
+      </template>
+    </v-snackbar>
 
 
   </div>
@@ -131,8 +149,7 @@ export default {
       snackbar_text: '',
       nombre_nueva_provincia : '',
       nuevo_nombre_edit_provincia : '',
-      snackbar_nueva_ok : false,
-      snackbar_delete_ok : false,
+      snackbar_error : false,
       snackbar_success : false, 
       dialog_new: false,
       dialog_edit: false,
@@ -180,14 +197,19 @@ export default {
       this.dialog_edit=true;
     },
     async delete_confirm(){
-await this.$axios.$delete('http://localhost:8080/api/provinces/'+this.selectedItem.id);
+      try {
+ await this.$axios.$delete('http://localhost:8080/api/provinces/'+this.selectedItem.id);
 this.dialog_delete=false;
 this.snackbar_success=false;
 this.snackbar_text='Se eliminó la pronvincia correctamente';
 this.snackbar_success=true;
 await this.getProvinces();
-    },
+} catch (e) {
+this.snackbar_text='Ocurrió un error al eliminar la provincia';
+this.snackbar_error=true;
+    }},
     async edit_confirm() {
+      try {
       await this.$axios.$put('http://localhost:8080/api/provinces/'+this.selectedItem.id, {
         name: this.nuevo_nombre_edit_provincia
       },);
@@ -197,9 +219,13 @@ await this.getProvinces();
       this.snackbar_text='Se modificó la pronvincia';
       this.snackbar_success=true;
       await this.getProvinces();
-
+} catch (e) {
+this.snackbar_text='Ocurrió un error al modificar la provincia';
+this.snackbar_error=true;
+    }
     },
     async create() {
+      try {
       await this.$axios.$post('http://localhost:8080/api/provinces', {
   name: this.nombre_nueva_provincia
 },);
@@ -209,10 +235,12 @@ await this.getProvinces();
       this.snackbar_success=false;
       this.snackbar_text='Provincia creada correctamente';
 this.snackbar_success=true;
-    },
-    update() {
-
+} catch (e) {
+this.snackbar_text='Ocurrió un error al intentar crear la provincia';
+this.snackbar_error=true;
     }
+    }
+    
 
   },
   mounted() {

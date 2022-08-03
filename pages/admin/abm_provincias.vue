@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
       <v-data-table  :headers="headers" :items="provincias" :search="search">
         <template v-slot:item.actions="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
+          <v-icon small class="mr-2" @click="open_edit_diag(item)">
             mdi-pencil
           </v-icon>
           <v-icon small @click.stop="open_delete_diag(item)">
@@ -22,9 +22,7 @@
           </v-icon>
         </template>
         <template v-slot:no-data>
-          <v-btn color="primary" @click="">
-            Reset
-          </v-btn>
+          
         </template>
       </v-data-table>
     </v-card>
@@ -74,37 +72,45 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-        <v-snackbar
-      v-model="snackbar_nueva_ok"
-      right top
-      color="green"
-    >
-      Se ha creado la nueva provincia
+    <v-dialog v-model="dialog_edit" persistent max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Editar provincia</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field  v-model="nuevo_nombre_edit_provincia" label="Nombre" required></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="default" text @click="dialog_edit = false">
+            Cancelar
+          </v-btn>
+          <v-btn color="green" filled @click="edit_confirm">
+            Guardar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="snackbar_nueva_ok = false"
-        >
-          x
-        </v-btn>
-      </template>
-    </v-snackbar>
     <v-snackbar
-      v-model="snackbar_delete_ok"
+      v-model="snackbar_success"
       right top
       color="green"
     >
-      Se ha eliminado la provincia
+      {{ this.snackbar_text }}
 
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
           text
           v-bind="attrs"
-          @click="snackbar_delete_ok = false"
+          @click="snackbar_success = false"
         >
           x
         </v-btn>
@@ -122,9 +128,12 @@ export default {
     return {
       search: '',
       item_borrar: '',
+      snackbar_text: '',
       nombre_nueva_provincia : '',
+      nuevo_nombre_edit_provincia : '',
       snackbar_nueva_ok : false,
       snackbar_delete_ok : false,
+      snackbar_success : false, 
       dialog_new: false,
       dialog_edit: false,
       dialog_delete: false,
@@ -164,11 +173,31 @@ export default {
       console.log(this.selectedItem);
       this.dialog_delete=true;
     },
+    open_edit_diag(item){
+ this.selectedItem = Object.assign({}, item);
+      console.log(this.selectedItem);
+      this.nuevo_nombre_edit_provincia=this.selectedItem.name;
+      this.dialog_edit=true;
+    },
     async delete_confirm(){
 await this.$axios.$delete('http://localhost:8080/api/provinces/'+this.selectedItem.id);
 this.dialog_delete=false;
-this.snackbar_delete_ok=true;
+this.snackbar_success=false;
+this.snackbar_text='Se eliminó la pronvincia correctamente';
+this.snackbar_success=true;
 await this.getProvinces();
+    },
+    async edit_confirm() {
+      await this.$axios.$put('http://localhost:8080/api/provinces/'+this.selectedItem.id, {
+        name: this.nuevo_nombre_edit_provincia
+      },);
+      this.nuevo_nombre_edit_provincia='';
+      this.dialog_edit=false;
+      this.snackbar_success=false;
+      this.snackbar_text='Se modificó la pronvincia';
+      this.snackbar_success=true;
+      await this.getProvinces();
+
     },
     async create() {
       await this.$axios.$post('http://localhost:8080/api/provinces', {
@@ -177,7 +206,9 @@ await this.getProvinces();
       this.dialog_new=false;
       this.nombre_nueva_provincia='';
       await this.getProvinces();
-      this.snackbar_nueva_ok=true;
+      this.snackbar_success=false;
+      this.snackbar_text='Provincia creada correctamente';
+this.snackbar_success=true;
     },
     update() {
 

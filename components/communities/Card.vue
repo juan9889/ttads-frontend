@@ -1,5 +1,5 @@
 <template>
-  <div class=" justify-center">
+
     <v-card class="mx-auto mb-2" min-width="290" max-width="355">
       <v-img class="white--text align-end" max-height="200px" :src="src">
         <v-card-title class="text-h5 ">{{ name.toUpperCase() }}</v-card-title>
@@ -29,7 +29,7 @@
       </div>
     </v-card> -->
 
-  </div>
+
 </template>
 
 <style scoped>

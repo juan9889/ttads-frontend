@@ -1,19 +1,19 @@
 <template>
 
-    <v-card class="mx-auto mb-2" min-width="290" max-width="355">
-      <v-img class="white--text align-end" max-height="200px" :src="src">
-        <v-card-title class="text-h5 ">{{ name.toUpperCase() }}</v-card-title>
-      </v-img>
-      <v-card-subtitle class="pb-1 text-left">#{{category}}</v-card-subtitle>
-      <v-card-text class="text--primary text-left">{{description}}</v-card-text>
-      <v-card-actions class="pa-1 pt-0">
-        <v-spacer></v-spacer>
-        <v-btn class="ma-1" color="blue lighten-2" outlined>Ver Eventos</v-btn>
-        <v-btn class="ma-1" color="blue lighten-2" outlined>Unirse</v-btn>
-      </v-card-actions>
-    </v-card>
+  <v-card class="mx-auto mb-2" min-width="290" max-width="355">
+    <v-img class="white--text align-end" max-height="200px" :src="src">
+      <v-card-title class="text-h5 ">{{ community.name.toUpperCase() }}</v-card-title>
+    </v-img>
+    <v-card-subtitle class="pb-1 text-left">#{{ community.comm_category.name }}</v-card-subtitle>
+    <v-card-text class="text--primary text-left">{{ community.description}}</v-card-text>
+    <v-card-actions class="pa-1 pt-0">
+      <v-spacer></v-spacer>
+      <v-btn class="ma-1" color="blue lighten-2" outlined>Ver Eventos</v-btn>
+      <v-btn class="ma-1" color="blue lighten-2" outlined>Unirse</v-btn>
+    </v-card-actions>
+  </v-card>
 
-    <!-- <v-card class="d-flex flex-row" height="200px" max-width="960px" >
+  <!-- <v-card class="d-flex flex-row" height="200px" max-width="960px" >
       <v-img class="white--text" width="355px" height="200px" :src="src"></v-img>
       <div class="d-flex flex-column aling-start">
         <v-card-title class="text-h5 px-4 py-1">{{ name.toUpperCase() }}</v-card-title>
@@ -38,6 +38,7 @@
 <script>
 export default {
   props: {
+    community: Object,
     name: String,
     description: String,
     category: String,

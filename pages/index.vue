@@ -14,8 +14,7 @@
     <v-row justify="center">
       <div v-for="community in communities" :key="community.id">
         <v-col xl="3" lg="4" md="6" sm="12" class="text-center">
-          <CommunitiesCard :name="community.name" :category="community.category" :description="community.description"
-            :src="community.src" />
+          <CommunitiesCard :community="community" />
         </v-col>
       </div>
     </v-row>
@@ -90,30 +89,31 @@ export default {
       },
 
     ],
-    communities: [
-      {
-        id: 1,
-        name: "Top western road trips",
-        category: "Sports",
-        description: "His ubique laboramus ne. Expetenda assueverit sed ad. Id nec malis lucilius delicatissimi. Nec assum sonet suscipit ex, diam deterruisset ut usu, ad dicat fabellas aliquando eam.",
-        src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      },
-      {
-        id: 2,
-        community: "Christmas tales to read",
-        name: "Sports",
-        description: "Sea ad habemus assueverit, omnes platonem convenire sit et, at integre pericula quo. Facete adolescens definitionem cu qui, in putant aliquid fierent ius.",
-        src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      },
-      {
-        id: 3,
-        community: "20 movies not to miss in 2020",
-        name: "Sports",
-        description: "Aliquam albucius mei ei, debitis torquatos et pro, eos natum scribentur no. Putant verear constituto te qui. Adolescens persequeris vim ei. Vel nullam reprimique te.",
-        src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      },
-
-    ],
+    communities: [],
   }),
+  mounted() {
+    this.getCommunities();
+  },
+  methods: {
+    getCategories() {
+      this.$axios.get("http://localhost:8080/api/commcategory")
+        .then((data) => {
+          this.categories = data.data
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
+    getCommunities() {
+      this.$axios.get("http://localhost:8080/api/communities")
+        .then((data) => {
+          this.communities = data.data
+          console.log(data.data)
+          console.log(JSON.stringify(this.communities))
+
+        }).catch((err) => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>

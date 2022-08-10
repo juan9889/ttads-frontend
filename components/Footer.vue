@@ -1,6 +1,6 @@
 <template>
   <v-footer app color="tertiary" absolute height="50" inset>
-    <span>&copy; {{ new Date().getFullYear() }}</span>
+    <span class="text-center text-h6">&copy; {{ new Date().getFullYear() }}</span>
   </v-footer>
 </template>
 

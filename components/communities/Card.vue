@@ -1,15 +1,15 @@
 <template>
 
-  <v-card class="mx-auto mb-2" min-width="290" max-width="355">
-    <v-img class="white--text align-end" max-height="200px" :src="src">
-      <v-card-title class="text-h5 ">{{ community.name.toUpperCase() }}</v-card-title>
-    </v-img>
+  <v-card class="mx-2 mb-3" width="250">
+    <v-icon :color="community.comm_category.iconColor" class="icons mt-2 d-flex justify-center" x-large>
+      mdi-{{community.comm_category.icon}}
+    </v-icon>
+    <v-card-title class="text-h5 ">{{ community.name.toUpperCase() }}</v-card-title>
     <v-card-subtitle class="pb-1 text-left">#{{ community.comm_category.name }}</v-card-subtitle>
     <v-card-text class="text--primary text-left">{{ community.description}}</v-card-text>
-    <v-card-actions class="pa-1 pt-0">
-      <v-spacer></v-spacer>
-      <v-btn class="ma-1" color="blue lighten-2" outlined>Ver Eventos</v-btn>
-      <v-btn class="ma-1" color="blue lighten-2" outlined>Unirse</v-btn>
+    <v-card-actions class="pa-1 pt-0 justify-space-around">
+      <v-btn class="ma-1" color="blue-grey lighten-1" outlined :to="'/communities?id=' + community.id.toString()"> Ver Eventos</v-btn>
+      <v-btn class="ma-1" color="blue-grey lighten-1" outlined>Unirse</v-btn>
     </v-card-actions>
   </v-card>
 
@@ -33,16 +33,15 @@
 </template>
 
 <style scoped>
+.icons{
+  font-size: 95px !important;
+}
 </style>
 
 <script>
 export default {
   props: {
     community: Object,
-    name: String,
-    description: String,
-    category: String,
-    src: String,
   }
 }
 </script>

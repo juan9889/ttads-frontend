@@ -57,7 +57,7 @@ export default {
           icon: false,
           iconName: 'mdi-chart-bubble',
           title: 'Explorar',
-          to: '/explore',
+          to: 'communities/explore',
         }
       ],
       miniVariant: false,

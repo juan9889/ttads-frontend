@@ -3,9 +3,9 @@
     <v-icon :color="event.event_category.iconColor" class="icons mt-2 d-flex justify-center" x-large>
       mdi-{{ event.event_category.icon }}
     </v-icon>
-    <v-card-title class="pb-0 text-h5">{{ event.title.toUpperCase() }}</v-card-title>
-    <v-card-title class="pt-0 pb-1 text-subtitle-1 ">#{{ event.event_category.name }} - {{ event.community.name }}
-    </v-card-title>
+    <v-card-title class="text-h5">{{ event.title }}</v-card-title>
+    <v-card-subtitle class="pb-1 text-subtitle-1 ">#{{ event.event_category.name }} - {{ event.community.name }}
+    </v-card-subtitle>
     <v-card-text class=" pb-2 text--primary text-left">
       <div>{{ event.description }}</div>
     </v-card-text>
@@ -52,11 +52,13 @@
     </div>
   </v-hover> -->
 </template>
+
 <style scoped>
 .icons {
   font-size: 95px !important;
 }
 </style>
+
 <script>
 export default {
   props: {
@@ -65,7 +67,7 @@ export default {
 }
 </script>
 
-<style>
+<!-- <style>
 /* Backgrount blured except text. */
 .v-card--reveal {
   align-items: center;
@@ -80,4 +82,4 @@ export default {
   position: absolute;
   right: 0;
 }
-</style>
+</style> -->

@@ -3,32 +3,15 @@
     <v-icon :color="community.comm_category.iconColor" class="icons mt-2 d-flex justify-center" x-large>
       mdi-{{ community.comm_category.icon }}
     </v-icon>
-    <v-card-title class="text-h5 ">{{ community.name }}</v-card-title>
-    <v-card-subtitle class="pb-1 text-left">#{{ community.comm_category.name }}</v-card-subtitle>
+    <v-card-title class="pb-0 text-h5 ">{{ community.name.toUpperCase() }}</v-card-title>
+    <v-card-title class="pt-0 pb-1 text-left text-subtitle-1">#{{ community.comm_category.name }}</v-card-title>
     <v-card-text class="text--primary text-left">{{ community.description}}</v-card-text>
     <v-card-actions class="pa-1 pt-0 justify-space-around">
-      <v-btn class="ma-1" color="blue-grey lighten-1" outlined :to="'/communities?id=' + community.id.toString()"> Ver Eventos</v-btn>
+      <v-btn class="ma-1" color="blue-grey lighten-1" outlined :to="'/communities?id=' + community.id.toString()"> Ver
+        Eventos</v-btn>
       <v-btn class="ma-1" color="blue-grey lighten-1" outlined>Unirse</v-btn>
     </v-card-actions>
   </v-card>
-
-  <!-- <v-card class="d-flex flex-row" height="200px" max-width="960px" >
-      <v-img class="white--text" width="355px" height="200px" :src="src"></v-img>
-      <div class="d-flex flex-column aling-start">
-        <v-card-title class="text-h5 px-4 py-1">{{ name.toUpperCase() }}</v-card-title>
-        <v-card-text class="text-left px-4 py-0">#{{category}}</v-card-text>
-        <v-card-text class="text--primary text-left px-4 py-1">
-          <div style="word-wrap: break-word;" class="d-none d-lg-flex">{{ description }}</div>
-          <div style="word-wrap: break-word;" class="d-flex d-lg-none">{{ description.slice(0, 120) }}...</div>
-        </v-card-text>
-        <v-card-actions class="pa-2 pt-0 mt-auto justify-end">
-          <v-btn class="ma-1" color="blue lighten-2" outlined>Ver Eventos</v-btn>
-          <v-btn class="ma-1" color="blue lighten-2" outlined>Unirse</v-btn>
-        </v-card-actions>
-      </div>
-    </v-card> -->
-
-
 </template>
 
 <style scoped>

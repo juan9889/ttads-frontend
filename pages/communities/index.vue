@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1 class="text-center text-h3 mb-4">Explorar</h1>
     <v-row justify="center">
-      <v-col xs="12" sm="12" md="2" class="pt-3">
+      <v-col xs="12" sm="12" md="6" lg="7" xl="8" class="pt-3">
         <h3 class="text-h5 text-center">Eventos</h3>
         <v-row class="justify-space-around">
           <div v-for="event in events" :key="event.id">
@@ -12,14 +11,11 @@
           </div>
         </v-row>
       </v-col>
-      <v-col xs="12" sm="12" md="10">
-        <h3 class="mb-4 text-h4 text-center">Comunidades</h3>
-        <v-row class="justify-space-around">
+      <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
           <template v-if="loading">
             <v-progress-circular indeterminate color="primary"></v-progress-circular>
           </template>
-          <CommunitiesDetails v-else :community="community" />
-        </v-row>
+          <CommunitiesDetails v-else :community="community" :communityEvents="events"/>
       </v-col>
     </v-row>
   </div>
@@ -30,7 +26,7 @@ export default {
   data: () => ({
     loading: true,
     events: [],
-    community: [],
+    community: {},
   }),
   mounted() {
     console.log("ruta: " + parseInt(this.$route.query.id))
@@ -42,8 +38,7 @@ export default {
       this.loading = true
       this.$axios.get("http://localhost:8080/api/communities/" + id)
         .then((data) => {
-          this.community = data.data
-
+          this.community = data.data[0]
           console.log(typeof(this.community))
           console.log(JSON.stringify(this.community))
           this.loading = false

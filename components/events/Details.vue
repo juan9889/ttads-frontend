@@ -1,12 +1,15 @@
 <template>
   <div class="text-center">
     <v-dialog v-model="dialog" min-width="290" max-width="355">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn class="ma-1" color="blue-grey lighten-1" outlined v-bind="attrs" v-on="on">
+      <template v-id v-slot:activator="{ on, attrs }">
+        <v-btn @click.prevent="getEventsDetails(eventId)" class="ma-1" color="blue-grey lighten-1" outlined
+          v-bind="attrs" v-on="on">
           Detalles
         </v-btn>
       </template>
-      <v-card class="mx-auto text-center" min-width="290" max-width="355">
+      <v-skeleton-loader v-if="loading" type="card-avatar, article, actions">
+      </v-skeleton-loader>
+      <v-card v-else class="mx-auto text-center" min-width="290" max-width="355">
         <v-icon :color="event.event_category.iconColor" class="icons mt-2">
           mdi-{{ event.event_category.icon }}
         </v-icon>
@@ -21,7 +24,7 @@
         <v-card-subtitle class="pb-0 pt-0 text-left"> {{ event.city.name }} - {{ event.city.province.name }}
         </v-card-subtitle>
         <v-card-subtitle class="pb-1 pt-0 text-left"> {{ event.date }} - {{ event.time }}</v-card-subtitle>
-        <v-divider></v-divider>
+        
         <v-card-actions class="pa-1 pt-0 justify-space-around">
           <v-btn class="ma-1" color="blue-grey lighten-1" outlined
             :to="'/communities?id=' + event.community.id.toString()">
@@ -46,13 +49,27 @@
 <script>
 export default {
   props: {
-    event: Object,
+    eventId: Number,
   },
   data() {
     return {
-      dialog: false
+      dialog: false,
+      loading: true,
+      event:{}
     }
   },
+  methods: {
+    getEventsDetails(id) {
+      this.$axios.get("http://localhost:8080/api/events/" + id)
+        .then((data) => {
+          this.event = data.data[0]
+          this.loading = false 
+          console.log(JSON.stringify(this.event))
+        }).catch((err) => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>
 

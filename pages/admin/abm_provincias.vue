@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     getProvinces() {
-      this.$axios.$get('http://localhost:8080/api/provinces')
+      this.$axios.$get('provinces')
         .then((res) => {
           this.provincias = res
           console.log(res)
@@ -178,7 +178,7 @@ export default {
     },
     async delete_confirm() {
       try {
-        await this.$axios.$delete('http://localhost:8080/api/provinces/' + this.selectedItem.id);
+        await this.$axios.$delete('provinces/' + this.selectedItem.id);
         this.dialog_delete = false;
         this.snackbar_success = false;
         this.snackbar_text = 'Se eliminó la pronvincia correctamente';
@@ -191,7 +191,7 @@ export default {
     },
     async edit_confirm() {
       try {
-        await this.$axios.$put('http://localhost:8080/api/provinces/' + this.selectedItem.id, {
+        await this.$axios.$put('provinces/' + this.selectedItem.id, {
           name: this.nuevo_nombre_edit_provincia
         });
         this.nuevo_nombre_edit_provincia = '';
@@ -207,7 +207,7 @@ export default {
     },
     async create() {
       try {
-        await this.$axios.$post('http://localhost:8080/api/provinces', {
+        await this.$axios.$post('provinces', {
           name: this.nombre_nueva_provincia
         });
         this.dialog_new = false;

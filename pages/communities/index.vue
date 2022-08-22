@@ -75,7 +75,7 @@ export default {
       }
     },
     getCommunityEvents(id) {
-      this.$axios.get("http://localhost:8080/api/communities/" + id + "/events")
+      this.$axios.get("communities/" + id + "/events")
         .then((data) => {
           this.events = data.data[0]["events"];
           this.showEvents = this.events;

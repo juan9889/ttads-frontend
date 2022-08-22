@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     getCategories() {
-      this.$axios.get("http://localhost:8080/api/commcategory")
+      this.$axios.get("commcategory")
         .then((data) => {
           this.categories = data.data;
           this.categories.unshift({
@@ -72,7 +72,7 @@ export default {
         });
     },
     getCommunities() {
-      this.$axios.get("http://localhost:8080/api/communities")
+      this.$axios.get("communities")
         .then((data) => {
           this.communities = data.data
           this.loadingCommunities = false
@@ -81,7 +81,7 @@ export default {
         });
     },
     getCommunitiesFromCategory(id) {
-      this.$axios.get("http://localhost:8080/api/commcategory/" + id + "/communities")
+      this.$axios.get("commcategory/" + id + "/communities")
         .then((data) => {
           this.communities = data.data[0]["communities"];
         }).catch((err) => {

@@ -48,7 +48,19 @@ export default {
 
   axios: {
     // extra config e.g
-    // BaseURL: 'https://link-to-API'
+    baseURL: 'http://localhost:8080/api/'
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

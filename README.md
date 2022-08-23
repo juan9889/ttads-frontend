@@ -1,4 +1,4 @@
-# TTADS-Backend
+# TTADS-Frontend
 TP de frontend TTADS 2022
 
 ### Integrantes:

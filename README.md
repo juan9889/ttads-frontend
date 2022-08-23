@@ -1,5 +1,5 @@
 # TTADS-Backend
-TP de backend TTADS 2022
+TP de frontend TTADS 2022
 
 ### Integrantes:
 - Gino Bartolucci 47024

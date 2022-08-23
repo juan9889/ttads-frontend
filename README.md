@@ -57,3 +57,9 @@ Comunidad UTN. Un usuario puede crear un evento cuando se dan charlas, conferenc
 - Pagina para la comunidad que liste todos los eventos de la comunidad y que permita filtrar los eventos de algun modo.
 - Pagina para ver todas la comunidades que permita filtrarlas por su categoria.
 - En la pagina de detalle de la comunidad habra un boton para crear un evento nuevo en esa comunidad.
+
+**Tecnologías:**
+- Back: Node.js Api Rest
+- Base de datos: Mysql con Sequelize
+- Front: NuxtJS
+- CSS: Vuetify

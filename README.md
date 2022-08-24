@@ -1,6 +1,12 @@
 # TTADS-Frontend
 TP de frontend TTADS 2022
 
+#Ejecutar
+
+npm run dev
+Levantar con el mismo comando el backend https://github.com/juan9889/TTADS-Backend
+
+
 ### Integrantes:
 - Gino Bartolucci 47024
 - Juan Agustin Fogliato 43724
@@ -37,6 +43,8 @@ El usuario puede seguir uno o varios eventos para recibir nuevas notificaciones 
 **Ejemplos:**  
 Comunidad UTN. Un usuario puede crear un evento cuando se dan charlas, conferencias o para crear un grupo de estudio. No es necesario que un usuario pertenezca a la comunidad utn para seguir el evento.
 
+
+
 ---
 **Tablas:**  [DER](https://drive.google.com/file/d/1TSV8b8KB-cDxOSWcQm3szLb_t3Qq6XOH/view?usp=sharing)
 - Ciudades
@@ -63,3 +71,4 @@ Comunidad UTN. Un usuario puede crear un evento cuando se dan charlas, conferenc
 - Base de datos: Mysql con Sequelize
 - Front: NuxtJS
 - CSS: Vuetify
+

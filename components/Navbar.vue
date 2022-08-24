@@ -1,9 +1,22 @@
 <template>
   <div>
-    <v-navigation-drawer class="d-flex d-md-none" v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed
-      disable-resize-watcher app>
+    <v-navigation-drawer
+      class="d-flex d-md-none"
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      fixed
+      disable-resize-watcher
+      app
+    >
       <v-list>
-        <v-list-item v-for="(item, i) in btnItems" :key="i" :to="item.to" router exact>
+        <v-list-item
+          v-for="(item, i) in btnItems"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
           <v-list-item-action v-if="item.icon">
             <v-icon left>{{ item.iconName }}</v-icon>
           </v-list-item-action>
@@ -16,19 +29,21 @@
     <!--Hide mobile - Show desktop -->
     <v-app-bar :clipped-left="clipped" fixed app>
       <!--Show mobile - Hide desktop -->
-      <v-app-bar-nav-icon class="d-flex d-md-none" @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        class="d-flex d-md-none"
+        @click.stop="drawer = !drawer"
+      />
       <!--Solo logeados-->
-      <div class="d-none d-md-flex" v-for="(item,i) in btnItems" :key="i">
+      <div class="d-none d-md-flex" v-for="(item, i) in btnItems" :key="i">
         <v-btn plain text nuxt :to="item.to">
-          <v-icon left v-if="item.icon">{{item.iconName}}</v-icon>{{item.title}}
+          <v-icon left v-if="item.icon">{{ item.iconName }}</v-icon
+          >{{ item.title }}
         </v-btn>
       </div>
 
       <v-spacer />
       <UserMenu />
     </v-app-bar>
-
-
   </div>
 </template>
 
@@ -58,7 +73,7 @@ export default {
           iconName: 'mdi-chart-bubble',
           title: 'Explorar',
           to: 'communities/explore',
-        }
+        },
       ],
       miniVariant: false,
       title: 'Vuetify.js',

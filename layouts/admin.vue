@@ -6,8 +6,7 @@
         <v-navigation-drawer permanent expand-on-hover absolute clipped>
           <v-list>
             <v-list-item class="px-2">
-              <v-list-item-avatar>
-              </v-list-item-avatar>
+              <v-list-item-avatar> </v-list-item-avatar>
             </v-list-item>
             <v-list-item link>
               <v-list-item-content>
@@ -39,17 +38,16 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-      </div><div class="ml-14">
-      <v-container>
-        <Nuxt />
-      </v-container>
+      </div>
+      <div class="ml-14">
+        <v-container>
+          <Nuxt />
+        </v-container>
       </div>
     </v-main>
     <Footer />
   </v-app>
 </template>
 <script>
-export default {
-
-}
+export default {}
 </script>

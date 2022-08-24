@@ -17,18 +17,17 @@
         <CommunitiesCard :community="community" />
       </div>
     </v-row>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: 'Home',
   data: () => ({
     events: [],
     communities: [],
     loadingCommunities: true,
-    loadingEvents:true
+    loadingEvents: true,
   }),
   mounted() {
     this.getCommunities()
@@ -36,23 +35,27 @@ export default {
   },
   methods: {
     getCommunities() {
-      this.$axios.get("http://localhost:8080/api/communities")
+      this.$axios
+        .get('http://localhost:8080/api/communities')
         .then((data) => {
           this.communities = data.data
           this.loadingCommunities = false
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err)
         })
     },
     getEvents() {
-      this.$axios.get("http://localhost:8080/api/events")
+      this.$axios
+        .get('http://localhost:8080/api/events')
         .then((data) => {
           this.events = data.data
           this.loadingEvents = false
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -1,9 +1,7 @@
 <template>
-      <EventsABM :mode="'C'"></EventsABM>
+  <EventsABM :mode="'C'"></EventsABM>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>

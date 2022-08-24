@@ -1,7 +1,6 @@
-
 export default {
   server: {
-    host: '0.0.0.0' // default: localhost
+    host: '0.0.0.0', // default: localhost
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -48,19 +47,19 @@ export default {
 
   axios: {
     // extra config e.g
-    baseURL: 'http://localhost:8080/api/'
+    baseURL: 'http://localhost:8080/api/',
   },
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL
-    }
+      browserBaseURL: process.env.BROWSER_BASE_URL,
+    },
   },
 
   privateRuntimeConfig: {
     axios: {
-      baseURL: process.env.BASE_URL
-    }
+      baseURL: process.env.BASE_URL,
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -73,7 +72,7 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    optionsPath: '~/config/vuetify.options.js'
+    optionsPath: '~/config/vuetify.options.js',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

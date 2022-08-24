@@ -10,5 +10,4 @@
     solo
   >
   </v-text-field>
-  
 </template>

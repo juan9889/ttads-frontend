@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <Navbar/>
+    <Navbar />
     <v-main>
       <!-- <LeftSidebar/> -->
       <v-container>
@@ -12,6 +12,5 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>

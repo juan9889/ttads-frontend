@@ -1,16 +1,39 @@
 <template>
   <div>
     <h1 class="text-center mb-4">Tus Eventos</h1>
-      <v-row justify="center" align="center">
-        <v-col v-for="item in items" :key="item.id" cols="12" sm="6" xs="6" md="12">
-          <EventsCard :vertical="flase" class="d-none d-md-flex" :title="item.title" :date="item.date"
-            :time="item.time" :place="item.place" :description="item.description" :community="item.community"
-            :src="item.src" />
-          <EventsCard :vertical="true" class="d-md-none" :title="item.title" :date="item.date"
-            :time="item.time" :place="item.place" :description="item.description" :community="item.community"
-            :src="item.src" />
-        </v-col>
-      </v-row>
+    <v-row justify="center" align="center">
+      <v-col
+        v-for="item in items"
+        :key="item.id"
+        cols="12"
+        sm="6"
+        xs="6"
+        md="12"
+      >
+        <EventsCard
+          :vertical="flase"
+          class="d-none d-md-flex"
+          :title="item.title"
+          :date="item.date"
+          :time="item.time"
+          :place="item.place"
+          :description="item.description"
+          :community="item.community"
+          :src="item.src"
+        />
+        <EventsCard
+          :vertical="true"
+          class="d-md-none"
+          :title="item.title"
+          :date="item.date"
+          :time="item.time"
+          :place="item.place"
+          :description="item.description"
+          :community="item.community"
+          :src="item.src"
+        />
+      </v-col>
+    </v-row>
   </div>
 </template>
 

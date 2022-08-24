@@ -3,14 +3,26 @@
     <v-skeleton-loader v-if="loading" type="card-avatar, article, actions">
     </v-skeleton-loader>
     <v-card v-else class="mx-2 mb-3" mx-width="350">
-      <v-icon :color="community.comm_category.iconColor" class="icons pt-6 d-flex justify-center" x-large>
+      <v-icon
+        :color="community.comm_category.iconColor"
+        class="icons pt-6 d-flex justify-center"
+        x-large
+      >
         mdi-{{ community.comm_category.icon }}
       </v-icon>
-      <v-card-title class="text-h3 justify-center">{{ community.name.toUpperCase() }}</v-card-title>
-      <v-card-subtitle class="pb-1 text-h4 text-center">#{{ community.comm_category.name }}</v-card-subtitle>
-      <v-card-text class=" text-h5 text-center">{{ community.description }}</v-card-text>
+      <v-card-title class="text-h3 justify-center">{{
+        community.name.toUpperCase()
+      }}</v-card-title>
+      <v-card-subtitle class="pb-1 text-h4 text-center"
+        >#{{ community.comm_category.name }}</v-card-subtitle
+      >
+      <v-card-text class="text-h5 text-center">{{
+        community.description
+      }}</v-card-text>
       <v-divider class="mx-4"></v-divider>
-      <v-card-title class="text-h5 justify-center">Categoria de Eventos</v-card-title>
+      <v-card-title class="text-h5 justify-center"
+        >Categoria de Eventos</v-card-title
+      >
       <!-- <v-card-text>
         <v-chip-group v-for="event in eventCategoriesFilter(communityEvents)" v-model="selection"
           active-class="accent-4 white--text" column>
@@ -50,14 +62,16 @@ export default {
       return arr
     },
     getCommunity(id) {
-      this.$axios.get("http://localhost:8080/api/communities/" + id)
+      this.$axios
+        .get('http://localhost:8080/api/communities/' + id)
         .then((data) => {
           this.community = data.data[0]
           this.loading = false
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err)
         })
     },
-  }
+  },
 }
 </script>

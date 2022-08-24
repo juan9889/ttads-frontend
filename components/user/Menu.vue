@@ -14,17 +14,11 @@
             {{ user.email }}
           </p>
           <v-divider class="mx-3"></v-divider>
-          <v-btn depressed rounded text>
-            Settings
-          </v-btn>
+          <v-btn depressed rounded text> Settings </v-btn>
           <v-divider class="mx-3"></v-divider>
-          <v-btn depressed rounded text>
-            Disconnect
-          </v-btn>
+          <v-btn depressed rounded text> Disconnect </v-btn>
           <v-divider class="mx-3"></v-divider>
-          <v-btn depressed rounded text>
-            AAAA
-          </v-btn>
+          <v-btn depressed rounded text> AAAA </v-btn>
         </div>
       </v-list-item-content>
     </v-card>
@@ -33,17 +27,17 @@
 
 <script>
 export default {
-  name: "DefaultLayout",
+  name: 'DefaultLayout',
   data() {
     return {
       drawer: true,
       mini: true,
       user: {
-        initials: "JD",
-        fullName: "John Doe",
-        email: "john.doe@doe.com",
+        initials: 'JD',
+        fullName: 'John Doe',
+        email: 'john.doe@doe.com',
       },
-    };
-  }
+    }
+  },
 }
 </script>

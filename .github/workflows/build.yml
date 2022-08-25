@@ -21,6 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+        
+      - name: Linter
+        run: npm run lint
 
       - name: Generate
         run: yarn generate

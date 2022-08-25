@@ -1,6 +1,10 @@
 # TTADS-Frontend
 TP de frontend TTADS 2022
 
+<a href="">
+  <img src="https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml/badge.svg" width="15%">
+</a>
+
 #Ejecutar
 
 npm run dev

@@ -5,7 +5,7 @@ TP de frontend TTADS 2022
   <img src="https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml/badge.svg" width="15%">
 </a>
 
-#Ejecutar
+## Ejecutar
 
 npm run dev
 Levantar con el mismo comando el backend https://github.com/juan9889/TTADS-Backend

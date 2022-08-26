@@ -5,6 +5,8 @@ TP de frontend TTADS 2022
   <img src="https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml/badge.svg" width="15%">
 </a>
 
+[![Lint](https://github.com/juan9889/ttads-frontend/actions/workflows/linter.yml/badge.svg?branch=master&event=push)](https://github.com/juan9889/ttads-frontend/actions/workflows/linter.yml)
+
 ## Ejecutar
 
 npm run dev

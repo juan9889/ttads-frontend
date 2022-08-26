@@ -1,9 +1,7 @@
 # TTADS-Frontend
 TP de frontend TTADS 2022
 
-<a href="">
-  <img src="https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml/badge.svg" width="15%">
-</a>
+[![Build](https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/juan9889/ttads-frontend/actions/workflows/build.yml)
 
 
 [![Lint](https://github.com/juan9889/ttads-frontend/actions/workflows/linter.yml/badge.svg?branch=master&event=push)](https://github.com/juan9889/ttads-frontend/actions/workflows/linter.yml)

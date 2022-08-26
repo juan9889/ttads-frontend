@@ -27,9 +27,7 @@
           </v-icon>
           <v-icon small @click.stop="dialog_delete = true"> mdi-delete </v-icon>
         </template>
-        <template v-slot:no-data>
-          <v-btn color="primary" @click="initialize"> Reset </v-btn>
-        </template>
+        <template v-slot:no-data> </template>
       </v-data-table>
     </v-card>
 
@@ -90,6 +88,7 @@ export default {
   data() {
     return {
       search: '',
+      ciudades_req: [],
       dialog_new: false,
       dialog_edit: false,
       dialog_delete: false,
@@ -106,19 +105,25 @@ export default {
         { text: 'ID', value: 'id' },
         { text: 'Acciones', value: 'actions', sortable: false },
       ],
-      ciudades: [
-        {
-          name: 'Rosario',
-          provincia: 'Santa Fe',
-          id: '1',
-        },
-        {
-          name: 'Capitan Bermudez',
-          provincia: 'Santa Fe',
-          id: '2',
-        },
-      ],
+      ciudades: [],
     }
+  },
+  methods: {
+    async getCiudades() {
+      this.ciudades = []
+      this.ciudades_req = await this.$axios.$get('cities')
+      console.log(this.ciudades_req)
+      this.ciudades_req.forEach(async (ciudad) => {
+        var provincia_ciudad = await this.$axios.$get(
+          'provinces/' + ciudad.provinceId
+        )
+        ciudad.provincia = provincia_ciudad.name
+        this.ciudades.push(ciudad)
+      })
+    },
+  },
+  async mounted() {
+    await this.getCiudades()
   },
 }
 </script>

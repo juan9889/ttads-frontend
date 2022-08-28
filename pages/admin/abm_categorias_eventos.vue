@@ -134,6 +134,7 @@
                   hide-sliders
                   show-swatches
                   swatches-max-height="150"
+                  width="550"
                   v-model="color_seleccionado"
                 ></v-color-picker>
               </v-col>

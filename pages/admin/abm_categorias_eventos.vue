@@ -64,23 +64,30 @@
               </v-col>
               <v-col cols="12">
                 <v-autocomplete
-            v-model="icono_nueva_categoria"
-            :items="md_icons"
-            label="Icono"
-          ></v-autocomplete>
+                  v-model="icono_nueva_categoria"
+                  :items="md_icons"
+                  label="Icono"
+                ></v-autocomplete>
               </v-col>
               <v-col cols="12">
                 <v-color-picker
-  dot-size="24"
-  hide-canvas
-  hide-inputs
-  hide-mode-switch
-  hide-sliders
-  show-swatches
-  swatches-max-height="150"
-  v-model="color_seleccionado"
-></v-color-picker>
+                  dot-size="24"
+                  hide-canvas
+                  hide-inputs
+                  hide-mode-switch
+                  hide-sliders
+                  show-swatches
+                  swatches-max-height="150"
+                  v-model="color_seleccionado"
+                ></v-color-picker>
               </v-col>
+              <v-col cols="5"></v-col>
+              <v-col cols="2">
+                <v-icon x-large center dark :color="this.color_seleccionado">
+                  {{ 'mdi-' + this.icono_nueva_categoria }}</v-icon
+                >
+              </v-col>
+              <v-col cols="5"></v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -110,23 +117,30 @@
               </v-col>
               <v-col cols="12">
                 <v-autocomplete
-            v-model="icono_edit_categoria"
-            :items="md_icons"
-            label="Icono"
-          ></v-autocomplete>
+                  v-model="icono_edit_categoria"
+                  :items="md_icons"
+                  label="Icono"
+                ></v-autocomplete>
               </v-col>
               <v-col cols="12">
                 <v-color-picker
-  dot-size="24"
-  hide-canvas
-  hide-inputs
-  hide-mode-switch
-  hide-sliders
-  show-swatches
-  swatches-max-height="150"
-  v-model="color_seleccionado"
-></v-color-picker>
+                  dot-size="24"
+                  hide-canvas
+                  hide-inputs
+                  hide-mode-switch
+                  hide-sliders
+                  show-swatches
+                  swatches-max-height="150"
+                  v-model="color_seleccionado"
+                ></v-color-picker>
               </v-col>
+              <v-col cols="5"></v-col>
+              <v-col cols="2">
+                <v-icon x-large center dark :color="this.color_seleccionado">
+                  {{ 'mdi-' + this.icono_edit_categoria }}</v-icon
+                >
+              </v-col>
+              <v-col cols="5"></v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -232,6 +246,7 @@ export default {
       console.log(this.selectedItem)
       this.nuevo_nombre_edit_categoria = this.selectedItem.name
       this.icono_edit_categoria = this.selectedItem.icon
+      this.color_seleccionado = this.selectedItem.iconColor
       this.dialog_edit = true
     },
     async delete_confirm() {
@@ -243,7 +258,8 @@ export default {
         this.snackbar_success = true
         await this.getEventCategories()
       } catch (e) {
-        this.snackbar_text = 'Ocurrió un error al eliminar la categoría de evento'
+        this.snackbar_text =
+          'Ocurrió un error al eliminar la categoría de evento'
         this.snackbar_error = true
       }
     },
@@ -267,7 +283,7 @@ export default {
     },
     async create() {
       try {
-        console.log(this.color_seleccionado);
+        console.log(this.color_seleccionado)
         await this.$axios.$post('eventcategory', {
           name: this.nombre_nueva_categoria,
           icon: this.icono_nueva_categoria,
@@ -285,13 +301,13 @@ export default {
       }
     },
     getMaterialIcons() {
-      const misc = require("/static/misc.js");
-      this.md_icons = misc.getAllMaterialIconsList();
+      const misc = require('/static/misc.js')
+      this.md_icons = misc.getAllMaterialIconsList()
     },
   },
   mounted() {
-    this.getEventCategories();
-    this.getMaterialIcons();
+    this.getEventCategories()
+    this.getMaterialIcons()
   },
 }
 </script>

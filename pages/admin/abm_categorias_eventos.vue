@@ -69,7 +69,8 @@
                   label="Icono"
                 ></v-autocomplete>
               </v-col>
-              <v-col cols="12">
+
+              <v-col cols="12" justify="space-around">
                 <v-color-picker
                   dot-size="24"
                   hide-canvas
@@ -78,9 +79,11 @@
                   hide-sliders
                   show-swatches
                   swatches-max-height="150"
+                  width="550"
                   v-model="color_seleccionado"
                 ></v-color-picker>
               </v-col>
+
               <v-col cols="5"></v-col>
               <v-col cols="2">
                 <v-icon x-large center dark :color="this.color_seleccionado">

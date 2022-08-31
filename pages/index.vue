@@ -36,7 +36,7 @@ export default {
   methods: {
     getCommunities() {
       this.$axios
-        .get('http://localhost:8080/api/communities')
+        .get('communities')
         .then((data) => {
           this.communities = data.data
           this.loadingCommunities = false
@@ -47,7 +47,7 @@ export default {
     },
     getEvents() {
       this.$axios
-        .get('http://localhost:8080/api/events')
+        .get('events')
         .then((data) => {
           this.events = data.data
           this.loadingEvents = false

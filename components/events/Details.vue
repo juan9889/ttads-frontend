@@ -87,7 +87,7 @@ export default {
   methods: {
     getEventsDetails(id) {
       this.$axios
-        .get('http://localhost:8080/api/events/' + id)
+        .get('events/' + id)
         .then((data) => {
           this.event = data.data[0]
           this.loading = false

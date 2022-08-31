@@ -63,7 +63,7 @@ export default {
     },
     getCommunity(id) {
       this.$axios
-        .get('http://localhost:8080/api/communities/' + id)
+        .get('communities/' + id)
         .then((data) => {
           this.community = data.data[0]
           this.loading = false

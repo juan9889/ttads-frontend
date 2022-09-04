@@ -74,6 +74,12 @@ export default {
           title: 'Explorar',
           to: '/communities/explore',
         },
+        {
+          icon: false,
+          iconName: 'mdi-chart-bubble',
+          title: 'Buscar',
+          to: '/search',
+        },
       ],
       miniVariant: false,
       title: 'Vuetify.js',

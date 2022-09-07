@@ -10,9 +10,7 @@
             </v-list-item>
             <v-list-item link>
               <v-list-item-content>
-                <v-list-item-title class="text-h6">
-                  Panel de administrador
-                </v-list-item-title>
+                <v-list-item-title class="text-h6"> Panel de administrador </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list>

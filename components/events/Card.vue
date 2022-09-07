@@ -1,17 +1,11 @@
 <template>
   <div>
-    <v-card class="mx-auto" min-width="290" max-width="355">
-      <v-icon
-        :color="event.event_category.iconColor"
-        class="icons mt-2 d-flex justify-center"
-        x-large
-      >
+    <v-card class="mx-auto text-center" min-width="290" max-width="355">
+      <v-icon :color="event.event_category.iconColor" class="icons mt-2" x-large>
         mdi-{{ event.event_category.icon }}
       </v-icon>
-      <v-card-title class="pb-0 text-h5">{{
-        event.title.toUpperCase()
-      }}</v-card-title>
-      <v-card-title class="pt-0 pb-3 text-subtitle-1"
+      <v-card-title class="pb-0 text-h6">{{ event.title.toUpperCase() }}</v-card-title>
+      <v-card-title class="pt-0 pb-3 text-subtitle-1 text-left"
         ># {{ event.event_category.name }} - {{ event.community.name }}
       </v-card-title>
       <v-card-subtitle class="pb-1 pt-0 text-left">
@@ -23,10 +17,9 @@
           class="ma-1"
           color="blue-grey lighten-1"
           outlined
-          :to="'/communities?id=' + event.community.id.toString()"
-        >
-          Ver Comunidad</v-btn
-        >
+          :to="'/communities?id=' + event.community.id.toString()">
+          Ver Comunidad
+        </v-btn>
         <EventsDetails :eventId="event.id"></EventsDetails>
       </v-card-actions>
     </v-card>

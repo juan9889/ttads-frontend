@@ -2,32 +2,20 @@
   <div>
     <h1>Categorias de eventos</h1>
     <br />
-    <v-btn color="green" elevation="24" @click.stop="dialog_new = true"
-      >Agregar categoría</v-btn
-    >
+    <v-btn color="green" elevation="24" @click.stop="dialog_new = true">Agregar categoría</v-btn>
     <br />
     <br />
     <v-card>
       <v-card-title>
         Categorias de eventos
         <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Buscar"
-          single-line
-          hide-details
-        ></v-text-field>
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Buscar" single-line hide-details></v-text-field>
       </v-card-title>
       <v-spacer></v-spacer>
       <v-data-table :headers="headers" :items="categorias" :search="search">
-        <template v-slot:item.actions="{ item }">
-          <v-icon small class="mr-2" @click="open_edit_diag(item)">
-            mdi-pencil
-          </v-icon>
-          <v-icon small @click.stop="open_delete_diag(item)">
-            mdi-delete
-          </v-icon>
+        <template v-slot:item.actions="{item}">
+          <v-icon small class="mr-2" @click="open_edit_diag(item)"> mdi-pencil </v-icon>
+          <v-icon small @click.stop="open_delete_diag(item)"> mdi-delete </v-icon>
         </template>
         <template v-slot:no-data> </template>
       </v-data-table>
@@ -39,9 +27,7 @@
         <v-card-text> ¿Eliminar la categoría seleccionada? </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_delete = false">
-            Cancelar
-          </v-btn>
+          <v-btn color="default" text @click="dialog_delete = false"> Cancelar </v-btn>
           <v-btn color="red" fill @click="delete_confirm"> Eliminar </v-btn>
         </v-card-actions>
       </v-card>
@@ -56,18 +42,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field
-                  v-model="nombre_nueva_categoria"
-                  label="Nombre"
-                  required
-                ></v-text-field>
+                <v-text-field v-model="nombre_nueva_categoria" label="Nombre" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-autocomplete
-                  v-model="icono_nueva_categoria"
-                  :items="md_icons"
-                  label="Icono"
-                ></v-autocomplete>
+                <v-autocomplete v-model="icono_nueva_categoria" :items="md_icons" label="Icono"></v-autocomplete>
               </v-col>
 
               <v-col cols="12" justify="space-around">
@@ -80,8 +58,7 @@
                   show-swatches
                   swatches-max-height="150"
                   width="550"
-                  v-model="color_seleccionado"
-                ></v-color-picker>
+                  v-model="color_seleccionado"></v-color-picker>
               </v-col>
 
               <v-col cols="5"></v-col>
@@ -96,9 +73,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_new = false">
-            Cancelar
-          </v-btn>
+          <v-btn color="default" text @click="dialog_new = false"> Cancelar </v-btn>
           <v-btn color="green" filled @click="create"> Guardar </v-btn>
         </v-card-actions>
       </v-card>
@@ -112,18 +87,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field
-                  v-model="nuevo_nombre_edit_categoria"
-                  label="Nombre"
-                  required
-                ></v-text-field>
+                <v-text-field v-model="nuevo_nombre_edit_categoria" label="Nombre" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-autocomplete
-                  v-model="icono_edit_categoria"
-                  :items="md_icons"
-                  label="Icono"
-                ></v-autocomplete>
+                <v-autocomplete v-model="icono_edit_categoria" :items="md_icons" label="Icono"></v-autocomplete>
               </v-col>
               <v-col cols="12">
                 <v-color-picker
@@ -135,8 +102,7 @@
                   show-swatches
                   swatches-max-height="150"
                   width="550"
-                  v-model="color_seleccionado"
-                ></v-color-picker>
+                  v-model="color_seleccionado"></v-color-picker>
               </v-col>
               <v-col cols="5"></v-col>
               <v-col cols="2">
@@ -150,9 +116,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_edit = false">
-            Cancelar
-          </v-btn>
+          <v-btn color="default" text @click="dialog_edit = false"> Cancelar </v-btn>
           <v-btn color="green" filled @click="edit_confirm"> Guardar </v-btn>
         </v-card-actions>
       </v-card>
@@ -161,36 +125,22 @@
     <v-snackbar v-model="snackbar_success" right top color="green">
       {{ this.snackbar_text }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="snackbar_success = false"
-        >
-          x
-        </v-btn>
+      <template v-slot:action="{attrs}">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar_success = false"> x </v-btn>
       </template>
     </v-snackbar>
     <v-snackbar v-model="snackbar_error" right top color="red">
       {{ this.snackbar_text }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="snackbar_error = false"
-        >
-          x
-        </v-btn>
+      <template v-slot:action="{attrs}">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar_error = false"> x </v-btn>
       </template>
     </v-snackbar>
   </div>
 </template>
 
 <script>
-import { MISCELLANEOUS_TYPES } from '@babel/types'
+import {MISCELLANEOUS_TYPES} from '@babel/types'
 
 export default {
   layout: 'admin',
@@ -218,8 +168,8 @@ export default {
           sortable: true,
           value: 'name',
         },
-        { text: 'ID', value: 'id' },
-        { text: 'Acciones', value: 'actions', sortable: false },
+        {text: 'ID', value: 'id'},
+        {text: 'Acciones', value: 'actions', sortable: false},
       ],
       md_icons: [],
       categorias: this.getEventCategories(),
@@ -262,8 +212,7 @@ export default {
         this.snackbar_success = true
         await this.getEventCategories()
       } catch (e) {
-        this.snackbar_text =
-          'Ocurrió un error al eliminar la categoría de evento'
+        this.snackbar_text = 'Ocurrió un error al eliminar la categoría de evento'
         this.snackbar_error = true
       }
     },

@@ -5,26 +5,11 @@
       <v-col xs="12" sm="12" md="2" class="pt-3">
         <h3 class="text-h5 text-center">Categorias</h3>
         <SkeletonButton v-if="loadingCategories" :amount="6"></SkeletonButton>
-        <v-btn-toggle
-          v-else
-          group
-          v-model="categoryListIndex"
-          tile
-          color="primary"
-          class="d-flex flex-column"
-        >
-          <v-btn
-            class="mb-2"
-            v-for="category in categories"
-            :key="category.id"
-            elevation="6"
-            raised
-          >
+        <v-btn-toggle v-else group v-model="categoryListIndex" tile color="primary" class="d-flex flex-column">
+          <v-btn class="mb-2" v-for="category in categories" :key="category.id" elevation="6" raised>
             {{ category.name }}
             <v-spacer></v-spacer>
-            <v-icon right dark :color="category.iconColor">
-              mdi-{{ category.icon }}
-            </v-icon>
+            <v-icon right dark :color="category.iconColor"> mdi-{{ category.icon }} </v-icon>
           </v-btn>
         </v-btn-toggle>
       </v-col>

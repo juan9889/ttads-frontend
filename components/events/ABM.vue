@@ -10,14 +10,7 @@
           <v-form ref="form" lazy-validation v-model="valid">
             <v-row>
               <v-col cols="12" sm="12">
-                <v-text-field
-                  :counter="cTitle"
-                  :rules="rTitle"
-                  filled
-                  label="Titulo"
-                  v-model="title"
-                  required
-                >
+                <v-text-field :counter="cTitle" :rules="rTitle" filled label="Titulo" v-model="title" required>
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="12">
@@ -28,8 +21,7 @@
                   filled
                   name="input-7-4"
                   rows="2"
-                  label="Descripcion"
-                >
+                  label="Descripcion">
                 </v-textarea>
               </v-col>
               <v-col cols="12" sm="12" md="6">
@@ -40,9 +32,8 @@
                   :return-value.sync="date"
                   transition="scale-transition"
                   offset-y
-                  min-width="auto"
-                >
-                  <template v-slot:activator="{ on, attrs }">
+                  min-width="auto">
+                  <template v-slot:activator="{on, attrs}">
                     <v-text-field
                       filled
                       v-model="date"
@@ -50,26 +41,12 @@
                       prepend-icon="mdi-calendar"
                       readonly
                       v-bind="attrs"
-                      v-on="on"
-                    ></v-text-field>
+                      v-on="on"></v-text-field>
                   </template>
-                  <v-date-picker
-                    v-model="date"
-                    no-title
-                    scrollable
-                    label="Fecha"
-                  >
+                  <v-date-picker v-model="date" no-title scrollable label="Fecha">
                     <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="datePiker = false">
-                      Cancel
-                    </v-btn>
-                    <v-btn
-                      text
-                      color="primary"
-                      @click="$refs.datePiker.save(date)"
-                    >
-                      OK
-                    </v-btn>
+                    <v-btn text color="primary" @click="datePiker = false"> Cancel </v-btn>
+                    <v-btn text color="primary" @click="$refs.datePiker.save(date)"> OK </v-btn>
                   </v-date-picker>
                 </v-menu>
               </v-col>
@@ -83,9 +60,8 @@
                   transition="scale-transition"
                   offset-y
                   max-width="290px"
-                  min-width="290px"
-                >
-                  <template v-slot:activator="{ on, attrs }">
+                  min-width="290px">
+                  <template v-slot:activator="{on, attrs}">
                     <v-text-field
                       filled
                       v-model="time"
@@ -93,8 +69,7 @@
                       prepend-icon="mdi-clock-time-four-outline"
                       readonly
                       v-bind="attrs"
-                      v-on="on"
-                    ></v-text-field>
+                      v-on="on"></v-text-field>
                   </template>
                   <v-time-picker
                     v-if="timePiker"
@@ -102,8 +77,7 @@
                     v-model="time"
                     full-width
                     label="Hora"
-                    @click:minute="$refs.menu.save(time)"
-                  >
+                    @click:minute="$refs.menu.save(time)">
                   </v-time-picker>
                 </v-menu>
               </v-col>
@@ -114,8 +88,7 @@
                   accept="image/png, image/jpeg"
                   show-size
                   chips
-                  truncate-length=" 18"
-                >
+                  truncate-length=" 18">
                 </v-file-input>
               </v-col>
               <v-col cols="12" sm="12" md="6">
@@ -128,8 +101,8 @@
                   menu-props="auto"
                   label="Provincia"
                   prepend-icon="mdi-map"
-                  single-line
-                ></v-select>
+                  single-line>
+                </v-select>
               </v-col>
               <v-col cols="12" sm="12" md="6">
                 <v-select
@@ -142,8 +115,7 @@
                   label="Ciudad"
                   hide-details
                   prepend-icon="mdi-city"
-                  single-line
-                ></v-select>
+                  single-line></v-select>
               </v-col>
               <v-col cols="12" sm="12" md="6">
                 <v-text-field
@@ -153,8 +125,7 @@
                   filled
                   label="Direccion"
                   v-model="adress"
-                  required
-                >
+                  required>
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="6">
@@ -164,11 +135,9 @@
                   height="56px"
                   x-large
                   block
-                  :color="mode == 'D' ? 'red' : 'primary'"
-                  >{{
-                    mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar'
-                  }}</v-btn
-                >
+                  :color="mode == 'D' ? 'red' : 'primary'">
+                  {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
+                </v-btn>
               </v-col>
             </v-row>
           </v-form>
@@ -185,65 +154,59 @@
             :place="place"
             :description="description"
             :community="community"
-            :src="photo"
-        /></v-card>
+            :src="photo" />
+        </v-card>
       </v-col>
     </v-row>
   </div>
 </template>
 <script>
-import provincesCities from '/assets/data/provincesCities.json'
 export default {
-  props: {
-    mode: String, // 'C' 'U' 'D'
-  },
-  data() {
-    return {
-      title: '',
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
-      time: '00:00',
-      description: '',
-      community: 'Comunidad',
-      photo: '',
-      province: 'Provincia',
-      city: 'Ciudad',
-      adress: '',
-      place: '',
+  data: () => ({
+    title: '',
+    date: '',
+    // date: ''new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10)'',
+    time: '00:00',
+    description: '',
+    community: 'Comunidad',
+    photo: '',
+    province: 'Provincia',
+    city: 'Ciudad',
+    adress: '',
+    place: '',
 
-      provinces: provincesCities,
-      cities: [],
-      timePiker: false,
-      datePiker: false,
-      //Validations
-      valid: false,
-      //Rules
-      cTitle: 25,
-      cDescription: 210,
-      cAdress: 35,
-      rTitle: [
-        (value) =>
-          (value || '').length <= this.cTitle ||
-          `Maximo de ${this.cTitle} caracteres.`,
-        (value) => !!value || 'Requerido.',
-      ],
-      rDescription: [
-        (value) =>
-          (value || '').length <= this.cDescription ||
-          `Maximo de ${this.cDescription} caracteres.`,
-        (value) => !!value || 'Requerido.',
-      ],
-      rPhoto: [(value) => !!value || 'Requerido.'],
-      rProvince: [(value) => !!value || 'Requerido.'],
-      rCity: [(value) => !!value || 'Requerido.'],
-      rAdress: [
-        (value) =>
-          (value || '').length <= this.cAdress ||
-          `Maximo de ${this.cAdress} caracteres.`,
-        (value) => !!value || 'Requerido.',
-      ],
-    }
+    provinces: provincesCities,
+    cities: [],
+    timePiker: false,
+    datePiker: false,
+    //Validations
+    valid: false,
+    //Rules
+    cTitle: 25,
+    cDescription: 210,
+    cAdress: 35,
+    rTitle: [
+      (value) => (value || '').length <= this.cTitle || `Maximo de ${this.cTitle} caracteres.`,
+      (value) => !!value || 'Requerido.',
+    ],
+    rDescription: [
+      (value) => (value || '').length <= this.cDescription || `Maximo de ${this.cDescription} caracteres.`,
+      (value) => !!value || 'Requerido.',
+    ],
+    rPhoto: [(value) => !!value || 'Requerido.'],
+    rProvince: [(value) => !!value || 'Requerido.'],
+    rCity: [(value) => !!value || 'Requerido.'],
+    rAdress: [
+      (value) => (value || '').length <= this.cAdress || `Maximo de ${this.cAdress} caracteres.`,
+      (value) => !!value || 'Requerido.',
+    ],
+  }),
+  props: {
+    mode: {
+      type: String,
+      default: 'D',
+    }, // 'C' 'U' 'D'
+    communityId: Number,
   },
   methods: {
     validate() {
@@ -263,9 +226,7 @@ export default {
     province() {
       this.city = ''
       this.place = this.province + ', ' + this.city + ', ' + this.adress
-      this.cities = provincesCities.filter(
-        (prov) => prov.nombre == this.province
-      )
+      this.cities = provincesCities.filter((prov) => prov.nombre == this.province)
       this.cities = this.cities[0]['ciudades']
     },
     city() {

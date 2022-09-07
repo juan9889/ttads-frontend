@@ -7,7 +7,6 @@
     flat
     hide-details
     rounded
-    solo
-  >
+    solo>
   </v-text-field>
 </template>

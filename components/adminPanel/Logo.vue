@@ -1,6 +1,5 @@
 <template>
-  <a
-    title="Icons8, MIT &lt;http://opensource.org/licenses/mit-license.php&gt;, via Wikimedia Commons"
+  <a title="Icons8, MIT &lt;http://opensource.org/licenses/mit-license.php&gt;, via Wikimedia Commons"
     ><img
       width="256"
       alt="Icons8 flat settings"

@@ -1,6 +1,6 @@
 <template>
   <v-menu bottom min-width="200px" rounded offset-y>
-    <template v-slot:activator="{ on }">
+    <template v-slot:activator="{on}">
       <v-btn class="mx-auto" icon x-large y-large v-on="on">
         <UserAvatar />
       </v-btn>

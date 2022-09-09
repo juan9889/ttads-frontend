@@ -44,10 +44,10 @@
               <v-col cols="12">
                 <v-text-field v-model="nombre_nueva_categoria" label="Nombre" required></v-text-field>
               </v-col>
+
               <v-col cols="12">
                 <v-autocomplete v-model="icono_nueva_categoria" :items="md_icons" label="Icono"></v-autocomplete>
               </v-col>
-
               <v-col cols="12" justify="space-around">
                 <v-color-picker
                   dot-size="24"
@@ -58,14 +58,15 @@
                   show-swatches
                   swatches-max-height="150"
                   width="550"
-                  v-model="color_seleccionado"></v-color-picker>
+                  v-model="color_seleccionado">
+                </v-color-picker>
               </v-col>
 
               <v-col cols="5"></v-col>
               <v-col cols="2">
                 <v-icon x-large center dark :color="this.color_seleccionado">
-                  {{ 'mdi-' + this.icono_nueva_categoria }}</v-icon
-                >
+                  {{ 'mdi-' + this.icono_nueva_categoria }}
+                </v-icon>
               </v-col>
               <v-col cols="5"></v-col>
             </v-row>
@@ -140,8 +141,6 @@
 </template>
 
 <script>
-import {MISCELLANEOUS_TYPES} from '@babel/types'
-
 export default {
   layout: 'admin',
   data() {

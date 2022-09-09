@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import {runInThisContext} from 'vm'
-
 export default {
   name: 'Home',
   data: () => ({

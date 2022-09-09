@@ -19,16 +19,14 @@
       </v-col>
       <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
         <CommunitiesDetails :communityId="parseInt(this.$route.query.id)" />
-        <v-card class="text-center ma-2">
-          <v-btn
-            x-large
-            class="ma-1 my-4 px-16"
-            color="blue-grey lighten-1"
-            outlined
-            :to="'/events/new?id=' + parseInt(this.$route.query.id)">
-            Crear evento
-          </v-btn>
-        </v-card>
+        <v-btn
+          x-large
+          class="ma-1 my-4 px-16"
+          color="primary"
+          block
+          :to="'/events/modify?mode=C&community=' + parseInt(this.$route.query.id)">
+          Crear evento
+        </v-btn>
       </v-col>
     </v-row>
   </div>

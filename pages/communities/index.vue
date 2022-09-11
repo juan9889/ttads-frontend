@@ -8,21 +8,19 @@
           </v-select>
           <v-checkbox v-model="checkbox" label="Eventos Activos"></v-checkbox>
         </div>
-        <v-row>
-          <SkeletonCard v-if="loading" :amount="10"> </SkeletonCard>
-          <div v-else v-for="event in showEvents" :key="event.id">
-            <v-col class="justify-space-around text-center" xs="12" sm="12" md="6" lg="7" xl="8">
-              <EventsCard :event="event" />
-            </v-col>
+        <div class="d-flex flex-row flex-wrap justify-space-around">
+          <SkeletonCard v-if="loading" :amount="10"></SkeletonCard>
+          <div v-else v-for="event in showEvents" :key="event.id" class="ma-5">
+            <EventsCard :event="event" />
           </div>
-        </v-row>
+        </div>
       </v-col>
       <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
         <CommunitiesDetails :communityId="parseInt(this.$route.query.id)" />
         <v-btn
           x-large
           class="ma-1 my-4 px-16"
-          color="primary"
+          color="eventButton"
           block
           :to="'/events/modify?mode=C&community=' + parseInt(this.$route.query.id)">
           Crear evento

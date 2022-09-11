@@ -7,10 +7,8 @@
     <v-card-title class="pt-0 pb-1 text-left text-subtitle-1">#{{ community.comm_category.name }}</v-card-title>
     <v-card-text class="text--primary text-left">{{ community.description }}</v-card-text>
     <v-card-actions class="pa-1 pt-0 justify-space-around">
-      <v-btn class="ma-1" color="blue-grey lighten-1" outlined :to="'/communities?id=' + community.id.toString()">
-        Ver Eventos
-      </v-btn>
-      <v-btn class="ma-1" color="blue-grey lighten-1" outlined>Unirse</v-btn>
+      <v-btn class="ma-1" color="commuButton" :to="'/communities?id=' + community.id.toString()"> Ver Eventos </v-btn>
+      <v-btn class="ma-1" color="commuButton">Unirse</v-btn>
     </v-card-actions>
   </v-card>
 </template>

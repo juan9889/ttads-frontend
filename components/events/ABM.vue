@@ -10,7 +10,14 @@
           <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
             <v-row>
               <v-col cols="12" sm="12">
-                <v-text-field :counter="cTitle" :rules="requiredRule" filled label="Titulo" v-model="title" required>
+                <v-text-field
+                  :counter="cTitle"
+                  :rules="requiredRule"
+                  filled
+                  label="Titulo"
+                  v-model="title"
+                  required
+                  hint="For example, flowers or used cars">
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="12">
@@ -24,7 +31,6 @@
                   label="Descripcion">
                 </v-textarea>
               </v-col>
-
               <v-col cols="12" sm="12" md="6">
                 <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
                   <template v-slot:activator="{on, attrs}">
@@ -141,7 +147,7 @@
                   height="56px"
                   x-large
                   block
-                  :color="mode == 'D' ? 'red' : 'primary'">
+                  :color="mode == 'D' ? 'warning' : 'primary'">
                   {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
                 </v-btn>
               </v-col>

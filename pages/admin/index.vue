@@ -5,8 +5,8 @@
     <br />
     <br />
     <v-container class="fill-height">
-      <v-row align="center" justify="center">
-        <v-col align="center">
+      <v-row justify="center">
+        <v-col>
           <AdminPanelLogo />
         </v-col>
       </v-row>

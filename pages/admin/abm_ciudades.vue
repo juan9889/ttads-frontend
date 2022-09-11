@@ -2,7 +2,7 @@
   <div>
     <h1>Ciudades</h1>
     <br />
-    <v-btn color="green" elevation="24" @click.stop="dialog_new = true">Agregar ciudad</v-btn>
+    <v-btn color="success" elevation="24" @click.stop="dialog_new = true">Agregar ciudad</v-btn>
     <br />
     <br />
     <v-card>
@@ -27,8 +27,8 @@
         <v-card-text> ¿Eliminar la ciudad seleccionada? </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_delete = false"> Cancelar </v-btn>
-          <v-btn color="red" fill @click="delete_confirm"> Eliminar </v-btn>
+          <v-btn color="contrast" text @click="dialog_delete = false"> Cancelar </v-btn>
+          <v-btn color="warning" fill @click="delete_confirm"> Eliminar </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -58,8 +58,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_edit = false"> Cancelar </v-btn>
-          <v-btn color="green" filled @click="edit_confirm"> Guardar </v-btn>
+          <v-btn color="contrast" text @click="dialog_edit = false"> Cancelar </v-btn>
+          <v-btn color="success" filled @click="edit_confirm"> Guardar </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -89,23 +89,23 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="default" text @click="dialog_new = false"> Cancelar </v-btn>
-          <v-btn color="green" filled @click="create"> Guardar </v-btn>
+          <v-btn color="contrast" text @click="dialog_new = false"> Cancelar </v-btn>
+          <v-btn color="success" filled @click="create"> Guardar </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar v-model="snackbar_success" right top color="green">
+    <v-snackbar v-model="snackbar_success" right top color="success">
       {{ this.snackbar_text }}
 
       <template v-slot:action="{attrs}">
-        <v-btn color="white" text v-bind="attrs" @click="snackbar_success = false"> x </v-btn>
+        <v-btn color="contrast" text v-bind="attrs" @click="snackbar_success = false"> x </v-btn>
       </template>
     </v-snackbar>
-    <v-snackbar v-model="snackbar_error" right top color="red">
+    <v-snackbar v-model="snackbar_error" right top color="warning">
       {{ this.snackbar_text }}
 
       <template v-slot:action="{attrs}">
-        <v-btn color="white" text v-bind="attrs" @click="snackbar_error = false"> x </v-btn>
+        <v-btn color="contrast" text v-bind="attrs" @click="snackbar_error = false"> x </v-btn>
       </template>
     </v-snackbar>
   </div>

@@ -15,12 +15,12 @@
       </v-col>
       <v-col xs="12" sm="12" md="10">
         <h3 class="mb-4 text-h4 text-center">Comunidades</h3>
-        <v-row class="justify-space-around">
+        <div div class="d-flex flex-row flex-wrap justify-space-around">
           <skeletonCard v-if="loadingCommunities" :amount="16"></skeletonCard>
           <div v-else v-for="community in communities" :key="community.id">
             <CommunitiesCard :community="community" />
           </div>
-        </v-row>
+        </div>
       </v-col>
     </v-row>
   </div>

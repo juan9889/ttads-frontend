@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto text-center" min-width="290" max-width="355">
+    <v-card class="mx-auto text-center" width="290">
       <v-icon :color="event.event_category.iconColor" class="icons mt-2" x-large>
         mdi-{{ event.event_category.icon }}
       </v-icon>
@@ -13,11 +13,7 @@
         {{ event.date }}
       </v-card-subtitle>
       <v-card-actions class="pa-1 pt-0 justify-space-around">
-        <v-btn
-          class="ma-1"
-          color="blue-grey lighten-1"
-          outlined
-          :to="'/communities?id=' + event.community.id.toString()">
+        <v-btn class="ma-1" color="eventButton" :to="'/communities?id=' + event.community.id.toString()">
           Ver Comunidad
         </v-btn>
         <EventsDetails :eventId="event.id"></EventsDetails>

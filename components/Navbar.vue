@@ -21,7 +21,7 @@
     </v-navigation-drawer>
     <!--Hide mobile - Show desktop -->
     <v-app-bar :clipped-left="clipped" fixed app>
-      <!--Show mobile - Hide desktop -->
+      <!--Show mobile - Hide desktop --><UserMenu />
       <v-app-bar-nav-icon class="d-flex d-md-none" @click.stop="drawer = !drawer" />
       <!--Solo logeados-->
       <div class="d-none d-md-flex" v-for="(item, i) in btnItems" :key="i">
@@ -30,9 +30,12 @@
           >{{ item.title }}
         </v-btn>
       </div>
-
       <v-spacer />
-      <UserMenu />
+      <v-switch
+        v-model="$vuetify.theme.dark"
+        inset
+        hide-details
+        :label="$vuetify.theme.dark == true ? 'Noche' : 'Dia'"></v-switch>
     </v-app-bar>
   </div>
 </template>

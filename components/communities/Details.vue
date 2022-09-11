@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
-    <v-card v-else class="mx-2 mb-3 text-center" mx-width="350">
+    <v-card v-else class="comunidad mx-2 mb-3 text-center" mx-width="350">
       <v-icon :color="community.comm_category.iconColor" class="icons pt-6" x-large>
         mdi-{{ community.comm_category.icon }}
       </v-icon>
@@ -26,6 +26,9 @@
 <style scoped>
 .icons {
   font-size: 150px !important;
+}
+.comunidad {
+  border: 1px solid rgba(82, 45, 168, 0.05) !important;
 }
 </style>
 

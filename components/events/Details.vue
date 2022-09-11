@@ -7,7 +7,7 @@
         </v-btn>
       </template>
       <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
-      <v-card v-else class="mx-auto text-center" min-width="290" max-width="355">
+      <v-card v-else class="evento mx-auto text-center" min-width="290" max-width="355">
         <v-icon :color="event.event_category.iconColor" class="icons mt-2">
           mdi-{{ event.event_category.icon }}
         </v-icon>
@@ -42,6 +42,10 @@
 }
 .v-dialog {
   overflow-y: hidden !important;
+}
+.evento {
+  border: 1px solid rgb(0, 121, 107, 0.1) !important;
+  box-shadow: none;
 }
 </style>
 <script>

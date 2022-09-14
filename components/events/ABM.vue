@@ -217,7 +217,7 @@ export default {
       ) {
         switch (this.mode) {
           case 'C':
-            // this.createEvent()
+            this.createEvent()
             this.$router.back()
             break
           case 'U':

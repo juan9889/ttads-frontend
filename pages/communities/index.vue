@@ -74,7 +74,7 @@ export default {
         console.log(this.events.length)
         this.showEvents = this.events
       } else {
-        this.showEvents = this.events.filter((item) => item.state === 'Active' || item.state === 'Activo')
+        this.showEvents = this.events.filter((item) => item.state === '1' || item.state === '0')
       }
     },
     getCommunityEvents(id) {

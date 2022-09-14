@@ -10,14 +10,7 @@
           <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
             <v-row>
               <v-col cols="12" sm="12">
-                <v-text-field
-                  :counter="cTitle"
-                  :rules="requiredRule"
-                  filled
-                  label="Titulo"
-                  v-model="title"
-                  required
-                  hint="For example, flowers or used cars">
+                <v-text-field :counter="cTitle" :rules="requiredRule" filled label="Titulo" v-model="title" required>
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="12">
@@ -171,7 +164,7 @@ export default {
     province: null,
     city: null,
     place: '',
-    state: 'Active',
+    state: true,
     success: false,
 
     event: undefined,
@@ -185,7 +178,7 @@ export default {
     cTitle: 25,
     cDescription: 210,
     cPlace: 35,
-    requiredRule: [(v) => !!v || 'This is required'],
+    requiredRule: [(v) => !!v || 'Campo obligatorio.'],
   }),
   props: {
     mode: {
@@ -213,7 +206,8 @@ export default {
         this.date != '' &&
         this.time != '' &&
         this.city != null &&
-        this.category != null
+        this.category != null &&
+        this.state != null
       ) {
         switch (this.mode) {
           case 'C':

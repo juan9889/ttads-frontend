@@ -1,0 +1,527 @@
+[33mcommit 8ed7cac4b44d7aa3707002228bf96860907fc130[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: Entrega[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Sep 13 22:07:36 2022 -0300
+
+    detalles del estado de los eventos
+
+[33mcommit a0b58c2fd772adc59e0bd2d3c73c23b3c307fabd[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Sep 13 21:39:10 2022 -0300
+
+    descomentar una linea
+
+[33mcommit bf8bbeb9422181ba5ce4bab5e4f2a1bc35b6f235[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Tue Sep 13 17:06:07 2022 -0300
+
+    Update build.yml
+
+[33mcommit 6662c0026d5220a963bc35cee0cb47ea405443d8[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Sun Sep 11 07:34:11 2022 -0300
+
+    Acomodar estilos
+
+[33mcommit 54c9de6f5785bfcf43575a2cbf9a46fb5fcfd123[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Sun Sep 11 02:54:19 2022 -0300
+
+    Agregar colores. Hacer temas dark-light. Modo dia-noche
+
+[33mcommit 385d827881a5a7a0a22979d1645dcfef852b650e[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Fri Sep 9 19:54:55 2022 -0300
+
+    ABM eventos
+
+[33mcommit 1c85170686d22882fe7ec6cf68389edac8b7195a[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Sep 8 20:55:30 2022 -0300
+
+    pagina buscar va al backend
+
+[33mcommit a3e92bd5493f65bb99bbed7cb1346cbcf7592742[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Sep 7 03:08:57 2022 -0300
+
+    Parametros del prettier y arreglar card eventos
+
+[33mcommit 2dd69ec1859be2275ef0cc7ccb24114266b63da6[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Sep 4 23:41:40 2022 -0300
+
+    search page case insensitive
+
+[33mcommit eb5bf6f0ff6387d2d9200ddfa19cb35bc66ab3ca[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Sep 4 16:31:37 2022 -0300
+
+    pagina busqueda
+
+[33mcommit 48a2c7bf22eaa440fff812cce0f93051b1398f48[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Sep 2 11:33:13 2022 -0300
+
+    fix navmenu link
+
+[33mcommit e1a61176d0436b9191b4e9311e8da92c34d204c6[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Wed Aug 31 16:32:25 2022 -0300
+
+    baseurl fix
+
+[33mcommit 2f4f9e3284e74f7002b38c44b94723d46f76785e[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Wed Aug 31 00:09:44 2022 -0300
+
+    intento deploy
+
+[33mcommit 3af84031bb0fdd212035fa64f8503f5226c7625b[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Aug 28 18:09:41 2022 -0300
+
+    color picker width edit categoria evento
+
+[33mcommit 2582787a8be978d05852aaa48e9ade7237cb974b[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Aug 28 12:24:00 2022 -0300
+
+    color picker width fix
+
+[33mcommit 557ca24510065275409aeffffd9453098461aaca[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Aug 28 10:58:16 2022 -0300
+
+    muestra icono picker
+
+[33mcommit 1d4b0281871c6be87b539e2daac96c588cbc5c1b[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Sun Aug 28 10:27:05 2022 -0300
+
+    abm categorias eventos
+
+[33mcommit 8a588bd95f5e1b1db0b4c1ed5c024f14d7644735[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 20:41:43 2022 -0300
+
+    Update linter.yml
+
+[33mcommit 26cbb28e067b8c275806bbcf95030fce3f5ac1be[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 20:40:44 2022 -0300
+
+    prueba linter sin dep
+
+[33mcommit 95d1c88f6004cb88fa8a6b24572571d1588a2608[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 20:32:41 2022 -0300
+
+    abm ciudades ok
+
+[33mcommit 664c257f62428c3ba8d7846bb9c158cd01fcd763[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 19:01:37 2022 -0300
+
+    abm ciudades getciudades
+
+[33mcommit bca4693268eaf3a37e50ce94f0f3ccb01ff700c6[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:10:19 2022 -0300
+
+    lint fix
+
+[33mcommit 1f9a70e29760885efd990f465299d38fc50974c9[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:06:55 2022 -0300
+
+    Update linter.yml
+
+[33mcommit af4e5f6eaa5f42caf87df0c91c785a116f0c3b4f[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:04:19 2022 -0300
+
+    Update linter.yml
+
+[33mcommit 50b2836f563a3d2c313872492a30268f09c097df[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:02:24 2022 -0300
+
+    Update README.md
+
+[33mcommit c844424c7d70e52903bec278a3e78c1ff12b1907[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:02:12 2022 -0300
+
+    Update README.md
+
+[33mcommit 5fcd789e275dd60ec38f994a311c57ebc319bce5[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 11:00:10 2022 -0300
+
+    Update linter.yml
+
+[33mcommit 9b650a11a17d2295e85c1ea0cee485945890a6f1[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 10:58:07 2022 -0300
+
+    test linter workflow
+
+[33mcommit 41fe45ebaabf3fd345519a4bd6fd32b2c50e78f1[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 10:56:04 2022 -0300
+
+    Update README.md
+
+[33mcommit 9ed5e0772a20b6aa84fa828bedf579ee5cab0c7b[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Fri Aug 26 10:53:39 2022 -0300
+
+    Create linter.yml
+
+[33mcommit 67dde30bd5c686bcb8d252e193f7084793ac16c7[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:46:03 2022 -0300
+
+    Delete lint.yml
+
+[33mcommit 4d04e91bdf359c875b03392071e6f1da3d751e40[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:42:26 2022 -0300
+
+    Update build.yml
+
+[33mcommit 881b7753745107163edec404ad6631b83c66fff6[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:42:10 2022 -0300
+
+    Update lint.yml
+
+[33mcommit 0cfa6cd45d0550d15d3ee09c79e7498a9a34b63a[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:41:57 2022 -0300
+
+    Create lint.yml
+
+[33mcommit 4e6733b0e453f49bc04dc18eb2945cd95756fcb7[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:40:20 2022 -0300
+
+    Update build.yml
+
+[33mcommit 263dd7fa13af42e35ceaf913454b8c4994e22610[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:15:11 2022 -0300
+
+    Update README.md
+
+[33mcommit 892e4895f5291a94e306a14a9663ee3fa7f43d2d[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:14:25 2022 -0300
+
+    badge workflow build
+
+[33mcommit 835494281b48919d1b38286a53b7d22f97c63b92[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Thu Aug 25 13:11:46 2022 -0300
+
+    intento 1 ci
+
+[33mcommit 628340161658173b69f5e65a5fe571a8a36aa116[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Wed Aug 24 17:56:29 2022 -0300
+
+    Update README.md
+
+[33mcommit 7b29f40490232751d4d06520e3b1d1320b1146c0[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Wed Aug 24 17:26:31 2022 -0300
+
+    build
+
+[33mcommit 73fa439096049f74c0805891b8b754459c09737a[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Wed Aug 24 17:08:40 2022 -0300
+
+    prettier
+
+[33mcommit d3cd6fadc7f21043f6276a9a2007c652a5a09c1e[m
+Author: Gino <32527000+GinoBartolucci@users.noreply.github.com>
+Date:   Tue Aug 23 19:10:57 2022 -0300
+
+    Update README.md
+
+[33mcommit 1f0dcfd18c87f71fe3a03026fa5d2f72a6eed93f[m
+Author: Gino <32527000+GinoBartolucci@users.noreply.github.com>
+Date:   Tue Aug 23 19:10:03 2022 -0300
+
+    Update README.md
+
+[33mcommit 9f671f22f68573fe38b9dfca3f4e3f6e5eee3b0b[m
+Author: Gino <32527000+GinoBartolucci@users.noreply.github.com>
+Date:   Tue Aug 23 19:09:39 2022 -0300
+
+    Update README.md
+
+[33mcommit e0cfb83231aa5aec6668239ad2818228eac8c0fc[m
+Author: Gino <32527000+GinoBartolucci@users.noreply.github.com>
+Date:   Tue Aug 23 19:08:44 2022 -0300
+
+    Update readme
+
+[33mcommit 2a164e5789b82ec23d52431b5ca1cfcc9e647a18[m
+Author: Juan Agustin Fogliato <48728949+juan9889@users.noreply.github.com>
+Date:   Mon Aug 22 14:57:11 2022 -0300
+
+    baseurl en nuxtconfig
+
+[33mcommit 1498c3baee39e8c60c9c187c7d41a748c06086b3[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Sat Aug 20 19:02:53 2022 -0300
+
+    Skeletons, detalles
+
+[33mcommit 468ee1d4e6a43481c4d63797bb3d3c2951a0c0b3[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Aug 17 17:41:35 2022 -0300
+
+    Crear Skeletons para las paginas y componenetes. Acomodar algunas llamadas a la api
+
+[33mcommit 6255cd3400d1b58fc2c75c362afa900092efdf32[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Aug 16 18:25:39 2022 -0300
+
+    Terminar paginas communidades. Hacer detalles Evento
+
+[33mcommit 7082c9a281536e8647a6a9eba6f6b1f01167ac23[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Thu Aug 11 02:23:05 2022 -0300
+
+    arreglar unos detalles
+
+[33mcommit b1aaac6d36d04aa4aa7a3e07d116895063ca740a[m
+Author: Cristian Gofiar <cristiangofiar@gmail.com>
+Date:   Wed Aug 10 17:34:41 2022 -0300
+
+    Icons added to back
+
+[33mcommit 5983c473031058bdbccd809c417560adfd370975[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Aug 10 06:44:31 2022 -0300
+
+    acomodar Card - Terminar Explore - Empezar Pagina comunidad
+
+[33mcommit 2ed4405e08a06c1958899735e98310162e0a7e4f[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Aug 9 03:45:29 2022 -0300
+
+    Terminar explore, acomodar layouts(componentes: navar footer userMenu)
+
+[33mcommit f5bc5bf7e4440b3332cddd48c828c4abbb9a55f3[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Sun Aug 7 03:48:13 2022 -0300
+
+    Contituar explore
+
+[33mcommit bfa42375aea90a15b4a039e1276e728337301b26[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Thu Aug 4 13:06:12 2022 -0300
+
+    explore
+
+[33mcommit edd5ba2e753bbee6739ce5d9949c0efd67359e51[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Thu Aug 4 03:41:36 2022 -0300
+
+    quitar los 25 trillones de errores
+
+[33mcommit 7ec2ba447677de6a2cf9af8bce02067ebdef54eb[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Aug 3 12:07:59 2022 -0300
+
+    try catch en abm provincias
+
+[33mcommit 8f28e926513f68b92048a5a446a12a8793c05d95[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Aug 3 11:43:50 2022 -0300
+
+    edit abm provincias ok
+
+[33mcommit fb598ecdb7a7eb6ffa29d2761174a2bc60ebdf08[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Aug 3 00:12:31 2022 -0300
+
+    create y delete abm provincias ok
+
+[33mcommit c8ebfd557732b65a6642285ae6af1cb2626fb4d8[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Aug 2 20:57:03 2022 -0300
+
+    acomodar metodo de llamada a la api
+
+[33mcommit d743c65e50bd10965a24de6f9f4ae4b8b979b46e[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Aug 2 19:42:41 2022 -0300
+
+    get provincias anda
+
+[33mcommit e0cc52b6e351f8d502bafd09f2c31253cb47aa0c[m
+Author: Cristian Gofiar <cristiangofiar@gmail.com>
+Date:   Tue Jul 26 11:21:36 2022 -0300
+
+    Glow up update. New UI.
+
+[33mcommit 187e15436d932d6d94053ce1f2fe93105a07494d[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Jun 15 01:38:27 2022 -0300
+
+    Comp: CardCommunities - Agregar colores
+
+[33mcommit 5e1464caaad13c201ce1e8356c6b9326e103db89[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Fri Jun 10 19:51:31 2022 -0300
+
+    acomodar paginacion
+
+[33mcommit 093de8e1313ea6eaf1870ecb0f27c840e14c98de[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Fri Jun 10 13:08:18 2022 -0300
+
+    dialogs abm ciudades
+
+[33mcommit b51df2dbbbba720e9d7f02ad49a2c21dd292f61a[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Fri Jun 10 11:18:14 2022 -0300
+
+    botones acciones abm ciudades
+
+[33mcommit 304a0923d223c86a8dc23b5bb6742be72b3cbf69[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Fri Jun 10 05:26:27 2022 -0300
+
+    Estilizar paginas
+
+[33mcommit f06efbc7f674a4c0df6f57651ede01d5ea514792[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Thu Jun 9 17:50:22 2022 -0300
+
+    arreglar: adminlayout
+
+[33mcommit ceef0af2bae1594905e145445f8e0dba976d8c2b[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Thu Jun 9 17:15:53 2022 -0300
+
+    quite href de logo panel admin
+
+[33mcommit bdf1e3fb4ff6a6445f7ce7317bf5ad1c29e2008a[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Thu Jun 9 17:07:43 2022 -0300
+
+    abm ciudades
+
+[33mcommit 1e5862b1d2ed1f7b4703ad20969fc2d1dd8bc6b4[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Thu Jun 9 14:50:17 2022 -0300
+
+    ahora se puede mirar desde red local
+
+[33mcommit eecbae0c84fd4cbe3f9e3725d01ece79f7b42499[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Thu Jun 9 02:05:10 2022 -0300
+
+    Comp: EventosCard - Pag: my_events, new_event
+
+[33mcommit 78a118f758bbb0cc3a71eb89c2750f54dcf6593c[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 20:32:57 2022 -0300
+
+    icono panel admin
+
+[33mcommit dc27e2b1211dbe7b53b7499b24d8fc60f0956773[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Jun 8 17:18:13 2022 -0300
+
+    Acomodar: adminLayout
+
+[33mcommit 4dae66673783b6d7ca3f692d14aa647d39ed60e1[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 15:37:30 2022 -0300
+
+    logo en panel admin
+
+[33mcommit 43ec9ac18df53e541e519aec22d3712c306faa1d[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 14:52:38 2022 -0300
+
+    casi casi listo layout admin
+
+[33mcommit 51dd95b470627d948f70108c775a770da8473d0a[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 14:40:41 2022 -0300
+
+    mejor alineado layout admin
+
+[33mcommit 55e6ad476103dcffcc55e7a291addb22e2110bc1[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 12:33:51 2022 -0300
+
+    agregue un nuevo layout para admin
+
+[33mcommit 59d0383e61f102ef8ed9b3c9c865c86c44119002[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed Jun 8 12:01:47 2022 -0300
+
+    panel admin responsive
+
+[33mcommit 5bdea08e4a695244a208e8f03b7f252a6db166b8[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Wed Jun 8 02:26:38 2022 -0300
+
+    Componentes: EventosABM
+
+[33mcommit 055c71bac3d3c23c0e3a9bf3787c23c5aa90445e[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Jun 7 22:47:31 2022 -0300
+
+    mejorado un poco panel admin
+
+[33mcommit 64dc823c90feffcf6fb7b4bf1de421c5b7737f6e[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Jun 7 21:19:25 2022 -0300
+
+    componentes
+
+[33mcommit 2ac07487d9686d36bc4d7e08bd37261cd0b114ec[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Jun 7 21:16:21 2022 -0300
+
+    componentes para los abm
+
+[33mcommit 391279df687b4c6d4d224ba0cd5a298bbaf2e305[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Jun 7 21:10:22 2022 -0300
+
+    pagina admin
+
+[33mcommit 66c746bdab24d6a27940d177cdabafbf94e36840[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Tue Jun 7 20:59:34 2022 -0300
+
+    nuevo item menu
+
+[33mcommit aa553d8c91a59cc9550c9731ab3d9b960c50c401[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Jun 7 20:25:22 2022 -0300
+
+    Componentes: EventosABM - Pagina:Home
+
+[33mcommit 5c7f760757697d9d6d044145bc760e0f5281e8bc[m
+Author: Gino Bartolucci <ginobartolucci00@gmail.com>
+Date:   Tue Jun 7 01:11:13 2022 -0300
+
+    Componentes: navbar - eventsVerticalCard
+
+[33mcommit 533357e1d001d00a7d188f847264231ba746f606[m
+Author: juan <juan.fogliato@gmail.com>
+Date:   Wed May 11 17:37:44 2022 -0300
+
+    first commit

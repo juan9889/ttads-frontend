@@ -1,6 +1,6 @@
 export default {
   server: {
-    host: '0.0.0.0', // default: localhost
+    host: 'localhost', // default: localhost
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -47,7 +47,7 @@ export default {
 
   axios: {
     // extra config e.g
-    baseURL: 'http://168.197.48.101:8080/api/',
+    baseURL: 'http://localhost:8080/api/',
   },
 
   publicRuntimeConfig: {

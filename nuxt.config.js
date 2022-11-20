@@ -43,11 +43,25 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
 
   axios: {
     // extra config e.g
     baseURL: 'http://localhost:8080/api/',
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {url: '/users/login', method: 'post', propertyName: 'token'},
+          user: {url: '/users/me', method: 'get', propertyName: 'data'},
+          //user: false,
+          logout: false,
+        },
+      },
+    },
   },
 
   publicRuntimeConfig: {

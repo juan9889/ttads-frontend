@@ -42,6 +42,17 @@
         </v-btn>
       </div>
       <v-spacer />
+      <div class="navbar-item has-dropdown is-hoverable" v-if="isAuthenticated">
+        <a class="navbar-link">
+          {{ loggedInUser.username }}
+        </a>
+        <div class="navbar-dropdown">
+          <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
+          <hr class="navbar-divider" />
+          <a class="navbar-item">Logout</a>
+        </div>
+      </div>
+      <v-spacer />
       <v-switch
         class="d-none d-md-flex"
         v-model="$vuetify.theme.dark"
@@ -54,8 +65,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
   name: 'DefaultLayout',
+
   data() {
     return {
       clipped: false,

@@ -117,6 +117,7 @@ export default {
     validate() {
       if (this.$refs.loginForm.validate()) {
         // submit form to server/API here...
+        this.login()
       }
     },
     reset() {
@@ -124,6 +125,20 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation()
+    },
+    async login() {
+      try {
+        await this.$auth.loginWith('local', {
+          data: {
+            username: this.loginUsername,
+            user_password: this.loginPassword,
+          },
+        })
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
     },
   },
   data: () => ({
@@ -146,7 +161,7 @@ export default {
     show1: false,
     rules: {
       required: (value) => !!value || 'Obligatorio',
-      min: (v) => (v && v.length >= 8) || 'Minimo 8 caracteres',
+      min: (v) => (v && v.length >= 3) || 'Minimo 3 caracteres',
     },
   }),
 }

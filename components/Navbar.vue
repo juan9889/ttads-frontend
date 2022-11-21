@@ -54,7 +54,7 @@
             <v-list-item-title> {{ loggedInUser.username }}</v-list-item-title>
           </v-list-item>
           <v-list-item>Perfil</v-list-item>
-          <v-list-item>Cerrar sesion</v-list-item>
+          <v-list-item @click="logout">Cerrar sesion</v-list-item>
         </v-list>
       </v-menu>
 
@@ -111,6 +111,11 @@ export default {
       miniVariant: false,
       title: 'Vuetify.js',
     }
+  },
+  methods: {
+    logout() {
+      this.$auth.logout()
+    },
   },
 }
 </script>

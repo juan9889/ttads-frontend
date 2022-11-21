@@ -42,17 +42,22 @@
         </v-btn>
       </div>
       <v-spacer />
-      <div class="navbar-item has-dropdown is-hoverable" v-if="isAuthenticated">
-        <a class="navbar-link">
-          {{ loggedInUser.username }}
-        </a>
-        <div class="navbar-dropdown">
-          <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
-          <hr class="navbar-divider" />
-          <a class="navbar-item">Logout</a>
-        </div>
-      </div>
-      <v-spacer />
+      <v-menu v-if="isAuthenticated" bottom left>
+        <template v-slot:activator="{on, attrs}">
+          <v-btn dark icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <v-list-item-title> {{ loggedInUser.username }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item>Perfil</v-list-item>
+          <v-list-item>Cerrar sesion</v-list-item>
+        </v-list>
+      </v-menu>
+
       <v-switch
         class="d-none d-md-flex"
         v-model="$vuetify.theme.dark"

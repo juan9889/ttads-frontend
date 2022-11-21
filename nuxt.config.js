@@ -62,11 +62,17 @@ export default {
         },
       },
     },
-  },
+    redirect: {
+      login: '/auth/login',
+      logout: '/',
+      callback: '/auth/login',
+      home: '/',
+    },
 
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL,
+    publicRuntimeConfig: {
+      axios: {
+        browserBaseURL: process.env.BROWSER_BASE_URL,
+      },
     },
   },
 

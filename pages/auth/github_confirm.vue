@@ -29,14 +29,20 @@ export default {
       jwt_token: '',
       token_exp: '',
       oauth_access_token: '',
+      user_loggedin: '',
     }
   },
 
   methods: {
     async getJwt() {
       //TODO: separar esto para que el login normal tambien pueda usar este metodo
-      this.jwt_token = await this.$axios.$get('http://168.197.48.101:8080/api/users/github/' + this.oauth_access_token)
-      alert(this.jwt_token.message)
+      var responseauth = await this.$axios.$get(
+        'http://168.197.48.101:8080/api/users/github/' + this.oauth_access_token
+      )
+      this.jwt_token = responseauth.token
+      this.user_loggedin = responseauth.data
+      await this.$auth.setUserToken(this.jwt_token.token)
+      await this.$auth.setUser(this.user_loggedin)
       this.$router.push('/')
     },
   },

@@ -41,8 +41,9 @@ export default {
       )
       this.jwt_token = responseauth.token
       this.user_loggedin = responseauth.data
-      await this.$auth.setUserToken(this.jwt_token.token)
-      await this.$auth.setUser(this.user_loggedin)
+      //await this.$auth.setUser(this.user_loggedin)
+      await this.$auth.setUserToken(this.jwt_token)
+
       this.$router.push('/')
     },
   },

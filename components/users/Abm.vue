@@ -1,86 +1,89 @@
 <template>
-  <v-card class="pa-6">
-    <h1 class="text-center mb-3">
-      <!-- {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }} -->
-      Perfil
-    </h1>
-    <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
-      <v-row>
-        <v-col cols="12" sm="12" md="4">
-          <v-text-field
-            :counter="cUsername"
-            :rules="requiredRule"
-            prepend-icon="mdi-map-marker"
-            filled
-            label="Nombre de usuario"
-            v-model="username"
-            required>
-          </v-text-field>
-        </v-col>
-        <v-col cols="12" sm="12" md="4">
-          <v-text-field
-            :counter="cName"
-            :rules="requiredRule"
-            prepend-icon="mdi-map-marker"
-            filled
-            label="Nombre"
-            v-model="name"
-            required>
-          </v-text-field>
-        </v-col>
-        <v-col cols="12" sm="12" md="4">
-          <v-text-field
-            :counter="cMail"
-            :rules="mailRule"
-            prepend-icon="mdi-map-marker"
-            filled
-            label="Mail"
-            v-model="mail"
-            required>
-          </v-text-field>
-        </v-col>
-        <v-col cols="12" sm="12" md="6">
-          <v-select
-            v-model="province"
-            :rules="requiredRule"
-            required
-            :items="provinces"
-            label="Provincia"
-            filled
-            prepend-icon="mdi-map"
-            return-object
-            item-text="name"
-            single-line>
-          </v-select>
-        </v-col>
-        <v-col cols="12" sm="12" md="6">
-          <v-select
-            v-model="city"
-            :items="cities"
-            :rules="requiredRule"
-            required
-            return-object
-            filled
-            item-text="name"
-            label="Ciudad"
-            prepend-icon="mdi-city"
-            single-line>
-          </v-select>
-        </v-col>
-        <v-col cols="12" sm="12" md="12">
-          <v-btn
-            :disabled="!valid"
-            type="submit"
-            height="56px"
-            x-large
-            block
-            :color="mode == 'D' ? 'warning' : 'primary'">
-            {{ mode == 'C' ? 'Editar' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
-  </v-card>
+  <div>
+    <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
+    <v-card v-else class="pa-6">
+      <h1 class="text-center mb-3">
+        <!-- {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }} -->
+        Perfil
+      </h1>
+      <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
+        <v-row>
+          <v-col cols="12" sm="12" md="4">
+            <v-text-field
+              :counter="cUsername"
+              :rules="requiredRule"
+              prepend-icon="mdi-map-marker"
+              filled
+              label="Nombre de usuario"
+              v-model="username"
+              required>
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="12" md="4">
+            <v-text-field
+              :counter="cName"
+              :rules="requiredRule"
+              prepend-icon="mdi-map-marker"
+              filled
+              label="Nombre"
+              v-model="name"
+              required>
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="12" md="4">
+            <v-text-field
+              :counter="cMail"
+              :rules="mailRule"
+              prepend-icon="mdi-map-marker"
+              filled
+              label="Mail"
+              v-model="mail"
+              required>
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="12" md="6">
+            <v-select
+              v-model="province"
+              :rules="requiredRule"
+              required
+              :items="provinces"
+              label="Provincia"
+              filled
+              prepend-icon="mdi-map"
+              return-object
+              item-text="name"
+              single-line>
+            </v-select>
+          </v-col>
+          <v-col cols="12" sm="12" md="6">
+            <v-select
+              v-model="city"
+              :items="cities"
+              :rules="requiredRule"
+              required
+              return-object
+              filled
+              item-text="name"
+              label="Ciudad"
+              prepend-icon="mdi-city"
+              single-line>
+            </v-select>
+          </v-col>
+          <v-col cols="12" sm="12" md="12">
+            <v-btn
+              :disabled="!valid"
+              type="submit"
+              height="56px"
+              x-large
+              block
+              :color="mode == 'D' ? 'warning' : 'primary'">
+              {{ mode == 'C' ? 'Editar' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-form>
+    </v-card>
+  </div>
 </template>
 <script>
 export default {
@@ -95,6 +98,7 @@ export default {
     provinces: [], //get provincias
     cities: [], //get ciudadades de esa provincia seleccinada
 
+    loading: true,
     valid: false,
     requiredRule: [(v) => !!v || 'Campo obligatorio.'],
     mailRule: [(v) => !!v || 'Campo obligatorio.'],
@@ -156,11 +160,13 @@ export default {
           console.log(err)
         })
     },
-    getUser(userID) {},
+    getUser(userID) {
+      this.loading = true
+    },
     createUser() {},
   },
   watch: {
-    province(newValue, oldValue) {
+    province(newValue) {
       console.log('provincia Id: ' + this.province)
       this.cities = []
       this.getProcinceCities(newValue.id)

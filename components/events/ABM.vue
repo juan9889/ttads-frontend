@@ -1,178 +1,176 @@
 <template>
-  <div>
-    <v-row>
-      <v-col cols="12" sm="12" md="12">
-        <v-card class="pa-6">
-          <h1 class="text-center mb-3">
-            {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
-            Evento
-          </h1>
-          <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
-            <v-row>
-              <v-col cols="12" sm="12">
-                <v-text-field :counter="cTitle" :rules="requiredRule" filled label="Titulo" v-model="title" required>
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="12">
-                <v-textarea
-                  :counter="cDescription"
-                  :rules="requiredRule"
-                  v-model="description"
-                  filled
-                  name="input-7-4"
-                  rows="2"
-                  label="Descripcion">
-                </v-textarea>
-              </v-col>
-              <v-col cols="12" sm="12" md="6">
-                <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
-                  <template v-slot:activator="{on, attrs}">
-                    <v-text-field
-                      v-model="date"
-                      label="Picker in dialog"
-                      prepend-icon="mdi-calendar"
-                      readonly
-                      filled
-                      v-bind="attrs"
-                      v-on="on"></v-text-field>
-                  </template>
-                  <v-date-picker v-model="date" scrollable>
-                    <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
-                    <v-btn text color="primary" @click="$refs.dialog.save(date)"> OK </v-btn>
-                  </v-date-picker>
-                </v-dialog>
-              </v-col>
-              <v-col cols="12" sm="12" md="6">
-                <v-menu
-                  ref="menu"
-                  v-model="timePiker"
-                  :close-on-content-click="false"
-                  :nudge-right="40"
-                  :return-value.sync="time"
-                  transition="scale-transition"
-                  offset-y
-                  max-width="290px"
-                  min-width="290px">
-                  <template v-slot:activator="{on, attrs}">
-                    <v-text-field
-                      filled
-                      v-model="time"
+  <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" width="95%">
+    <template v-id v-slot:activator="{on, attrs}">
+      <v-btn x-large class="ma-1 my-4 px-16" color="eventButton" block v-bind="attrs" v-on="on"> Crear evento </v-btn>
+    </template>
+    <SkeletonAbm v-if="loading" :amount="1"></SkeletonAbm>
+    <v-card v-else>
+      <v-toolbar dark
+        ><v-btn icon dark right @click="dialog = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-toolbar-title class="text-centers text-h4">
+          {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
+          Evento
+        </v-toolbar-title>
+      </v-toolbar>
+      <v-row class="ma-0">
+        <v-col cols="12" sm="12" md="12">
+          <v-card class="pa-6">
+            <v-form ref="form" v-model="valid" @submit.prevent="validateForm" :disabled="mode == 'D' ? true : false">
+              <v-row>
+                <v-col cols="12" sm="12">
+                  <v-text-field
+                    :counter="cTitle"
+                    :rules="requiredRule"
+                    filled
+                    label="Titulo"
+                    v-model="event.title"
+                    required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12">
+                  <v-textarea
+                    :counter="cDescription"
+                    :rules="requiredRule"
+                    v-model="event.description"
+                    filled
+                    name="input-7-4"
+                    rows="2"
+                    label="Descripcion">
+                  </v-textarea>
+                </v-col>
+                <v-col cols="12" sm="12" md="6">
+                  <v-dialog ref="dialog" v-model="modal" :return-value.sync="event.date" persistent width="290px">
+                    <template v-slot:activator="{on, attrs}">
+                      <v-text-field
+                        v-model="event.date"
+                        label="Picker in dialog"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        filled
+                        v-bind="attrs"
+                        v-on="on"></v-text-field>
+                    </template>
+                    <v-date-picker v-model="event.date" scrollable>
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="modal = false"> Cancel </v-btn>
+                      <v-btn text color="primary" @click="$refs.dialog.save(event.date)"> OK </v-btn>
+                    </v-date-picker>
+                  </v-dialog>
+                </v-col>
+                <v-col cols="12" sm="12" md="6">
+                  <v-menu
+                    ref="menu"
+                    v-model="timePiker"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="event.time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px">
+                    <template v-slot:activator="{on, attrs}">
+                      <v-text-field
+                        filled
+                        v-model="event.time"
+                        label="Hora"
+                        prepend-icon="mdi-clock-time-four-outline"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="timePiker"
+                      format="24hr"
+                      v-model="event.time"
+                      full-width
                       label="Hora"
-                      prepend-icon="mdi-clock-time-four-outline"
-                      readonly
-                      v-bind="attrs"
-                      v-on="on"></v-text-field>
-                  </template>
-                  <v-time-picker
-                    v-if="timePiker"
-                    format="24hr"
-                    v-model="time"
-                    full-width
-                    label="Hora"
-                    @click:minute="$refs.menu.save(time)">
-                  </v-time-picker>
-                </v-menu>
-              </v-col>
-
-              <v-col cols="12" sm="12" md="6">
-                <v-select
-                  v-model="province"
-                  :rules="requiredRule"
-                  required
-                  :items="provinces"
-                  label="Provincia"
-                  filled
-                  prepend-icon="mdi-map"
-                  return-object
-                  item-text="name"
-                  single-line>
-                </v-select>
-              </v-col>
-
-              <v-col cols="12" sm="12" md="6">
-                <v-select
-                  v-model="city"
-                  :items="cities"
-                  :rules="requiredRule"
-                  required
-                  return-object
-                  filled
-                  item-text="name"
-                  label="Ciudad"
-                  prepend-icon="mdi-city"
-                  single-line>
-                </v-select>
-              </v-col>
-              <v-col cols="12" sm="12" md="4">
-                <v-text-field
-                  :counter="cPlace"
-                  :rules="requiredRule"
-                  prepend-icon="mdi-map-marker"
-                  filled
-                  label="Direccion"
-                  v-model="place"
-                  required>
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="12" md="4">
-                <v-select
-                  v-model="category"
-                  :items="categories"
-                  :rules="requiredRule"
-                  required
-                  return-object
-                  filled
-                  item-text="name"
-                  label="Categoria"
-                  menu-props="auto"
-                  prepend-icon="mdi-star-circle-outline"
-                  single-line>
-                </v-select>
-              </v-col>
-              <v-col cols="12" sm="12" md="4">
-                <v-checkbox v-model="state" :label="`Activo`"></v-checkbox>
-              </v-col>
-              <v-col cols="12" sm="12" md="12">
-                <v-btn
-                  :disabled="!valid"
-                  type="submit"
-                  height="56px"
-                  x-large
-                  block
-                  :color="mode == 'D' ? 'warning' : 'primary'">
-                  {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
+                      @click:minute="$refs.menu.save(event.time)">
+                    </v-time-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="12" sm="12" md="12">
+                  <FormsCities
+                    :mode="mode"
+                    :provinceProp="event.city.province"
+                    :cityProp="event.city"
+                    @updateCity="updateCity"></FormsCities
+                ></v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-text-field
+                    :counter="cPlace"
+                    :rules="requiredRule"
+                    prepend-icon="mdi-map-marker"
+                    filled
+                    label="Direccion"
+                    v-model="event.place"
+                    required>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-select
+                    v-model="event.event_category"
+                    :items="categories"
+                    :rules="requiredRule"
+                    required
+                    return-object
+                    filled
+                    item-text="name"
+                    label="Categoria"
+                    menu-props="auto"
+                    prepend-icon="mdi-star-circle-outline"
+                    single-line>
+                  </v-select>
+                </v-col>
+                <v-col cols="12" sm="12" md="4">
+                  <v-checkbox v-model="event.state" :label="`Activo`"></v-checkbox>
+                </v-col>
+                <v-col cols="12" sm="12" md="12">
+                  <v-btn
+                    :disabled="!valid"
+                    type="submit"
+                    height="56px"
+                    x-large
+                    block
+                    :color="mode == 'D' ? 'warning' : 'primary'">
+                    {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-card>
+  </v-dialog>
 </template>
+<Style scoped>
+</Style>
 <script>
 export default {
   data: () => ({
-    title: '',
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
     modal: false,
-    time: '00:00',
-    description: '',
-    community: '',
-    category: null,
-    province: null,
-    city: null,
-    place: '',
-    state: true,
     success: false,
-
-    event: undefined,
+    newCity: {},
+    event: {
+      title: '',
+      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
+      time: '00:00',
+      description: '',
+      category: null,
+      city: {
+        province: {},
+      },
+      place: '',
+      state: true,
+      event_category: {},
+    },
     categories: [],
-    provinces: [], //get provincias
-    cities: [], //get ciudadades de esa provincia seleccinada
     timePiker: false,
     datePiker: false,
+    dialog: false,
+    loading: true,
     //Validations
     valid: false,
     cTitle: 25,
@@ -189,7 +187,6 @@ export default {
     eventId: Number,
   },
   mounted() {
-    this.getProvinces()
     this.getCategories()
     if (this.eventId != undefined && (this.mode == 'U' || this.mode == 'D')) {
       this.getEvent(this.eventId)
@@ -198,16 +195,20 @@ export default {
     }
   },
   methods: {
+    updateCity(city) {
+      this.newCity = city
+      console.log('EVENT CITY: ' + JSON.stringify(this.newCity))
+    },
     validateForm() {
       if (
-        this.title != '' &&
-        this.place != '' &&
-        this.description != '' &&
-        this.date != '' &&
-        this.time != '' &&
-        this.city != null &&
-        this.category != null &&
-        this.state != null
+        this.event.title != '' &&
+        this.event.place != '' &&
+        this.event.description != '' &&
+        this.event.date != '' &&
+        this.event.time != '' &&
+        this.newCity != {} &&
+        this.event.category != null &&
+        this.event.state != null
       ) {
         switch (this.mode) {
           case 'C':
@@ -225,33 +226,12 @@ export default {
         }
       }
     },
-    getProvinces() {
-      this.$axios
-        .get('provinces/')
-        .then((data) => {
-          this.provinces = data.data
-          console.log(JSON.stringify(this.provinces))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    getProcinceCities(provinceId) {
-      this.$axios
-        .get('provinces/' + provinceId + '/cities')
-        .then((data) => {
-          this.cities = data.data[0]['cities']
-          console.log(JSON.stringify(this.cities))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
     getCommunity(id) {
       this.$axios
         .get('communities/' + id)
         .then((data) => {
-          this.community = data.data[0]
+          this.community = data.data
+          this.loading = false
         })
         .catch((err) => {
           console.log(err)
@@ -261,17 +241,8 @@ export default {
       this.$axios
         .get('events/' + id)
         .then((data) => {
-          this.event = data.data[0]
-          this.title = this.event.title
-          this.description = this.event.description
-          this.date = this.event.date
-          this.time = this.event.time
-          this.province = this.event.city.province
-          this.city = this.event.city
-          this.community = this.event.community
-          this.place = this.event.place
-          this.category = this.event.event_category
-          this.state = this.event.state
+          this.event = data.data
+          this.loading = false
         })
         .catch((err) => {
           console.log(err)
@@ -290,15 +261,15 @@ export default {
     createEvent() {
       this.$axios
         .post('/events', {
-          title: this.title,
-          place: this.place,
-          description: this.description,
-          date: this.date,
-          state: this.state,
-          time: this.time,
-          cityId: this.city.id,
-          categoryId: this.category.id,
-          communityId: this.community.id,
+          title: this.event.title,
+          place: this.event.place,
+          description: this.event.description,
+          date: this.event.date,
+          state: this.event.state,
+          time: this.event.time,
+          cityId: this.newCity.id,
+          categoryId: this.event.category.id,
+          communityId: this.event.community.id,
         })
         .then((data) => {
           if (data.status == 201) {
@@ -308,13 +279,6 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-  },
-  watch: {
-    province(newValue, oldValue) {
-      console.log('provincia Id: ' + this.province)
-      this.cities = []
-      this.getProcinceCities(newValue.id)
     },
   },
 }

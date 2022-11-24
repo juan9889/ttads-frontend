@@ -39,23 +39,20 @@ export default {
     selection: 1,
     loading: true,
   }),
-  props: {
-    communityId: Number,
-  },
   mounted() {
     this.getCommunity(parseInt(this.$route.query.id))
   },
   methods: {
     eventCategoriesFilter(arr) {
       //Hacer filtro para quitar categorias repetidas de arr (communityEvents)
-      console.log(JSON.stringify(arr))
+      //console.log(JSON.stringify(arr))
       return arr
     },
     getCommunity(id) {
       this.$axios
         .get('communities/' + id)
         .then((data) => {
-          this.community = data.data[0]
+          this.community = data.data
           this.loading = false
         })
         .catch((err) => {

@@ -6,7 +6,7 @@
           Detalles
         </v-btn>
       </template>
-      <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
+      <SkeletonCard v-if="loading" :amount="1"></SkeletonCard>
       <v-card v-else class="evento mx-auto text-center" min-width="290" max-width="355">
         <v-icon :color="event.event_category.iconColor" class="icons mt-2">
           mdi-{{ event.event_category.icon }}
@@ -65,9 +65,8 @@ export default {
       this.$axios
         .get('events/' + id)
         .then((data) => {
-          this.event = data.data[0]
+          this.event = data.data
           this.loading = false
-          console.log(JSON.stringify(this.event))
         })
         .catch((err) => {
           console.log(err)

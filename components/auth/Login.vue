@@ -1,116 +1,168 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px" min-width="360px">
-    <div>
-      <v-tabs v-model="tab" show-arrows background-color="info" icons-and-text dark grow>
-        <v-tabs-slider color="blue darken-4"></v-tabs-slider>
-        <v-tab v-for="i in tabs" :key="i">
-          <v-icon large>{{ i.icon }}</v-icon>
-          <div class="caption py-1">{{ i.name }}</div>
-        </v-tab>
-        <v-tab-item>
-          <v-card class="px-4">
-            <v-card-text>
-              <v-form ref="loginForm" v-model="valid" lazy-validation>
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-field v-model="loginUsername" label="Usuario" required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="loginPassword"
-                      :append-icon="show1 ? 'eye' : 'eye-off'"
-                      :rules="[rules.required, rules.min]"
-                      :type="show1 ? 'text' : 'password'"
-                      name="input-10-1"
-                      label="Contraseña"
-                      hint="At least 8 characters"
-                      counter
-                      @click:append="show1 = !show1"></v-text-field>
-                  </v-col>
-                  <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
-                  <v-spacer></v-spacer>
-                  <v-col class="d-flex" cols="12" xsm="12" align-end>
-                    <v-btn :disabled="!valid" color="success" @click="validate"> Iniciar sesion </v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      tile
-                      color="black"
-                      href="https://github.com/login/oauth/authorize?client_id=dad3030ba2058c6371bf">
-                      <v-icon left>mdi-github</v-icon>
-                      Iniciar sesion con GitHub
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card class="px-4">
-            <v-card-text>
-              <v-form ref="registerForm" v-model="valid" lazy-validation>
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="firstName"
-                      :rules="[rules.required]"
-                      label="Nombre completo"
-                      maxlength="35"
-                      required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="lastName"
-                      :rules="[rules.required]"
-                      label="Nombre de usuario"
-                      maxlength="35"
-                      required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="password"
-                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, rules.min]"
-                      :type="show1 ? 'text' : 'password'"
-                      name="input-10-1"
-                      label="Contraseña"
-                      hint="At least 8 characters"
-                      counter
-                      @click:append="show1 = !show1"></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      block
-                      v-model="verify"
-                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, passwordMatch]"
-                      :type="show1 ? 'text' : 'password'"
-                      name="input-10-1"
-                      label="Repetir contraseña"
-                      counter
-                      @click:append="show1 = !show1"></v-text-field>
-                  </v-col>
-                  <v-spacer></v-spacer>
-                  <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                    <v-btn :disabled="!valid" color="success" @click="validate">Registrar</v-btn>
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs>
-    </div>
-  </v-dialog>
+  <div>
+    <v-tabs v-model="tab" show-arrows icons-and-text grow>
+      <v-tab v-for="i in tabs" :key="i.id">
+        <v-icon large>{{ i.icon }}</v-icon>
+        <div class="caption py-1">{{ i.name }}</div>
+      </v-tab>
+      <v-tab-item>
+        <v-card class="px-4 mt-5">
+          <v-form ref="loginForm" v-model="valid" @submit.prevent="validate">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field filled v-model="loginUsername" label="Usuario" :rules="rules.requiredRule"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="loginPassword"
+                  :append-icon="show1 ? 'eye' : 'eye-off'"
+                  :rules="(rules.requiredRule, rules.password)"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Contraseña"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show1 = !show1"></v-text-field>
+              </v-col>
+              <v-col cols="12" align-end>
+                <v-btn
+                  class="mb-4"
+                  :disabled="!valid"
+                  type="submit"
+                  height="56px"
+                  x-large
+                  block
+                  @submit.prevent="validate">
+                  Iniciar sesion
+                </v-btn>
+                <v-btn
+                  class="mb-4"
+                  type="submit"
+                  height="56px"
+                  x-large
+                  block
+                  color="black"
+                  href="https://github.com/login/oauth/authorize?client_id=dad3030ba2058c6371bf">
+                  <v-icon left>mdi-github</v-icon>
+                  Iniciar sesion con GitHub
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card class="px-4 mt-5">
+          <v-form ref="registerForm" v-model="valid" @submit.prevent="validate">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="firstName"
+                  :rules="rules.requiredRule"
+                  label="Nombre completo"
+                  maxlength="35"
+                  required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="lastName"
+                  :rules="rules.requiredRule"
+                  label="Nombre de usuario"
+                  maxlength="35"
+                  required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="email"
+                  :rules="(rules.requiredRule, rules.email)"
+                  label="E-mail"
+                  required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="password"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="(rules.requiredRule, rules.password)"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Contraseña"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show1 = !show1"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  filled
+                  v-model="verify"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="(rules.requiredRule, rules.password, passwordMatch)"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Repetir contraseña"
+                  counter
+                  @click:append="show1 = !show1"></v-text-field>
+              </v-col>
+              <v-spacer></v-spacer>
+              <v-col cols="12">
+                <v-btn
+                  class="mb-4"
+                  :disabled="!valid"
+                  type="submit"
+                  height="56px"
+                  x-large
+                  block
+                  @submit.prevent="validate"
+                  >Registrar</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
+  </div>
 </template>
 <script>
 export default {
+  data: () => ({
+    tab: 0,
+    tabs: [
+      {id: 1, name: 'Iniciar sesion', icon: 'mdi-account'},
+      {id: 2, name: 'Crear cuenta', icon: 'mdi-account-outline'},
+    ],
+    valid: true,
+
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    verify: '',
+    loginPassword: null,
+    loginUsername: null,
+
+    show1: false,
+    rules: {
+      email: [
+        (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'e-mail invalido.'
+        },
+      ],
+      requiredRule: [(v) => !!v || 'Campo obligatorio.'],
+      password: [(value) => (value && value.length >= 3) || 'Minimo 3 caracteres'], //minimo de la contraseña esta en 3 porque la constraseña de jorgito es 1234
+      counter: [(value) => (value && value.length >= 3) || 'Minimo 3 caracteres'], //minimo para los otros campos se puede hacer con :counter="30" en cada field
+    },
+  }),
   computed: {
-    passwordMatch() {
-      return () => this.password === this.verify || 'Password must match'
+    passwordMatch(value) {
+      // hayq ue arreglar esto
+      return value == this.verify || 'Password must match'
     },
   },
   methods: {
@@ -141,28 +193,5 @@ export default {
       }
     },
   },
-  data: () => ({
-    dialog: true,
-    tab: 0,
-    tabs: [
-      {name: 'Iniciar sesion', icon: 'mdi-account'},
-      {name: 'Crear cuenta', icon: 'mdi-account-outline'},
-    ],
-    valid: true,
-
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    verify: '',
-    loginPassword: '',
-    loginUsername: '',
-
-    show1: false,
-    rules: {
-      required: (value) => !!value || 'Obligatorio',
-      min: (v) => (v && v.length >= 3) || 'Minimo 3 caracteres',
-    },
-  }),
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
+    <SkeletonAbm v-if="loading" :amount="1"></SkeletonAbm>
     <v-card v-else class="pa-6">
       <h1 class="text-center mb-3">
         <!-- {{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Guardar' }} -->
@@ -41,34 +41,11 @@
               required>
             </v-text-field>
           </v-col>
-          <v-col cols="12" sm="12" md="6">
-            <v-select
-              v-model="province"
-              :rules="requiredRule"
-              required
-              :items="provinces"
-              label="Provincia"
-              filled
-              prepend-icon="mdi-map"
-              return-object
-              item-text="name"
-              single-line>
-            </v-select>
-          </v-col>
-          <v-col cols="12" sm="12" md="6">
-            <v-select
-              v-model="city"
-              :items="cities"
-              :rules="requiredRule"
-              required
-              return-object
-              filled
-              item-text="name"
-              label="Ciudad"
-              prepend-icon="mdi-city"
-              single-line>
-            </v-select>
-          </v-col>
+          <FormsCities
+            :mode="mode"
+            :provinceProp="event.city.province"
+            :cityProp="event.city"
+            @updateCity="updateCity"></FormsCities>
           <v-col cols="12" sm="12" md="12">
             <v-btn
               :disabled="!valid"
@@ -114,12 +91,15 @@ export default {
     userId: Number,
   },
   mounted() {
-    this.getProvinces()
     if (this.userId != undefined && (this.mode == 'U' || this.mode == 'D')) {
       this.getUser(this.userId)
     }
   },
   methods: {
+    updateCity(city) {
+      this.newCity = city
+      console.log('EVENT CITY: ' + JSON.stringify(this.newCity))
+    },
     validateForm() {
       if (this.username != '' && this.name != '' && this.mail != '' && this.city != null) {
         switch (this.mode) {
@@ -138,39 +118,11 @@ export default {
         }
       }
     },
-    getProvinces() {
-      this.$axios
-        .get('provinces/')
-        .then((data) => {
-          this.provinces = data.data
-          console.log(JSON.stringify(this.provinces))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    getProcinceCities(provinceId) {
-      this.$axios
-        .get('provinces/' + provinceId + '/cities')
-        .then((data) => {
-          this.cities = data.data[0]['cities']
-          console.log(JSON.stringify(this.cities))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
     getUser(userID) {
       this.loading = true
     },
     createUser() {},
   },
-  watch: {
-    province(newValue) {
-      console.log('provincia Id: ' + this.province)
-      this.cities = []
-      this.getProcinceCities(newValue.id)
-    },
-  },
+  watch: {},
 }
 </script>

@@ -1,9 +1,5 @@
 <template>
   <div>
-    <br />
-    <br />
-    <br />
-    <br />
     <v-container class="fill-height">
       <v-row justify="center">
         <v-col>

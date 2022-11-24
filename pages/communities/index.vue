@@ -17,14 +17,15 @@
       </v-col>
       <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
         <CommunitiesDetails :communityId="parseInt(this.$route.query.id)" />
-        <v-btn
+        <EventsAbm :mode="'C'" :communityId="parseInt(this.$route.query.id)" :eventId="undefined" />
+        <!-- <v-btn
           x-large
           class="ma-1 my-4 px-16"
           color="eventButton"
           block
           :to="'/events/modify?mode=C&community=' + parseInt(this.$route.query.id)">
           Crear evento
-        </v-btn>
+        </v-btn> -->
       </v-col>
     </v-row>
   </div>
@@ -81,7 +82,8 @@ export default {
       this.$axios
         .get('communities/' + id + '/events')
         .then((data) => {
-          this.events = data.data[0]['events']
+          this.events = data.data['events']
+          console.log('events: ' + this.events)
           this.showEvents = this.events
           this.loading = false
         })

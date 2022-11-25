@@ -54,7 +54,6 @@ export default {
     cityProp: Object,
   },
   mounted() {
-    console.log(this.provinceProp + ' ' + this.provinceProp + ' ' + this.mode)
     if ((this.provinceProp != undefined || this.cityProp != undefined) && this.mode == 'U') {
       this.loading = false
       this.getProvinces()

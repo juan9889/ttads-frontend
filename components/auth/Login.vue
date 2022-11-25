@@ -7,7 +7,7 @@
       </v-tab>
       <v-tab-item>
         <v-card class="px-4 mt-5">
-          <v-form ref="loginForm" v-model="valid" @submit.prevent="validate">
+          <v-form ref="loginForm" v-model="valid" @submit.prevent="login">
             <v-row>
               <v-col cols="12">
                 <v-text-field filled v-model="loginUsername" label="Usuario" :rules="rules.requiredRule"></v-text-field>
@@ -33,7 +33,7 @@
                   height="56px"
                   x-large
                   block
-                  @submit.prevent="validate">
+                  @submit.prevent="login">
                   Iniciar sesion
                 </v-btn>
                 <v-btn
@@ -54,12 +54,12 @@
       </v-tab-item>
       <v-tab-item>
         <v-card class="px-4 mt-5">
-          <v-form ref="registerForm" v-model="valid" @submit.prevent="validate">
+          <v-form ref="registerForm" @submit.prevent="createUser">
             <v-row>
               <v-col cols="12">
                 <v-text-field
                   filled
-                  v-model="firstName"
+                  v-model="user.username"
                   :rules="rules.requiredRule"
                   label="Nombre completo"
                   maxlength="35"
@@ -68,7 +68,7 @@
               <v-col cols="12">
                 <v-text-field
                   filled
-                  v-model="lastName"
+                  v-model="user.name"
                   :rules="rules.requiredRule"
                   label="Nombre de usuario"
                   maxlength="35"
@@ -77,15 +77,18 @@
               <v-col cols="12">
                 <v-text-field
                   filled
-                  v-model="email"
+                  v-model="user.mail"
                   :rules="(rules.requiredRule, rules.email)"
                   label="E-mail"
                   required></v-text-field>
               </v-col>
               <v-col cols="12">
+                <FormsCities :mode="'C'" @updateCity="updateCity"></FormsCities>
+              </v-col>
+              <v-col cols="12">
                 <v-text-field
                   filled
-                  v-model="password"
+                  v-model="user.password"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="(rules.requiredRule, rules.password)"
                   :type="show1 ? 'text' : 'password'"
@@ -111,12 +114,12 @@
               <v-col cols="12">
                 <v-btn
                   class="mb-4"
-                  :disabled="!valid"
+                  :disabled="newCity == null ? true : false"
                   type="submit"
                   height="56px"
                   x-large
                   block
-                  @submit.prevent="validate"
+                  @submit.prevent="createUser"
                   >Registrar</v-btn
                 >
               </v-col>
@@ -136,15 +139,21 @@ export default {
       {id: 2, name: 'Crear cuenta', icon: 'mdi-account-outline'},
     ],
     valid: true,
+    newCity: null,
 
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    verify: '',
+    user: {
+      username: '',
+      password: '',
+      name: '',
+      mail: '',
+      city: {
+        province: {},
+      },
+    },
     loginPassword: null,
     loginUsername: null,
 
+    verify: '',
     show1: false,
     rules: {
       email: [
@@ -162,34 +171,52 @@ export default {
   computed: {
     passwordMatch(value) {
       // hayq ue arreglar esto
-      return value == this.verify || 'Password must match'
+      // return value == this.verify || 'Password must match'
     },
   },
   methods: {
-    validate() {
-      if (this.$refs.loginForm.validate()) {
-        // submit form to server/API here...
-        this.login()
-      }
-    },
     reset() {
       this.$refs.form.reset()
     },
     resetValidation() {
       this.$refs.form.resetValidation()
     },
+    updateCity(city) {
+      this.newCity = city
+    },
+    async createUser() {
+      if (this.$refs.registerForm.validate() && this.newCity != null) {
+        try {
+          this.user.city = this.newCity
+          const response = await this.$axios.post('/users', {
+            username: this.user.username,
+            password: this.user.password,
+            name: this.user.name,
+            mail: this.user.mail,
+            cityId: this.user.city.id,
+          })
+          if (response.status == 201) {
+            //dialog
+            this.$router.push('/auth/login')
+          }
+        } catch (e) {
+          this.error = e.response.data.message
+        }
+      }
+    },
     async login() {
-      try {
-        await this.$auth.loginWith('local', {
-          data: {
-            username: this.loginUsername,
-            user_password: this.loginPassword,
-          },
-        })
-
-        this.$router.push('/')
-      } catch (e) {
-        this.error = e.response.data.message
+      if (this.$refs.loginForm.validate()) {
+        try {
+          await this.$auth.loginWith('local', {
+            data: {
+              username: this.loginUsername,
+              password: this.loginPassword,
+            },
+          })
+          this.$router.push('/')
+        } catch (e) {
+          this.error = e.response.data.message
+        }
       }
     },
   },

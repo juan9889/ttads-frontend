@@ -3,7 +3,7 @@
     <v-container class="fill-height">
       <v-row justify="center">
         <v-col>
-          <AuthLogin></AuthLogin>
+          <AuthTabs></AuthTabs>
         </v-col>
       </v-row>
     </v-container>

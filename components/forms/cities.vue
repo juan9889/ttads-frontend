@@ -1,38 +1,35 @@
 <template>
   <div>
-    <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
-    <v-form v-else width="100%" :disabled="mode == 'D' ? true : false">
-      <v-row>
-        <v-col cols="12" sm="12" md="6">
-          <v-select
-            v-model="province"
-            :rules="requiredRule"
-            required
-            :items="provinces"
-            label="Provincia"
-            filled
-            prepend-icon="mdi-map"
-            return-object
-            item-text="name"
-            single-line>
-          </v-select>
-        </v-col>
-        <v-col cols="12" sm="12" md="6">
-          <v-select
-            v-model="city"
-            :items="cities"
-            :rules="requiredRule"
-            required
-            return-object
-            filled
-            item-text="name"
-            label="Ciudad"
-            prepend-icon="mdi-city"
-            single-line>
-          </v-select>
-        </v-col>
-      </v-row>
-    </v-form>
+    <v-row>
+      <v-col cols="12" sm="12" md="6">
+        <v-select
+          v-model="province"
+          :rules="requiredRule"
+          :disabled="mode == 'D' ? true : false"
+          :items="provinces"
+          label="Provincia"
+          filled
+          prepend-icon="mdi-map"
+          return-object
+          item-text="name"
+          single-line>
+        </v-select>
+      </v-col>
+      <v-col cols="12" sm="12" md="6">
+        <v-select
+          v-model="city"
+          :items="cities"
+          :rules="requiredRule"
+          :disabled="mode == 'D' ? true : false"
+          return-object
+          filled
+          item-text="name"
+          label="Ciudad"
+          prepend-icon="mdi-city"
+          single-line>
+        </v-select>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>

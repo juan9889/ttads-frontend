@@ -63,9 +63,9 @@ export default {
       },
     },
     redirect: {
-      login: '/auth/login',
+      login: '/auth',
       logout: '/',
-      callback: '/auth/login',
+      callback: '/auth',
       home: '/',
     },
 

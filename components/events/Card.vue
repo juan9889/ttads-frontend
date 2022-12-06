@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="evento mx-auto text-center" width="290">
+    <v-card class="evento mx-auto text-center" max-width="290">
       <v-icon :color="event.event_category.iconColor" class="icons mt-2" x-large>
         mdi-{{ event.event_category.icon }}
       </v-icon>

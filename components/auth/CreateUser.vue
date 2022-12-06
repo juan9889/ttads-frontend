@@ -6,7 +6,7 @@
           <v-col cols="12">
             <v-text-field
               filled
-              v-model="username"
+              v-model="name"
               :rules="[minCounter, maxCounter, requiredRule]"
               label="Nombre completo"
               maxlength="35"></v-text-field>
@@ -14,7 +14,7 @@
           <v-col cols="12">
             <v-text-field
               filled
-              v-model="name"
+              v-model="username"
               :rules="[minCounter, maxCounter, requiredRule]"
               label="Nombre de usuario"
               maxlength="35"></v-text-field>
@@ -89,9 +89,7 @@ export default {
     password: '',
     name: '',
     mail: '',
-    city: {
-      province: {},
-    },
+
     verifyPassword: '',
     show1: false,
     email: (value) => {
@@ -121,13 +119,12 @@ export default {
     async createUser() {
       if (this.$refs.registerForm.validate() && this.newCity != null) {
         try {
-          this.city = this.newCity
           const response = await this.$axios.post('/users', {
             username: this.username,
             password: this.password,
             name: this.name,
             mail: this.mail,
-            cityId: this.city.id,
+            cityId: this.newCity.id,
           })
           if (response.status == 201) {
             this.dialog.header = 'Usuario registrado'

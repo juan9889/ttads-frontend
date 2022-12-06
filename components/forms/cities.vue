@@ -53,6 +53,8 @@ export default {
   mounted() {
     if ((this.provinceProp != undefined || this.cityProp != undefined) && this.mode == 'U') {
       this.loading = false
+      this.province = this.provinceProp
+      this.city = this.cityProp
       this.getProvinces()
     } else {
       this.getProvinces()
@@ -84,7 +86,9 @@ export default {
   watch: {
     province(newValue) {
       this.cities = []
-      this.city = null
+      if (this.mode != 'U') {
+        this.city = null
+      }
       this.getProcinceCities(newValue.id)
     },
     city(newValue) {

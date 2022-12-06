@@ -1,5 +1,5 @@
 <template>
-  <v-card class="community mx-2 mb-3" width="250">
+  <v-card class="community mx-2 mb-3" max-width="250">
     <v-icon :color="community.comm_category.iconColor" class="icons mt-2 d-flex justify-center" x-large>
       mdi-{{ community.comm_category.icon }}
     </v-icon>

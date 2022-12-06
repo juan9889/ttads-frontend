@@ -18,6 +18,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-spacer></v-spacer>
       <v-switch
         class="ml-5"
         v-model="$vuetify.theme.dark"
@@ -25,8 +26,6 @@
         hide-details
         :label="$vuetify.theme.dark == true ? 'Noche' : 'Dia'">
       </v-switch>
-      <!-- <v-spacer />
-        <UserMenu /> -->
     </v-navigation-drawer>
     <!--Hide mobile - Show desktop -->
     <v-app-bar :clipped-left="clipped" fixed app>
@@ -42,21 +41,7 @@
         </v-btn>
       </div>
       <v-spacer />
-      <v-menu v-if="isAuthenticated" bottom left>
-        <template v-slot:activator="{on, attrs}">
-          <v-btn dark icon v-bind="attrs" v-on="on">
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item>
-            <v-list-item-title> {{ loggedInUser.username }}</v-list-item-title>
-          </v-list-item>
-          <v-list-item>Perfil</v-list-item>
-          <v-list-item @click="logout">Cerrar sesion</v-list-item>
-        </v-list>
-      </v-menu>
+      <UsersAvatar class="mx-5" />
 
       <v-switch
         class="d-none d-md-flex"
@@ -70,11 +55,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
 export default {
-  computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
-  },
   name: 'DefaultLayout',
 
   data() {
@@ -111,12 +92,6 @@ export default {
       miniVariant: false,
       title: 'Vuetify.js',
     }
-  },
-  methods: {
-    logout() {
-      this.$auth.logout()
-      this.$router.push('/auth')
-    },
   },
 }
 </script>

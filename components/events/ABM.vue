@@ -124,7 +124,19 @@
                   </v-select>
                 </v-col>
                 <v-col cols="12" sm="12" md="4">
-                  <v-checkbox v-model="event.state" :label="`Activo`"></v-checkbox>
+                  <v-select
+                    v-model="event.state"
+                    :items="states"
+                    :rules="requiredRule"
+                    required
+                    return-object
+                    filled
+                    item-text="name"
+                    label="Estado"
+                    menu-props="auto"
+                    prepend-icon="mdi-star-circle-outline"
+                    single-line>
+                  </v-select>
                 </v-col>
                 <v-col cols="12" sm="12" md="12">
                   <v-btn
@@ -143,6 +155,12 @@
         </v-col>
       </v-row>
     </v-card>
+    <FormsNotification
+      :show="noti.show"
+      :success="noti.success"
+      :header="noti.header"
+      :text="noti.text"
+      @notification="notification"></FormsNotification>
   </v-dialog>
 </template>
 <Style scoped>
@@ -166,12 +184,20 @@ export default {
       state: true,
       event_category: {},
     },
+    states: ['Activo', 'Cancelado', 'Terminado'],
     categories: [],
     timePiker: false,
     datePiker: false,
     dialog: false,
     loading: true,
     //Validations
+
+    noti: {
+      show: false,
+      success: true,
+      header: '',
+      text: '',
+    },
     valid: false,
     cTitle: 25,
     cDescription: 210,
@@ -198,6 +224,13 @@ export default {
     updateCity(city) {
       this.newCity = city
       console.log('EVENT CITY: ' + JSON.stringify(this.newCity))
+    },
+    notification(success) {
+      if (success == true) {
+        this.$router.go()
+      } else {
+        this.noti.show = false
+      }
     },
     validateForm() {
       if (
@@ -259,8 +292,19 @@ export default {
         })
     },
     createEvent() {
-      this.$axios
-        .post('/events', {
+      switch (this.event.state) {
+        case 'Activo':
+          this.event.state = 1
+          break
+        case 'Cancelado':
+          this.event.state = 0
+          break
+        case 'Terminado':
+          this.event.state = 2
+          break
+      }
+      try {
+        this.$axios.post('/events', {
           title: this.event.title,
           place: this.event.place,
           description: this.event.description,
@@ -271,14 +315,20 @@ export default {
           categoryId: this.event.category.id,
           communityId: this.event.community.id,
         })
-        .then((data) => {
-          if (data.status == 201) {
-            alert('Evento creado')
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+        if (response.status == 201) {
+          this.dialog.header = 'Evento registrado'
+          this.dialog.text = 'Gracias'
+          this.dialog.success = true
+          this.dialog.show = true
+        } else {
+          throw response
+        }
+      } catch (e) {
+        this.dialog.header = 'Error al registrar el evento'
+        this.dialog.text = 'Error' + e.response.status + ': ' + e.response.data.message
+        this.dialog.success = false
+        this.dialog.show = true
+      }
     },
   },
 }

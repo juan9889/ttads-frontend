@@ -72,10 +72,9 @@ export default {
     activeEvents(x) {
       if (x == false) {
         this.showEvents.splice(this.events.length)
-        console.log(this.events.length)
         this.showEvents = this.events
       } else {
-        this.showEvents = this.events.filter((item) => item.state === '1' || item.state === '0')
+        this.showEvents = this.events.filter((item) => item.state === 1)
       }
     },
     getCommunityEvents(id) {
@@ -83,7 +82,6 @@ export default {
         .get('communities/' + id + '/events')
         .then((data) => {
           this.events = data.data['events']
-          console.log('events: ' + this.events)
           this.showEvents = this.events
           this.loading = false
         })

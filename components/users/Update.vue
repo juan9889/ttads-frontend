@@ -4,7 +4,7 @@
       <v-btn x-large class="ma-1 my-4 px-16" block v-bind="attrs" v-on="on"> Cambiar informacion </v-btn>
     </template>
     <SkeletonAbm v-if="loading" :amount="1"></SkeletonAbm>
-    <v-card v-else>
+    <v-card v-else class="px-0">
       <v-toolbar dark
         ><v-btn icon dark right @click="dialog = false">
           <v-icon>mdi-close</v-icon>

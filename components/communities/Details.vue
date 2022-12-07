@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex justify-center align-center">
     <v-skeleton-loader v-if="loading" type="card-avatar, article, actions"> </v-skeleton-loader>
     <v-card v-else class="comunidad mx-2 mb-3 text-center" max-width="350">
       <v-icon :color="community.comm_category.iconColor" class="icons pt-6" x-large>

@@ -34,13 +34,18 @@
 
 <script>
 export default {
-  data: () => ({
+  data: () => ({ 
     community: {},
     selection: 1,
     loading: true,
   }),
+  props: {
+    communityId: {
+      type: Number,
+    },
+  },
   mounted() {
-    this.getCommunity(parseInt(this.$route.query.id))
+    this.getCommunity(this.communityId)
   },
   methods: {
     eventCategoriesFilter(arr) {

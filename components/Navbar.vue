@@ -55,15 +55,14 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: 'DefaultLayout',
-
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
   data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      btnItems: [
+    var btnItems_tmp=[
         {
           icon: true,
           iconName: 'mdi-home',
@@ -88,7 +87,34 @@ export default {
           title: 'Buscar',
           to: '/search',
         },
-      ],
+      ];
+    if(this.$store.state.auth.user.admin==0){
+      btnItems_tmp=[
+        {
+          icon: true,
+          iconName: 'mdi-home',
+          title: 'Inicio',
+          to: '/',
+        },
+        {
+          icon: false,
+          iconName: 'mdi-chart-bubble',
+          title: 'Explorar',
+          to: '/communities/explore',
+        },
+        {
+          icon: false,
+          iconName: 'mdi-chart-bubble',
+          title: 'Buscar',
+          to: '/search',
+        },
+      ];
+    }
+    return {
+      clipped: false,
+      drawer: false,
+      fixed: false,
+      btnItems: btnItems_tmp,
       miniVariant: false,
       title: 'Vuetify.js',
     }

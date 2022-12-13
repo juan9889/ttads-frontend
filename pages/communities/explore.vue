@@ -81,15 +81,21 @@ export default {
           console.log(err)
         })
     },
-    getCommunitiesFromCategory(id) {
-      this.$axios
+    async getCommunitiesFromCategory(id) {
+     try{ const response = await this.$axios
         .get('commcategory/' + id + '/communities')
-        .then((data) => {
-          this.communities = data.data[0]['communities']
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+        
+          if(response.status==404){
+            this.communities=[];
+          }else{
+          this.communities = response.data['communities']
+          }
+        
+      }
+        catch(err)  {
+          if(response.status!=404){
+          console.log(err)}
+        }
     },
   },
 }

@@ -29,6 +29,12 @@
       <v-card-actions class="pa-1 pt-0 justify-space-around">
         <EventsAbm v-if="isMod" :mode="'C'" :communityId="this.community.id" :eventId="undefined" />
       </v-card-actions>
+      <v-card-actions class="pa-1 pt-0 justify-space-around">
+        <v-btn v-if="isMod" large class="px-4 ma-1" color="orange" @click="open_dialog_edit_comm" block>Modificar comunidad</v-btn>
+      </v-card-actions>
+      <v-card-actions class="pa-1 pt-0 justify-space-around">
+        <v-btn v-if="isMod" large class="px-4 ma-1" color="red" @click="open_dialog_delete" block>Eliminar comunidad</v-btn>
+      </v-card-actions>
     </v-card>
     <FormsNotification
       :show="noti.show"
@@ -36,6 +42,50 @@
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
+      <v-dialog v-model="dialog_edit" persistent max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Editar comunidad</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field v-model="name_edit" label="Nombre" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field v-model="desc_edit" label="Descripcion" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-select
+                  :items="this.categories"
+                  v-model="selected_cat_edit"
+                  label="Categoria"
+                  item-text="name"
+                  item-value="id"
+                  required></v-select>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="contrast" text @click="dialog_edit = false"> Cancelar </v-btn>
+          <v-btn color="success" filled @click="edit_confirm"> Guardar </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialog_delete" max-width="290">
+      <v-card>
+        <v-card-title class="text-h5"> Eliminar comunidad </v-card-title>
+        <v-card-text> ¿Eliminar la comunidad? </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="contrast" text @click="dialog_delete = false"> Cancelar </v-btn>
+          <v-btn color="warning" fill @click="delete_confirm"> Eliminar </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -67,6 +117,12 @@ export default {
       header: '',
       text: '',
     },
+    selected_cat_edit: '',
+    categories: [],
+    name_edit: '',
+    desc_edit: '',
+    dialog_edit: false,
+    dialog_delete: false,
   }),
   props: {
     communityId: {
@@ -74,7 +130,8 @@ export default {
     },
   },
   mounted() {
-    this.getCommunity(this.communityId)
+    this.getCommunity(this.communityId);
+    this.getCategories();
   },
   methods: {
     notification(success) {
@@ -133,6 +190,49 @@ export default {
         if (item.mod == true) {
           this.isMod = true
         }
+      }
+    },
+    getCategories() {
+      this.$axios
+        .$get('commcategory')
+        .then((res) => {
+          this.categories = res
+          console.log(res)
+        })
+        .catch((err) => console.log(err))
+    },
+    open_dialog_edit_comm() {
+      this.dialog_edit= true;
+    },
+    open_dialog_delete() {
+      this.dialog_delete=true;
+    },
+    async edit_confirm() {
+      try{
+        
+        
+        
+        await this.$axios.$put('communities/'  + this.community.id, {
+          name: this.name_edit,
+          description: this.desc_edit,
+          categoryId: this.selected_cat_edit
+        });
+        this.community.name=this.name_edit;
+        this.community.description=this.desc_edit;
+        this.community.categoryId=this.selected_cat_edit;
+        this.dialog_edit=false;
+        
+      }catch(e){
+        console.log(e);
+      }
+    },
+    async delete_confirm() {
+      try{
+        await this.$axios.$delete('communities/' + this.community.id)
+        this.dialog_delete = false;
+        this.$router.push('/communities/explore');
+      }catch(e){
+        console.log(e);
       }
     },
   },

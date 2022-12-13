@@ -170,6 +170,7 @@ export default {
         const response = await this.$axios.post('/communities/' + this.community.id + '/join')
         this.joined = false
         this.miembros = this.miembros - 1
+        this.$router.go()
       } catch (e) {
         console.log(e)
       }
@@ -179,6 +180,7 @@ export default {
         const response = await this.$axios.post('/communities/' + this.community.id + '/join')
         this.joined = true
         this.miembros = this.miembros + 1
+        this.$router.go()
         if (response.status != 200) {
           throw response
         }

@@ -13,6 +13,15 @@
           <div v-else v-for="event in showEvents" :key="event.id" class="ma-5">
             <EventsCard :event="event" />
           </div>
+          <v-alert v-if="noEvents"
+      icon="mdi-map"
+      prominent
+      text
+      type="info"
+      
+    >
+      No hay eventos en esta comunidad
+    </v-alert>
         </div>
       </v-col>
       <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
@@ -42,6 +51,7 @@ export default {
     checkbox: false,
     community: {},
     isMod: false,
+    noEvents: false,
   }),
   watch: {
     selectedSortBy(newValue, oldValue) {
@@ -85,6 +95,10 @@ export default {
           this.events = data.data['events']
           this.showEvents = this.events
           this.loading = false
+          console.log(this.events);
+          if(this.events==undefined){
+            this.noEvents=true;
+          }
         })
         .catch((err) => {
           console.log(err)

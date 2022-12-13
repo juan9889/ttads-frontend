@@ -12,9 +12,11 @@
     </v-card-text>
     <v-card-actions class="pa-1 pt-0 justify-space-around">
       <v-btn class="ma-1" color="commuButton" :to="'/communities?id=' + community.id.toString()"> Ver Eventos </v-btn>
-      <v-btn class="ma-1" color="commuButton">Unirse</v-btn>
+      <v-btn v-if="joined==false" class="ma-1" @click="join" color="commuButton">Unirse</v-btn>
+      <v-btn v-if="joined" class="ma-1" @click="unjoin" color="orange">Des-Unirse</v-btn>
     </v-card-actions>
   </v-card>
+  
 </template>
 
 <style scoped>
@@ -27,9 +29,50 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   props: {
     community: Object,
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
+  data: () => ({
+    joined: false,
+  }),
+  mounted() {
+    this.detect_joined();
+  },
+  methods: {
+    detect_joined() {
+      this.community.user_communities.forEach(this.search);
+    },
+    search(item) {
+      if (item.userId == this.$store.state.auth.user.id) {
+        this.joined = true
+      }
+    },
+    async unjoin() {
+      try {
+        const response = await this.$axios.post('/communities/' + this.community.id + '/join')
+        this.joined=false;
+        
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async join() {
+     
+      try {
+        
+        const response = await this.$axios.post('/communities/' + this.community.id + '/join')
+        this.joined=true;
+        
+      } catch (e) {
+        console.log(e)
+      }
+    },
+  },
+
 }
 </script>

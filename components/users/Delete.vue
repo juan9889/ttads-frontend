@@ -19,11 +19,10 @@
             color="warning"
             class="mb-4"
             :disabled="!valid"
-            type="submit"
             height="56px"
             x-large
             block
-            @submit.prevent="createUser">
+            @click.prevent="deleteUser">
             Eliminar Usuario
           </v-btn>
         </v-col>
@@ -55,7 +54,25 @@ export default {
     this.getUser()
   },
   methods: {
-    deleteUser() {},
+    async deleteUser() {
+      try {
+        const user = await this.$axios.delete('/users')
+        if (user.status == 200) {
+          this.dialog = false
+          this.noti.header = 'Usuario eliminado'
+          this.noti.text = 'El usuario se ha eliminado. Nos vemos'
+          this.noti.success = true
+          this.noti.show = true
+        } else {
+          throw user
+        }
+      } catch (e) {
+        this.noti.header = 'Error usuario no eliminado'
+        this.noti.text = 'Error' + e.user.status + ': ' + e.user.data.message
+        this.noti.success = false
+        this.noti.show = true
+      }
+    },
     async getUser() {
       try {
         const user = await this.$axios.get('/users/me')
@@ -66,7 +83,7 @@ export default {
     },
     notification(success) {
       if (success == true) {
-        this.$router.go()
+        this.$router.push('/auth')
       } else {
         this.noti.show = false
       }

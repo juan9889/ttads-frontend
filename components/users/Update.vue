@@ -11,7 +11,7 @@
         </v-btn>
         <v-toolbar-title class="text-centers text-h4"> Cambiar informacion </v-toolbar-title>
       </v-toolbar>
-      <v-form ref="registerForm" v-model="valid" @submit.prevent="createUser">
+      <v-form ref="registerForm" v-model="valid" @submit.prevent="updateUser">
         <v-row class="ma-0">
           <v-col cols="12">
             <v-text-field
@@ -40,16 +40,7 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12">
-            <v-btn
-              class="mb-4"
-              :disabled="!valid"
-              type="submit"
-              height="56px"
-              x-large
-              block
-              @submit.prevent="createUser">
-              Guardar
-            </v-btn>
+            <v-btn class="mb-4" :disabled="!valid" type="submit" height="56px" x-large block> Guardar </v-btn>
           </v-col>
         </v-row>
       </v-form>
@@ -108,14 +99,26 @@ export default {
     },
     async updateUser() {
       try {
-        const user = await this.$axios.post('/users//update', {
+        const user = await this.$axios.put('/users', {
           username: this.username,
           name: this.name,
           mail: this.mail,
           cityId: this.newCity.id,
         })
+        if (user.status == 200) {
+          this.dialog = false
+          this.noti.header = 'Perfil actualizado'
+          this.noti.text = 'El perfil se ha actualizado'
+          this.noti.success = true
+          this.noti.show = true
+        } else {
+          throw user
+        }
       } catch (e) {
-        console.log(e.message)
+        this.noti.header = 'Error al actualizar usuario'
+        this.noti.text = 'Error' + e.user.status + ': ' + e.user.data.message
+        this.noti.success = false
+        this.noti.show = true
       }
     },
     updateCity(city) {
@@ -123,7 +126,7 @@ export default {
     },
     notification(success) {
       if (success == true) {
-        this.$router.go()
+        this.noti.show = false
       } else {
         this.noti.show = false
       }

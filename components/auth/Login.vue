@@ -39,10 +39,10 @@
       </v-form>
     </v-card>
     <FormsNotification
-      :show="dialog.show"
-      :success="dialog.success"
-      :header="dialog.header"
-      :text="dialog.text"
+      :show="noti.show"
+      :success="noti.success"
+      :header="noti.header"
+      :text="noti.text"
       @notification="notification"></FormsNotification>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
   data: () => ({
     valid: true,
     newCity: null,
-    dialog: {
+    noti: {
       show: false,
       success: true,
       header: '',
@@ -66,7 +66,7 @@ export default {
   }),
   methods: {
     notification() {
-      this.dialog.show = false
+      this.noti.show = false
     },
     async login() {
       if (this.$refs.loginForm.validate()) {
@@ -83,10 +83,10 @@ export default {
             throw response
           }
         } catch (e) {
-          this.dialog.header = 'Error al iniciar sesion'
-          this.dialog.text = 'Error' + e.response.status + ': ' + e.response.data.message
-          this.dialog.success = false
-          this.dialog.show = true
+          this.noti.header = 'Error al iniciar sesion'
+          this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
+          this.noti.success = false
+          this.noti.show = true
         }
       }
     },

@@ -38,16 +38,18 @@ export default {
   data: () => ({
     success: false,
     name: '',
-    loadingCommunities: false,
-    loadingEvents: false,
+    loadingCommunities: true,
+    loadingEvents: true,
     events: [],
     communities: [],
   }),
   props: {
     userId: Number,
   },
-  mounted() {
-    this.getUser()
+  async mounted() {
+    await this.getUser()
+    await this.getUserCommunities()
+    await this.getUserEvents()
   },
   methods: {
     async getUser() {
@@ -58,8 +60,24 @@ export default {
         console.log(e.message)
       }
     },
-    getUserEvents() {},
-    getUserCommunities() {},
+    async getUserEvents() {
+      try {
+        const events = await this.$axios.get('/users/events')
+        this.events = events.data.events
+        this.loadingEvents = false
+      } catch (e) {
+        console.log(e.message)
+      }
+    },
+    async getUserCommunities() {
+      try {
+        const communities = await this.$axios.get('/users/communities')
+        this.communities = communities.data.communities
+        this.loadingCommunities = false
+      } catch (e) {
+        console.log(e.message)
+      }
+    },
   },
   watch: {},
 }

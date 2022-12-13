@@ -127,6 +127,7 @@ export default {
     notification(success) {
       if (success == true) {
         this.noti.show = false
+        this.$router.go()
       } else {
         this.noti.show = false
       }

@@ -9,7 +9,6 @@
     </div>
     <v-divider class="mt-10 mb-5"></v-divider>
     <h1 class="mt-5 mb-3 text-center text-h4 text-sm-h3">Comunidades</h1>
-    <v-btn class="ma-2" color="secondary" @click="testauth"> Accept Terms </v-btn>
     <div class="d-flex flex-row flex-wrap justify-space-around">
       <SkeletonCard v-if="loadingCommunities" :amount="6"></SkeletonCard>
       <div v-else v-for="community in communities" :key="community.id">

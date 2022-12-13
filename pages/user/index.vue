@@ -13,6 +13,9 @@
       <v-col cols="12" sm="12" md="12">
         <UsersDelete></UsersDelete>
       </v-col>
+      <v-col cols="12" sm="12" md="12">
+        <v-btn color="green" x-large class="ma-1 my-4 px-16" block href="/communities/new"> Crear comunidad </v-btn>
+      </v-col>
     </v-row>
     <div>
       <h1 class="mt-5 mb-5 text-center text-h3">Eventos seguidos</h1>

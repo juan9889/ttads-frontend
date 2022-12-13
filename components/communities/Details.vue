@@ -141,8 +141,10 @@ export default {
     notification(success) {
       if (success == true) {
         this.noti.show = false
+        this.$router.go()
       } else {
         this.noti.show = false
+        this.$router.go()
       }
     },
     eventCategoriesFilter(arr) {
@@ -206,9 +208,9 @@ export default {
         .catch((err) => console.log(err))
     },
     open_dialog_edit_comm() {
-      this.selected_cat_edit = this.community.categoryId;
-      this.name_edit=this.community.name;
-      this.desc_edit=this.community.description;
+      this.selected_cat_edit = this.community.categoryId
+      this.name_edit = this.community.name
+      this.desc_edit = this.community.description
       this.dialog_edit = true
     },
     open_dialog_delete() {
@@ -216,7 +218,7 @@ export default {
     },
     async edit_confirm() {
       try {
-        await this.$axios.$put('communities/' + this.community.id, {
+        const response = await this.$axios.$put('communities/' + this.community.id, {
           name: this.name_edit,
           description: this.desc_edit,
           categoryId: this.selected_cat_edit,
@@ -225,8 +227,12 @@ export default {
         this.community.description = this.desc_edit
         this.community.categoryId = this.selected_cat_edit
         this.dialog_edit = false
+        this.$router.go()
       } catch (e) {
-        console.log(e)
+        this.noti.header = 'Error al actualizar usuario'
+        this.noti.text = 'Error' + e.response.status + ': ' + e.user.response.message
+        this.noti.notiType = false
+        this.noti.show = true
       }
     },
     async delete_confirm() {

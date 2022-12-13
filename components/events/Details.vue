@@ -95,9 +95,11 @@ export default {
           this.miembro = true
           await this.follow()
           this.noti.show = false
+          this.$router.go()
         }
       } else {
         this.noti.show = false
+        this.$router.go()
       }
     },
     search(item) {

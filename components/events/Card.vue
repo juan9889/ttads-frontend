@@ -12,6 +12,10 @@
         {{ event.city.name }} - {{ event.city.province.name }} -
         {{ event.date }}
       </v-card-subtitle>
+      <v-card-text class="text--primary text-left pt-1">
+        <v-chip v-if="event.user_events.length == 1" color="secondary">{{ event.user_events.length }} seguidor</v-chip>
+        <v-chip v-else color="secondary">{{ event.user_events.length }} seguidores</v-chip>
+      </v-card-text>
       <v-card-actions class="pa-1 pt-0 justify-space-around">
         <v-btn class="ma-1" color="eventButton" :to="'/communities?id=' + event.community.id.toString()">
           Ver Comunidad

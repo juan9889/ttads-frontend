@@ -8,6 +8,10 @@
       <v-card-title class="text-h4 justify-center">{{ community.name.toUpperCase() }}</v-card-title>
       <v-card-subtitle class="pb-1 text-h4 text-center">#{{ community.comm_category.name }}</v-card-subtitle>
       <v-card-text class="text-h5 text-center">{{ community.description }}</v-card-text>
+      <v-card-text class="text--primary text-left pt-0">
+      <v-chip v-if="community.user_communities.length == 1" color="secondary">{{ event.user_events.length }} miembro</v-chip>
+      <v-chip v-else color="secondary">{{ community.user_communities.length }} miembros</v-chip>
+    </v-card-text>
       <!-- <v-divider class="mx-4"></v-divider> -->
       <!-- <v-card-title class="text-h5 justify-center">Categoria de Eventos</v-card-title> -->
       <!-- <v-card-text>

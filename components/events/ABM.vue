@@ -181,7 +181,7 @@ export default {
         province: {},
       },
       place: '',
-      state: true,
+      state: '',
       event_category: {},
     },
     states: ['Activo', 'Cancelado', 'Terminado'],
@@ -232,7 +232,9 @@ export default {
         this.noti.show = false
       }
     },
-    validateForm() {
+    async validateForm() {
+      console.log('llega a metodo intentar validar')
+      console.log(JSON.stringify(this.event))
       if (
         this.event.title != '' &&
         this.event.place != '' &&
@@ -240,13 +242,14 @@ export default {
         this.event.date != '' &&
         this.event.time != '' &&
         this.newCity != {} &&
-        this.event.category != null &&
+        this.event.event_category != null &&
         this.event.state != null
       ) {
+        console.log('pasa validacion')
         switch (this.mode) {
           case 'C':
-            this.createEvent()
-            this.$router.back()
+            await this.createEvent()
+            this.dialog=false
             break
           case 'U':
             // this.UpdateEvent()
@@ -291,7 +294,8 @@ export default {
           console.log(err)
         })
     },
-    createEvent() {
+    async createEvent() {
+      console.log('llega a create event')
       switch (this.event.state) {
         case 'Activo':
           this.event.state = 1
@@ -303,8 +307,10 @@ export default {
           this.event.state = 2
           break
       }
+      console.log('llega a try')
       try {
-        this.$axios.post('/events', {
+        console.log('arranca el try')
+        await this.$axios.post('/events', {
           title: this.event.title,
           place: this.event.place,
           description: this.event.description,
@@ -312,9 +318,9 @@ export default {
           state: this.event.state,
           time: this.event.time,
           cityId: this.newCity.id,
-          categoryId: this.event.category.id,
-          communityId: this.event.community.id,
-        })
+          categoryId: this.event.event_category.id,
+          communityId: this.communityId,
+        })/*
         if (response.status == 201) {
           this.dialog.header = 'Evento registrado'
           this.dialog.text = 'Gracias'
@@ -322,7 +328,7 @@ export default {
           this.dialog.show = true
         } else {
           throw response
-        }
+        }*/
       } catch (e) {
         this.dialog.header = 'Error al registrar el evento'
         this.dialog.text = 'Error' + e.response.status + ': ' + e.response.data.message

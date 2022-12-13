@@ -17,7 +17,7 @@
       </v-col>
       <v-col xs="12" sm="12" md="6" lg="5" xl="4" class="justify-space-around">
         <CommunitiesDetails :communityId="parseInt(this.$route.query.id)" />
-        <EventsAbm :mode="'C'" :communityId="parseInt(this.$route.query.id)" :eventId="undefined" />
+        
         <!-- <v-btn
           x-large
           class="ma-1 my-4 px-16"
@@ -41,6 +41,7 @@ export default {
     showEvents: [],
     checkbox: false,
     community: {},
+    isMod: false,
   }),
   watch: {
     selectedSortBy(newValue, oldValue) {
@@ -89,6 +90,7 @@ export default {
           console.log(err)
         })
     },
+    
   },
 }
 </script>

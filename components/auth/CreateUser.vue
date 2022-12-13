@@ -68,7 +68,7 @@
     </v-card>
     <FormsNotification
       :show="dialog.show"
-      :success="dialog.success"
+      :notiType="dialog.notiType"
       :header="dialog.header"
       :text="dialog.text"
       @notification="notification"></FormsNotification>
@@ -81,7 +81,7 @@ export default {
     newCity: null,
     dialog: {
       show: false,
-      success: true,
+      notiType: true,
       header: '',
       text: '',
     },
@@ -113,7 +113,7 @@ export default {
       if (success == true) {
         this.$router.go()
       } else {
-        this.dialog.show = false
+        this.$router.go()
       }
     },
     async createUser() {
@@ -129,7 +129,7 @@ export default {
           if (response.status == 201) {
             this.dialog.header = 'Usuario registrado'
             this.dialog.text = 'Gracias'
-            this.dialog.success = true
+            this.dialog.notiType = true
             this.dialog.show = true
           } else {
             throw response
@@ -137,7 +137,7 @@ export default {
         } catch (e) {
           this.dialog.header = 'Error al registrar el usuario'
           this.dialog.text = 'Error' + e.response.status + ': ' + e.response.data.message
-          this.dialog.success = false
+          this.dialog.notiType = false
           this.dialog.show = true
         }
       }

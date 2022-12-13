@@ -41,7 +41,7 @@
       </v-card> </v-dialog
     ><FormsNotification
       :show="noti.show"
-      :success="noti.success"
+      :notiType="noti.notiType"
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
@@ -72,9 +72,10 @@ export default {
       joined: false,
       isMod: false,
       seguidores: this.event.user_events.length,
+      miembro: null,
       noti: {
         show: false,
-        success: true,
+        notiType: true,
         header: '',
         text: '',
       },
@@ -88,9 +89,13 @@ export default {
     this.getCommunity(this.event.community.id)
   },
   methods: {
-    notification(success) {
+    async notification(success) {
       if (success == true) {
-        this.noti.show = false
+        if (this.miembro == false) {
+          this.miembro = true
+          await this.follow()
+          this.noti.show = false
+        }
       } else {
         this.noti.show = false
       }
@@ -109,9 +114,12 @@ export default {
         console.log(JSON.stringify(data.data.user_communities))
         data.data.user_communities.forEach((item) => {
           if (item.userId == this.$store.state.auth.user.id) {
+            this.miembro = true
             if (item.mod == true) {
               this.isMod = true
             }
+          } else {
+            this.miembro = false
           }
         })
       } catch (err) {
@@ -120,16 +128,23 @@ export default {
     },
     async follow() {
       try {
-        await this.$axios.post('/events/' + this.event.id + '/follow')
-        this.joined = true
-        this.seguidores = this.seguidores + 1
-        if (response.status != 200) {
-          throw response
+        if (this.miembro == true) {
+          const response = await this.$axios.post('/events/' + this.event.id + '/follow')
+          this.joined = true
+          this.seguidores = this.seguidores + 1
+          if (response.status != 200) {
+            throw response
+          }
+        } else {
+          this.noti.header = '¿Unirte a la comunidad?'
+          this.noti.text = 'Para seguir al evento debes ser mimbro de la comunidad'
+          this.noti.notiType = false
+          this.noti.show = true
         }
       } catch (e) {
         this.noti.header = 'Error al unirse a la comunidad'
         this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
-        this.noti.success = false
+        this.noti.notiType = false
         this.noti.show = true
       }
     },

@@ -32,7 +32,7 @@
     </v-card>
     <FormsNotification
       :show="noti.show"
-      :success="noti.success"
+      :notiType="noti.notiType"
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
@@ -63,7 +63,7 @@ export default {
     miembros: 0,
     noti: {
       show: false,
-      success: true,
+      notiType: true,
       header: '',
       text: '',
     },
@@ -122,7 +122,7 @@ export default {
       } catch (e) {
         this.noti.header = 'Error al unirse a la comunidad'
         this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
-        this.noti.success = false
+        this.noti.notiType = false
         this.noti.show = true
       }
     },

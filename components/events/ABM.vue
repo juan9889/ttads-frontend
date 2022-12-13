@@ -165,7 +165,7 @@
     </v-card>
     <FormsNotification
       :show="noti.show"
-      :success="noti.success"
+      :notiType="noti.notiType"
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
@@ -177,7 +177,7 @@
 export default {
   data: () => ({
     modal: false,
-    success: false,
+    notiType: false,
     newCity: {id: null},
     event: {
       title: '',
@@ -189,7 +189,8 @@ export default {
         province: {id: null},
       },
       place: '',
-      state: '',
+      state: null,
+      community: {},
       event_category: {id: null},
     },
     states: ['Activo', 'Cancelado', 'Terminado'],
@@ -202,7 +203,7 @@ export default {
 
     noti: {
       show: false,
-      success: true,
+      notiType: true,
       header: '',
       text: '',
     },
@@ -257,18 +258,15 @@ export default {
             await this.createEvent()
             break
           case 'U':
-            // this.UpdateEvent()
-            this.$router.back()
+            await this.updateEvent()
             break
           case 'D':
-            // this.DeleteEvent()
-            this.$router.back()
+            await this.deleteEvent()
             break
         }
       }
     },
     async createEvent() {
-      console.log('llega a create event')
       switch (this.event.state) {
         case 'Activo':
           this.event.state = 1
@@ -296,7 +294,7 @@ export default {
           this.dialog = false
           this.noti.header = 'Evento registrado'
           this.noti.text = 'Gracias'
-          this.noti.success = true
+          this.noti.notiType = true
           this.noti.show = true
         } else {
           throw response
@@ -304,7 +302,66 @@ export default {
       } catch (e) {
         this.noti.header = 'Error al registrar el evento'
         this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
-        this.noti.success = false
+        this.noti.notiType = false
+        this.noti.show = true
+      }
+    },
+    async updateEvent() {
+      switch (this.event.state) {
+        case 'Activo':
+          this.event.state = 1
+          break
+        case 'Cancelado':
+          this.event.state = 0
+          break
+        case 'Terminado':
+          this.event.state = 2
+          break
+      }
+      try {
+        const response = await this.$axios.put('/events/' + this.event.id, {
+          title: this.event.title,
+          place: this.event.place,
+          description: this.event.description,
+          date: this.event.date,
+          state: this.event.state,
+          time: this.event.time,
+          cityId: this.newCity.id,
+          categoryId: this.event.event_category.id,
+        })
+        if (response.status == 200) {
+          this.dialog = false
+          this.noti.header = 'Evento guardado'
+          this.noti.text = 'Gracias'
+          this.noti.notiType = true
+          this.noti.show = true
+        } else {
+          throw response
+        }
+      } catch (e) {
+        this.noti.header = 'Error al guardar el evento'
+        this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
+        this.noti.notiType = false
+        this.noti.show = true
+      }
+    },
+    async deleteEvent() {
+      console.log('llega a create event')
+      try {
+        const response = await this.$axios.delete('/events/' + this.event.id)
+        if (response.status == 200) {
+          this.dialog = false
+          this.noti.header = 'Evento eliminado'
+          this.noti.text = 'Gracias'
+          this.noti.notiType = true
+          this.noti.show = true
+        } else {
+          throw response
+        }
+      } catch (e) {
+        this.noti.header = 'Error al eliminar el evento'
+        this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
+        this.noti.notiType = false
         this.noti.show = true
       }
     },
@@ -324,6 +381,17 @@ export default {
         .get('events/' + id)
         .then((data) => {
           this.event = data.data
+          switch (this.event.state) {
+            case 1:
+              this.event.state = 'Activo'
+              break
+            case 0:
+              this.event.state = 'Cancelado'
+              break
+            case 2:
+              this.event.state = 'Terminado'
+              break
+          }
           this.loading = false
         })
         .catch((err) => {

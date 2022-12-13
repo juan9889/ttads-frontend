@@ -47,7 +47,7 @@
     </v-card>
     <FormsNotification
       :show="noti.show"
-      :success="noti.success"
+      :notiType="noti.notiType"
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
@@ -62,7 +62,7 @@ export default {
     dialog: false,
     noti: {
       show: false,
-      success: true,
+      notiType: true,
       header: '',
       text: '',
     },
@@ -109,7 +109,7 @@ export default {
           this.dialog = false
           this.noti.header = 'Perfil actualizado'
           this.noti.text = 'El perfil se ha actualizado'
-          this.noti.success = true
+          this.noti.notiType = true
           this.noti.show = true
         } else {
           throw user
@@ -117,7 +117,7 @@ export default {
       } catch (e) {
         this.noti.header = 'Error al actualizar usuario'
         this.noti.text = 'Error' + e.user.status + ': ' + e.user.data.message
-        this.noti.success = false
+        this.noti.notiType = false
         this.noti.show = true
       }
     },

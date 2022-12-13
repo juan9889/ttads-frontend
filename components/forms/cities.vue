@@ -51,7 +51,7 @@ export default {
     cityProp: Object,
   },
   mounted() {
-    if ((this.provinceProp != undefined || this.cityProp != undefined) && this.mode == 'U') {
+    if ((this.provinceProp != undefined || this.cityProp != undefined) && (this.mode == 'U' || this.mode == 'D')) {
       this.loading = false
       this.province = this.provinceProp
       this.city = this.cityProp
@@ -86,7 +86,7 @@ export default {
   watch: {
     province(newValue) {
       this.cities = []
-      if (this.mode != 'U') {
+      if (this.mode == 'C') {
         this.city = null
       }
       this.getProcinceCities(newValue.id)

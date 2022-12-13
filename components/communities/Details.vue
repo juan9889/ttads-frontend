@@ -30,10 +30,14 @@
         <EventsAbm v-if="isMod" :mode="'C'" :communityId="this.community.id" :eventId="undefined" />
       </v-card-actions>
       <v-card-actions class="pa-1 pt-0 justify-space-around">
-        <v-btn v-if="isMod" large class="px-4 ma-1" color="orange" @click="open_dialog_edit_comm" block>Modificar comunidad</v-btn>
+        <v-btn v-if="isMod" large class="px-4 ma-1" color="orange" @click="open_dialog_edit_comm" block
+          >Modificar comunidad</v-btn
+        >
       </v-card-actions>
       <v-card-actions class="pa-1 pt-0 justify-space-around">
-        <v-btn v-if="isMod" large class="px-4 ma-1" color="red" @click="open_dialog_delete" block>Eliminar comunidad</v-btn>
+        <v-btn v-if="isMod" large class="px-4 ma-1" color="red" @click="open_dialog_delete" block
+          >Eliminar comunidad</v-btn
+        >
       </v-card-actions>
     </v-card>
     <FormsNotification
@@ -42,7 +46,7 @@
       :header="noti.header"
       :text="noti.text"
       @notification="notification"></FormsNotification>
-      <v-dialog v-model="dialog_edit" persistent max-width="600px">
+    <v-dialog v-model="dialog_edit" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span class="text-h5">Editar comunidad</span>
@@ -130,8 +134,8 @@ export default {
     },
   },
   mounted() {
-    this.getCommunity(this.communityId);
-    this.getCategories();
+    this.getCommunity(this.communityId)
+    this.getCategories()
   },
   methods: {
     notification(success) {
@@ -202,37 +206,33 @@ export default {
         .catch((err) => console.log(err))
     },
     open_dialog_edit_comm() {
-      this.dialog_edit= true;
+      this.dialog_edit = true
     },
     open_dialog_delete() {
-      this.dialog_delete=true;
+      this.dialog_delete = true
     },
     async edit_confirm() {
-      try{
-        
-        
-        
-        await this.$axios.$put('communities/'  + this.community.id, {
+      try {
+        await this.$axios.$put('communities/' + this.community.id, {
           name: this.name_edit,
           description: this.desc_edit,
-          categoryId: this.selected_cat_edit
-        });
-        this.community.name=this.name_edit;
-        this.community.description=this.desc_edit;
-        this.community.categoryId=this.selected_cat_edit;
-        this.dialog_edit=false;
-        
-      }catch(e){
-        console.log(e);
+          categoryId: this.selected_cat_edit,
+        })
+        this.community.name = this.name_edit
+        this.community.description = this.desc_edit
+        this.community.categoryId = this.selected_cat_edit
+        this.dialog_edit = false
+      } catch (e) {
+        console.log(e)
       }
     },
     async delete_confirm() {
-      try{
+      try {
         await this.$axios.$delete('communities/' + this.community.id)
-        this.dialog_delete = false;
-        this.$router.push('/communities/explore');
-      }catch(e){
-        console.log(e);
+        this.dialog_delete = false
+        this.$router.push('/communities/explore')
+      } catch (e) {
+        console.log(e)
       }
     },
   },

@@ -62,18 +62,39 @@ export default {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   data() {
-    var btnItems_tmp=[
+    var btnItems_tmp = [
+      {
+        icon: true,
+        iconName: 'mdi-home',
+        title: 'Inicio',
+        to: '/',
+      },
+      {
+        icon: false,
+        iconName: 'mdi-chart-bubble',
+        title: 'Administrador',
+        to: '/admin',
+      },
+      {
+        icon: false,
+        iconName: 'mdi-chart-bubble',
+        title: 'Explorar',
+        to: '/communities/explore',
+      },
+      {
+        icon: false,
+        iconName: 'mdi-chart-bubble',
+        title: 'Buscar',
+        to: '/search',
+      },
+    ]
+    if (this.$store.state.auth.user.admin == 0) {
+      btnItems_tmp = [
         {
           icon: true,
           iconName: 'mdi-home',
           title: 'Inicio',
           to: '/',
-        },
-        {
-          icon: false,
-          iconName: 'mdi-chart-bubble',
-          title: 'Administrador',
-          to: '/admin',
         },
         {
           icon: false,
@@ -87,28 +108,7 @@ export default {
           title: 'Buscar',
           to: '/search',
         },
-      ];
-    if(this.$store.state.auth.user.admin==0){
-      btnItems_tmp=[
-        {
-          icon: true,
-          iconName: 'mdi-home',
-          title: 'Inicio',
-          to: '/',
-        },
-        {
-          icon: false,
-          iconName: 'mdi-chart-bubble',
-          title: 'Explorar',
-          to: '/communities/explore',
-        },
-        {
-          icon: false,
-          iconName: 'mdi-chart-bubble',
-          title: 'Buscar',
-          to: '/search',
-        },
-      ];
+      ]
     }
     return {
       clipped: false,

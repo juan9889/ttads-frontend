@@ -2,12 +2,9 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="290">
       <template v-id v-slot:activator="{on, attrs}">
-        <v-btn @click.prevent="getEventsDetails(eventId)" class="ma-1" color="eventButton" v-bind="attrs" v-on="on">
-          Detalles
-        </v-btn>
+        <v-btn class="ma-1" color="eventButton" v-bind="attrs" v-on="on"> Detalles </v-btn>
       </template>
-      <SkeletonCard v-if="loading" :amount="1"></SkeletonCard>
-      <v-card v-else class="evento mx-auto text-center" min-width="290" max-width="355">
+      <v-card class="evento mx-auto text-center" min-width="290" max-width="355">
         <v-icon :color="event.event_category.iconColor" class="icons mt-2">
           mdi-{{ event.event_category.icon }}
         </v-icon>
@@ -32,6 +29,12 @@
           >
           <v-btn class="ma-1" color="eventButton2" outlined>Seguir</v-btn>
         </v-card-actions>
+        <v-card-actions class="pa-1 pt-0 justify-space-around">
+          <EventsAbm v-if="true" :mode="'U'" :communityId="event.community.id" :eventId="event.id" />
+        </v-card-actions>
+        <v-card-actions class="pa-1 pt-0 justify-space-around">
+          <EventsAbm v-if="true" :mode="'D'" :communityId="event.community.id" :eventId="event.id" />
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
@@ -50,29 +53,15 @@
 </style>
 <script>
 export default {
-  props: {
-    eventId: Number,
-  },
   data() {
     return {
       dialog: false,
-      loading: true,
-      event: {},
     }
   },
-  methods: {
-    getEventsDetails(id) {
-      this.$axios
-        .get('events/' + id)
-        .then((data) => {
-          this.event = data.data
-          this.loading = false
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
+  props: {
+    event: Object,
   },
+  methods: {},
 }
 </script>
 

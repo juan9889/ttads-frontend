@@ -1,7 +1,15 @@
 <template>
   <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" width="95%">
     <template v-id v-slot:activator="{on, attrs}">
-      <v-btn x-large class="ma-1 my-4 px-16" color="eventButton" block v-bind="attrs" v-on="on"> Crear evento </v-btn>
+      <v-btn
+        large
+        class="px-4 ma-1"
+        :color="mode == 'C' ? 'eventButton' : mode == 'D' ? 'warning' : 'eventButton'"
+        block
+        v-bind="attrs"
+        v-on="on"
+        >{{ mode == 'C' ? 'Crear' : mode == 'D' ? 'Eliminar' : 'Editar' }} Evento
+      </v-btn>
     </template>
     <SkeletonAbm v-if="loading" :amount="1"></SkeletonAbm>
     <v-card v-else>
@@ -170,19 +178,19 @@ export default {
   data: () => ({
     modal: false,
     success: false,
-    newCity: {},
+    newCity: {id: null},
     event: {
       title: '',
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
       time: '00:00',
       description: '',
-      category: null,
       city: {
-        province: {},
+        id: null,
+        province: {id: null},
       },
       place: '',
       state: '',
-      event_category: {},
+      event_category: {id: null},
     },
     states: ['Activo', 'Cancelado', 'Terminado'],
     categories: [],
@@ -227,29 +235,26 @@ export default {
     },
     notification(success) {
       if (success == true) {
-        this.$router.go()
+        this.noti.show = false
       } else {
         this.noti.show = false
       }
     },
     async validateForm() {
-      console.log('llega a metodo intentar validar')
-      console.log(JSON.stringify(this.event))
       if (
         this.event.title != '' &&
         this.event.place != '' &&
         this.event.description != '' &&
         this.event.date != '' &&
         this.event.time != '' &&
-        this.newCity != {} &&
-        this.event.event_category != null &&
+        this.newCity.id != null &&
+        this.event.event_category.id != null &&
         this.event.state != null
       ) {
         console.log('pasa validacion')
         switch (this.mode) {
           case 'C':
             await this.createEvent()
-            this.dialog=false
             break
           case 'U':
             // this.UpdateEvent()
@@ -260,6 +265,47 @@ export default {
             this.$router.back()
             break
         }
+      }
+    },
+    async createEvent() {
+      console.log('llega a create event')
+      switch (this.event.state) {
+        case 'Activo':
+          this.event.state = 1
+          break
+        case 'Cancelado':
+          this.event.state = 0
+          break
+        case 'Terminado':
+          this.event.state = 2
+          break
+      }
+      try {
+        const response = await this.$axios.post('/events', {
+          title: this.event.title,
+          place: this.event.place,
+          description: this.event.description,
+          date: this.event.date,
+          state: this.event.state,
+          time: this.event.time,
+          cityId: this.newCity.id,
+          categoryId: this.event.event_category.id,
+          communityId: this.communityId,
+        })
+        if (response.status == 201) {
+          this.dialog = false
+          this.noti.header = 'Evento registrado'
+          this.noti.text = 'Gracias'
+          this.noti.success = true
+          this.noti.show = true
+        } else {
+          throw response
+        }
+      } catch (e) {
+        this.noti.header = 'Error al registrar el evento'
+        this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
+        this.noti.success = false
+        this.noti.show = true
       }
     },
     getCommunity(id) {
@@ -293,48 +339,6 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-    async createEvent() {
-      console.log('llega a create event')
-      switch (this.event.state) {
-        case 'Activo':
-          this.event.state = 1
-          break
-        case 'Cancelado':
-          this.event.state = 0
-          break
-        case 'Terminado':
-          this.event.state = 2
-          break
-      }
-      console.log('llega a try')
-      try {
-        console.log('arranca el try')
-        await this.$axios.post('/events', {
-          title: this.event.title,
-          place: this.event.place,
-          description: this.event.description,
-          date: this.event.date,
-          state: this.event.state,
-          time: this.event.time,
-          cityId: this.newCity.id,
-          categoryId: this.event.event_category.id,
-          communityId: this.communityId,
-        })/*
-        if (response.status == 201) {
-          this.dialog.header = 'Evento registrado'
-          this.dialog.text = 'Gracias'
-          this.dialog.success = true
-          this.dialog.show = true
-        } else {
-          throw response
-        }*/
-      } catch (e) {
-        this.dialog.header = 'Error al registrar el evento'
-        this.dialog.text = 'Error' + e.response.status + ': ' + e.response.data.message
-        this.dialog.success = false
-        this.dialog.show = true
-      }
     },
   },
 }

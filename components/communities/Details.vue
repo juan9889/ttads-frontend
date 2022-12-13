@@ -22,7 +22,7 @@
         >
         <v-btn v-if="joined == false" large class="px-4 ma-1" color="commuButton" @click="join" block>Unirse</v-btn>
       </v-card-actions>
-      <v-card-actions>
+      <v-card-actions class="pa-1 pt-0 justify-space-around">
         <EventsAbm v-if="isMod" :mode="'C'" :communityId="this.community.id" :eventId="undefined" />
       </v-card-actions>
     </v-card>
@@ -97,12 +97,10 @@ export default {
       if (item.userId == this.$store.state.auth.user.id) {
         this.joined = true
         console.log(item)
-        if(item.mod==true){
-          this.isMod=true;
-          
+        if (item.mod == true) {
+          this.isMod = true
         }
       }
-      
     },
   },
 }

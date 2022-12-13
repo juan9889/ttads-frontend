@@ -16,7 +16,7 @@
         <v-btn class="ma-1" color="eventButton" :to="'/communities?id=' + event.community.id.toString()">
           Ver Comunidad
         </v-btn>
-        <EventsDetails :eventId="event.id"></EventsDetails>
+        <EventsDetails :event="event"></EventsDetails>
       </v-card-actions>
     </v-card>
   </div>

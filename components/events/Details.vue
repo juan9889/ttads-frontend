@@ -24,8 +24,10 @@
           {{ event.city.name }} - {{ event.city.province.name }}
         </v-card-subtitle>
         <v-card-subtitle class="pb-1 pt-0 text-left"> {{ event.date }} - {{ event.time }}</v-card-subtitle>
-        <!-- <v-card-subtitle class="pb-1 pt-0 text-left"> Ultima modificacion: {{ event.updatedAt }}
-        </v-card-subtitle> -->
+        <v-card-text class="text--primary text-left pt-1">
+        <v-chip v-if="event.user_events.length == 1" color="secondary">{{ event.user_events.length }} seguidor</v-chip>
+        <v-chip v-else color="secondary">{{ event.user_events.length }} seguidores</v-chip>
+      </v-card-text>
         <v-card-actions class="pa-1 pt-0 justify-space-around">
           <v-btn class="ma-1" color="eventButton2" outlined :to="'/communities?id=' + event.community.id.toString()">
             Ver Comunidad</v-btn

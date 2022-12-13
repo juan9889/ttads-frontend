@@ -206,6 +206,9 @@ export default {
         .catch((err) => console.log(err))
     },
     open_dialog_edit_comm() {
+      this.selected_cat_edit = this.community.categoryId;
+      this.name_edit=this.community.name;
+      this.desc_edit=this.community.description;
       this.dialog_edit = true
     },
     open_dialog_delete() {

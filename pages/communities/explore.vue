@@ -3,8 +3,16 @@
     <h1 class="text-center text-h3 mb-4">Explorar</h1>
     <v-row justify="center">
       <v-col xs="12" sm="12" md="2" class="pt-3">
+        <v-btn class="mb-2" group v-model="categoryListIndex"
+      depressed
+      color="green"
+      href="/communities/new"
+    >
+      Crear comunidad
+    </v-btn>
         <h3 class="text-h5 text-center">Categorias</h3>
         <SkeletonButton v-if="loadingCategories" :amount="6"></SkeletonButton>
+
         <v-btn-toggle v-else group v-model="categoryListIndex" tile color="primary" class="d-flex flex-column">
           <v-btn class="mb-2" v-for="category in categories" :key="category.id" elevation="6" raised>
             {{ category.name }}

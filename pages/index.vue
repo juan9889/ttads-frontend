@@ -38,7 +38,7 @@ export default {
       this.$axios
         .get('communities')
         .then((data) => {
-          this.communities = data.data
+          this.communities = data.data.slice(0, 10)
           this.loadingCommunities = false
         })
         .catch((err) => {
@@ -49,10 +49,11 @@ export default {
       this.$axios
         .get('events')
         .then((data) => {
-          this.events = data.data
+          // Guardar en una variable los 10 eventos con más seguidores.
+          this.events = data.data.slice(0, 10)
           this.loadingEvents = false
         })
-        .catch((err) => {
+        .catch((err) => { 
           console.log(err)
         })
     },

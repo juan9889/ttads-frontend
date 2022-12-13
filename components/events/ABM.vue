@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" width="95%">
+  <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" width="90%">
     <template v-id v-slot:activator="{on, attrs}">
       <v-btn
         large

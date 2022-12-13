@@ -9,9 +9,9 @@
       <v-card-subtitle class="pb-1 text-h4 text-center">#{{ community.comm_category.name }}</v-card-subtitle>
       <v-card-text class="text-h5 text-center">{{ community.description }}</v-card-text>
       <v-card-text class="text--primary text-left pt-0">
-      <v-chip v-if="community.user_communities.length == 1" color="secondary">{{ community.user_communities.length }} miembro</v-chip>
-      <v-chip v-else color="secondary">{{ community.user_communities.length }} miembros</v-chip>
-    </v-card-text>
+        <v-chip v-if="miembros == 1" color="secondary">{{ miembros }} miembro</v-chip>
+        <v-chip v-else color="secondary">{{ miembros }} miembros</v-chip>
+      </v-card-text>
       <!-- <v-divider class="mx-4"></v-divider> -->
       <!-- <v-card-title class="text-h5 justify-center">Categoria de Eventos</v-card-title> -->
       <!-- <v-card-text>
@@ -30,6 +30,12 @@
         <EventsAbm v-if="isMod" :mode="'C'" :communityId="this.community.id" :eventId="undefined" />
       </v-card-actions>
     </v-card>
+    <FormsNotification
+      :show="noti.show"
+      :success="noti.success"
+      :header="noti.header"
+      :text="noti.text"
+      @notification="notification"></FormsNotification>
   </div>
 </template>
 
@@ -54,6 +60,13 @@ export default {
     loading: true,
     joined: false,
     isMod: false,
+    miembros: 0,
+    noti: {
+      show: false,
+      success: true,
+      header: '',
+      text: '',
+    },
   }),
   props: {
     communityId: {
@@ -64,6 +77,13 @@ export default {
     this.getCommunity(this.communityId)
   },
   methods: {
+    notification(success) {
+      if (success == true) {
+        this.noti.show = false
+      } else {
+        this.noti.show = false
+      }
+    },
     eventCategoriesFilter(arr) {
       //Hacer filtro para quitar categorias repetidas de arr (communityEvents)
       //console.log(JSON.stringify(arr))
@@ -75,6 +95,7 @@ export default {
         .then((data) => {
           this.community = data.data
           this.loading = false
+          this.miembros = data.data.user_communities.length
           this.community.user_communities.forEach(this.search)
         })
         .catch((err) => {
@@ -85,6 +106,7 @@ export default {
       try {
         const response = await this.$axios.post('/communities/' + this.community.id + '/join')
         this.joined = false
+        this.miembros = this.miembros - 1
       } catch (e) {
         console.log(e)
       }
@@ -93,8 +115,15 @@ export default {
       try {
         const response = await this.$axios.post('/communities/' + this.community.id + '/join')
         this.joined = true
+        this.miembros = this.miembros + 1
+        if (response.status != 200) {
+          throw response
+        }
       } catch (e) {
-        console.log(e)
+        this.noti.header = 'Error al unirse a la comunidad'
+        this.noti.text = 'Error' + e.response.status + ': ' + e.response.data.message
+        this.noti.success = false
+        this.noti.show = true
       }
     },
     search(item) {

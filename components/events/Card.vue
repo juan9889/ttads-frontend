@@ -4,15 +4,15 @@
       <v-icon :color="event.event_category.iconColor" class="icons mt-2" x-large>
         mdi-{{ event.event_category.icon }}
       </v-icon>
-      <v-card-title class="pb-0 text-h6">{{ event.title.toUpperCase() }}</v-card-title>
-      <v-card-title class="pt-0 pb-3 text-subtitle-1 text-left"
+      <v-card-title class="pb-0 text-subtitle-1">{{ event.title.toUpperCase() }}</v-card-title>
+      <v-card-title class="pt-0 pb-3 text-body-2 text-left"
         ># {{ event.event_category.name }} - {{ event.community.name }}
       </v-card-title>
-      <v-card-subtitle class="pb-1 pt-0 text-left">
+      <v-card-subtitle class="pb-1 pt-2 text-left text-body-2">
         {{ event.city.name }} - {{ event.city.province.name }} -
         {{ event.date }}
       </v-card-subtitle>
-      <v-card-text class="text--primary text-left">
+      <v-card-text class="text--primary text-left pt-1 pb-2">
         <v-chip v-if="event.user_events.length == 1" color="secondary">{{ event.user_events.length }} seguidor</v-chip>
         <v-chip v-else color="secondary">{{ event.user_events.length }} seguidores</v-chip>
       </v-card-text>

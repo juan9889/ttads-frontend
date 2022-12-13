@@ -12,7 +12,7 @@
         {{ event.city.name }} - {{ event.city.province.name }} -
         {{ event.date }}
       </v-card-subtitle>
-      <v-card-text class="text--primary text-left pt-1">
+      <v-card-text class="text--primary text-left">
         <v-chip v-if="event.user_events.length == 1" color="secondary">{{ event.user_events.length }} seguidor</v-chip>
         <v-chip v-else color="secondary">{{ event.user_events.length }} seguidores</v-chip>
       </v-card-text>

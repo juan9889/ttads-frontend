@@ -7,7 +7,7 @@
     <v-card-title class="pt-0 pb-1 text-left text-subtitle-1">#{{ community.comm_category.name }}</v-card-title>
     <v-card-text class="text--primary text-left">{{ community.description }}</v-card-text>
     <v-card-text class="text--primary text-left pt-0">
-      <v-chip v-if="community.user_communities.length == 1" color="secondary">{{ event.user_events.length }} miembro</v-chip>
+      <v-chip v-if="community.user_communities.length == 1" color="secondary">{{ community.user_communities.length }} miembro</v-chip>
       <v-chip v-else color="secondary">{{ community.user_communities.length }} miembros</v-chip>
     </v-card-text>
     <v-card-actions class="pa-1 pt-0 justify-space-around">

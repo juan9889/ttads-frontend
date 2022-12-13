@@ -32,7 +32,8 @@
           <v-btn class="ma-1" color="eventButton2" outlined :to="'/communities?id=' + event.community.id.toString()">
             Ver Comunidad</v-btn
           >
-          <v-btn class="ma-1" color="eventButton2" outlined>Seguir</v-btn>
+          <v-btn v-if="joined" class="ma-1" color="eventButton2" @click="unfollow" outlined>Abandonar</v-btn>
+          <v-btn v-if="joined==false" class="ma-1" color="eventButton2" @click="follow" outlined>Seguir</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -59,6 +60,7 @@ export default {
     return {
       dialog: false,
       loading: true,
+      joined: false,
       event: {},
     }
   },
@@ -69,11 +71,36 @@ export default {
         .then((data) => {
           this.event = data.data
           this.loading = false
+          this.event.user_events.forEach(this.search)
         })
         .catch((err) => {
           console.log(err)
         })
     },
+    search(item) {
+      if (item.userId == this.$store.state.auth.user.id) {
+        this.joined = true
+        
+        
+      }
+      
+    },
+    async follow() {
+      try{
+        await this.$axios.post('/events/' + this.event.id + '/follow');
+        this.joined=true;
+      }catch (e) {
+        console.log(e)
+      }
+    },
+    async unfollow() {
+      try{
+        await this.$axios.post('/events/' + this.event.id + '/follow');
+        this.joined=false;
+      }catch (e) {
+        console.log(e)
+      }
+    }
   },
 }
 </script>

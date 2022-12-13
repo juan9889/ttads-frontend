@@ -38,7 +38,19 @@ export default {
       this.$axios
         .get('communities')
         .then((data) => {
-          this.communities = data.data.slice(0, 10)
+          this.communities = data.data
+            .sort((a, b) => {
+              const a_length = a.user_communities.length
+              const b_length = b.user_communities.length
+              if (a_length == b_length) {
+                return 0
+              }
+              if (a_length > b_length) {
+                return -1
+              }
+              return 1
+            })
+            .slice(0, 10)
           this.loadingCommunities = false
         })
         .catch((err) => {
@@ -50,10 +62,22 @@ export default {
         .get('events')
         .then((data) => {
           // Guardar en una variable los 10 eventos con más seguidores.
-          this.events = data.data.slice(0, 10)
+          this.events = data.data
+            .sort((a, b) => {
+              const a_length = a.user_events.length
+              const b_length = b.user_events.length
+              if (a_length == b_length) {
+                return 0
+              }
+              if (a_length > b_length) {
+                return -1
+              }
+              return 1
+            })
+            .slice(0, 10)
           this.loadingEvents = false
         })
-        .catch((err) => { 
+        .catch((err) => {
           console.log(err)
         })
     },
